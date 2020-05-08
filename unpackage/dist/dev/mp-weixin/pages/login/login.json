@@ -1,0 +1,9 @@
+{
+  "backgroundColorTop": "#E41F19",
+  "backgroundColorBottom": "#ffffff",
+  "navigationBarTitleText": "登录",
+  "usingComponents": {
+    "tui-icon": "/components/icon/icon",
+    "tui-button": "/components/button/button"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "产品分类",
+  "navigationBarBackgroundColor": "#E41F19",
+  "navigationBarTextStyle": "white",
+  "usingComponents": {
+    "tui-loadmore": "/components/loadmore/loadmore",
+    "tui-nomore": "/components/nomore/nomore"
+  }
+}

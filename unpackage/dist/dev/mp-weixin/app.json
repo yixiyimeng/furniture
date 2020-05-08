@@ -1,0 +1,79 @@
+{
+  "pages": [
+    "pages/mall/mall",
+    "pages/category/category",
+    "pages/my/my",
+    "pages/login/login",
+    "pages/live/live"
+  ],
+  "subPackages": [
+    {
+      "root": "pages/extend-view/",
+      "pages": [
+        "news-search/news-search",
+        "productList/productList",
+        "productDetail/productDetail",
+        "shopcart/shopcart",
+        "myOrder/myOrder",
+        "set/set",
+        "userInfo/userInfo",
+        "editUserInfo/editUserInfo",
+        "address/address",
+        "editAddress/editAddress",
+        "submitOrder/submitOrder",
+        "coupon/coupon",
+        "success/success",
+        "orderDetail/orderDetail",
+        "news/news",
+        "chat/chat",
+        "facorites/facorites"
+      ]
+    }
+  ],
+  "window": {
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#E41F19",
+    "navigationBarTitleText": "家具商城",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#fafafa",
+    "backgroundColorTop": "#fafafa",
+    "backgroundColorBottom": "#fafafa"
+  },
+  "tabBar": {
+    "color": "#666666",
+    "selectedColor": "#E41F19",
+    "backgroundColor": "#FFFFFF",
+    "list": [
+      {
+        "pagePath": "pages/mall/mall",
+        "text": "首页",
+        "iconPath": "static/images/tabbar/home.png",
+        "selectedIconPath": "static/images/tabbar/home_active.png"
+      },
+      {
+        "pagePath": "pages/category/category",
+        "text": "产品",
+        "iconPath": "static/images/tabbar/category.png",
+        "selectedIconPath": "static/images/tabbar/category_active.png"
+      },
+      {
+        "pagePath": "pages/live/live",
+        "text": "直播",
+        "iconPath": "static/images/tabbar/live.png",
+        "selectedIconPath": "static/images/tabbar/live_active.png"
+      },
+      {
+        "pagePath": "pages/my/my",
+        "text": "我的",
+        "iconPath": "static/images/tabbar/my.png",
+        "selectedIconPath": "static/images/tabbar/my_active.png"
+      }
+    ]
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于定位效果展示"
+    }
+  },
+  "usingComponents": {}
+}

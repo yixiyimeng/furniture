@@ -1,0 +1,8 @@
+{
+  "navigationBarBackgroundColor": "#FFFFFF",
+  "navigationBarTextStyle": "black",
+  "navigationBarTitleText": "个人信息",
+  "usingComponents": {
+    "tui-list-cell": "/components/list-cell/list-cell"
+  }
+}

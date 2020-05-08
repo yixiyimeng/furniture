@@ -1,0 +1,13 @@
+{
+  "navigationBarTitleText": "消息",
+  "backgroundColorTop": "#E41F19",
+  "backgroundColorBottom": "#E41F19",
+  "enablePullDownRefresh": true,
+  "onReachBottomDistance": 50,
+  "usingComponents": {
+    "tui-icon": "/components/icon/icon",
+    "tui-list-cell": "/components/list-cell/list-cell",
+    "tui-loadmore": "/components/loadmore/loadmore",
+    "tui-nomore": "/components/nomore/nomore"
+  }
+}

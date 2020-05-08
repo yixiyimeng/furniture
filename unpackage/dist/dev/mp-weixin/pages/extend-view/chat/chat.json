@@ -1,0 +1,12 @@
+{
+  "navigationBarBackgroundColor": "#fff",
+  "navigationBarTextStyle": "black",
+  "backgroundColorTop": "#E41F19",
+  "backgroundColorBottom": "#E41F19",
+  "navigationBarTitleText": "技术交流群",
+  "usingComponents": {
+    "tui-icon": "/components/icon/icon",
+    "tui-badge": "/components/badge/badge",
+    "tui-loadmore": "/components/loadmore/loadmore"
+  }
+}
