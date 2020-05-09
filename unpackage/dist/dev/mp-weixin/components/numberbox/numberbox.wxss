@@ -13,17 +13,19 @@
 	padding: 10rpx;
 }
 .tui-icon-reduce:before {
-	content: "\e691";
+	content: "\E691";
 }
 .tui-icon-plus:before {
-	content: "\e605";
+	content: "\E605";
 }
 .tui-numberbox {
 	display: -webkit-inline-flex;
 	display: -webkit-inline-box;
+	display: -ms-inline-flexbox;
 	display: inline-flex;
 	-webkit-box-align: center;
 	-webkit-align-items: center;
+	    -ms-flex-align: center;
 	        align-items: center;
 }
 .tui-num-input {

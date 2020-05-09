@@ -2,7 +2,7 @@
 .tui-bg {
 	width: 100%;
 	height: 260rpx;
-	background: -webkit-linear-gradient(70deg, #E41F19, #F34B0B);
+	background: -o-linear-gradient(70deg, #E41F19, #F34B0B);
 	background: linear-gradient(20deg, #E41F19, #F34B0B);
 	border-bottom-left-radius: 42rpx;
 }
@@ -22,13 +22,16 @@
 	z-index: 10;
 	display: -webkit-box;
 	display: -webkit-flex;
+	display: -ms-flexbox;
 	display: flex;
 	-webkit-box-align: center;
 	-webkit-align-items: center;
+	    -ms-flex-align: center;
 	        align-items: center;
 	-webkit-box-orient: vertical;
 	-webkit-box-direction: normal;
 	-webkit-flex-direction: column;
+	    -ms-flex-direction: column;
 	        flex-direction: column;
 }
 .tui-icon {
@@ -52,12 +55,15 @@
 	width: 580rpx;
 	display: -webkit-box;
 	display: -webkit-flex;
+	display: -ms-flexbox;
 	display: flex;
 	-webkit-box-align: center;
 	-webkit-align-items: center;
+	    -ms-flex-align: center;
 	        align-items: center;
 	-webkit-box-pack: justify;
 	-webkit-justify-content: space-between;
+	    -ms-flex-pack: justify;
 	        justify-content: space-between;
 	padding-top: 88rpx;
 }

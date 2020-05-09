@@ -66,18 +66,22 @@
 		top: 0;
 		display: -webkit-box;
 		display: -webkit-flex;
+		display: -ms-flexbox;
 		display: flex;
 		-webkit-box-align: center;
 		-webkit-align-items: center;
+		    -ms-flex-align: center;
 		        align-items: center;
 		-webkit-box-pack: center;
 		-webkit-justify-content: center;
+		    -ms-flex-pack: center;
 		        justify-content: center;
 		word-break: break-all;
 		opacity: 0;
 		-webkit-transform: translateZ(0) translateY(-100%);
 		        transform: translateZ(0) translateY(-100%);
 		-webkit-transition: all 0.3s ease-in-out;
+		-o-transition: all 0.3s ease-in-out;
 		transition: all 0.3s ease-in-out;
 }
 .tui-top-show {
@@ -102,16 +106,20 @@
 		opacity: 0;
 		left: 50%;
 		-webkit-transition: all 0.3s ease-in-out;
+		-o-transition: all 0.3s ease-in-out;
 		transition: all 0.3s ease-in-out;
 		z-index: 9999;
 		display: -webkit-box;
 		display: -webkit-flex;
+		display: -ms-flexbox;
 		display: flex;
 		-webkit-box-align: center;
 		-webkit-align-items: center;
+		    -ms-flex-align: center;
 		        align-items: center;
 		-webkit-box-pack: center;
 		-webkit-justify-content: center;
+		    -ms-flex-pack: center;
 		        justify-content: center;
 }
 .tui-toast-show {
@@ -128,14 +136,16 @@
 .tui-bottomtips {
 		bottom: 120rpx;
 		-webkit-transform: translateX(-50%);
-		transform: translateX(-50%);
+		-ms-transform: translateX(-50%);
+		    transform: translateX(-50%);
 }
 	/*底部消息提醒 end*/
 	/*居中消息提醒 start*/
 .tui-centertips {
 		top: 50%;
 		-webkit-transform: translate(-50%, -50%);
-		transform: translate(-50%, -50%);
+		-ms-transform: translate(-50%, -50%);
+		    transform: translate(-50%, -50%);
 }
 	/*居中消息提醒 end*/
 	/*toast消息提醒 end*/

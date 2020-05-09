@@ -22,10 +22,12 @@ page {
 .container {
 	display: -webkit-box;
 	display: -webkit-flex;
+	display: -ms-flexbox;
 	display: flex;
 	-webkit-box-orient: vertical;
 	-webkit-box-direction: normal;
 	-webkit-flex-direction: column;
+	    -ms-flex-direction: column;
 	        flex-direction: column;
 	-webkit-box-sizing: border-box;
 	        box-sizing: border-box;
@@ -46,7 +48,8 @@ button::after {
 .ellipsis {
 	overflow: hidden;
 	white-space: nowrap;
-	text-overflow: ellipsis;
+	-o-text-overflow: ellipsis;
+	   text-overflow: ellipsis;
 }
 /*列表统一样式 */
 .list-item {
@@ -57,7 +60,8 @@ button::after {
 	position: absolute;
 	border-bottom: 1rpx solid #eaeef1;
 	-webkit-transform: scaleY(0.5);
-	transform: scaleY(0.5);
+	-ms-transform: scaleY(0.5);
+	    transform: scaleY(0.5);
 	bottom: 0;
 	right: 0;
 	left: 30rpx;
@@ -71,7 +75,7 @@ button::after {
 	height: 90rpx;
 	line-height: 90rpx;
 	background: -webkit-gradient(linear, right top, left top, from(#5677fc), to(#5c8dff));
-	background: -webkit-linear-gradient(right, #5677fc, #5c8dff);
+	background: -o-linear-gradient(right, #5677fc, #5c8dff);
 	background: linear-gradient(-90deg, #5677fc, #5c8dff);
 	border-radius: 45rpx;
 	color: #fff;
@@ -80,7 +84,7 @@ button::after {
 .btn-hover {
 	color: #d5d4d9;
 	background: -webkit-gradient(linear, right top, left top, from(#4a67d6), to(#4e77d9));
-	background: -webkit-linear-gradient(right, #4a67d6, #4e77d9);
+	background: -o-linear-gradient(right, #4a67d6, #4e77d9);
 	background: linear-gradient(-90deg, #4a67d6, #4e77d9);
 }
 .btn-gray {
@@ -102,7 +106,7 @@ button::after {
 .btn-disabled {
 	color: #fafbfc !important;
 	background: -webkit-gradient(linear, right top, left top, from(#cad8fb), to(#c9d3fb));
-	background: -webkit-linear-gradient(right, #cad8fb, #c9d3fb);
+	background: -o-linear-gradient(right, #cad8fb, #c9d3fb);
 	background: linear-gradient(-90deg, #cad8fb, #c9d3fb);
 }
 .mt20{
@@ -119,5 +123,25 @@ button::after {
 }
 .mr20{
 	margin-right: 20rpx;
+}
+.cropRight {
+	position: relative;
+	background: #fff;
+	padding: 0 20rpx;
+	color: #fff;
+	text-align: left;
+	font-size: 26rpx;
+	line-height: 1.8;
+}
+.cropRight image {
+	width: 100%;
+}
+.cropRight .name {
+	font-size: 34rpx;
+}
+.cropRight>._div {
+	position: absolute;
+	left: 20px;
+	top: 15px;
 }
 

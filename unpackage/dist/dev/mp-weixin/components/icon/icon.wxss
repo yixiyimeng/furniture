@@ -20,558 +20,558 @@
 	margin-bottom: 1px;
 }
 .tui-icon-friendadd:before {
-	content: "\e6ca";
+	content: "\E6CA";
 }
 .tui-icon-friendadd-fill:before {
-	content: "\e6c9";
+	content: "\E6C9";
 }
 .tui-icon-service:before {
-	content: "\e664";
+	content: "\E664";
 }
 .tui-icon-service-fill:before {
-	content: "\e665";
+	content: "\E665";
 }
 .tui-icon-explore:before {
-	content: "\e666";
+	content: "\E666";
 }
 .tui-icon-explore-fill:before {
-	content: "\e667";
+	content: "\E667";
 }
 .tui-icon-wealth:before {
-	content: "\e668";
+	content: "\E668";
 }
 .tui-icon-wealth-fill:before {
-	content: "\e669";
+	content: "\E669";
 }
 .tui-icon-exchange:before {
-	content: "\e638";
+	content: "\E638";
 }
 .tui-icon-refresh:before {
-	content: "\e640";
+	content: "\E640";
 }
 .tui-icon-search:before {
-	content: "\e622";
+	content: "\E622";
 }
 .tui-icon-search-2:before {
-	content: "\e634";
+	content: "\E634";
 }
 .tui-icon-todown:before {
-	content: "\e64f";
+	content: "\E64F";
 }
 .tui-icon-toleft:before {
-	content: "\e650";
+	content: "\E650";
 }
 .tui-icon-toright:before {
-	content: "\e651";
+	content: "\E651";
 }
 .tui-icon-video:before {
-	content: "\e657";
+	content: "\E657";
 }
 .tui-icon-people:before {
-	content: "\e736";
+	content: "\E736";
 }
 .tui-icon-people-fill:before {
-	content: "\e735";
+	content: "\E735";
 }
 .tui-icon-community:before {
-	content: "\e741";
+	content: "\E741";
 }
 .tui-icon-community-fill:before {
-	content: "\e740";
+	content: "\E740";
 }
 .tui-icon-ios:before {
-	content: "\e66a";
+	content: "\E66A";
 }
 .tui-icon-android:before {
-	content: "\e66c";
+	content: "\E66C";
 }
 .tui-icon-square:before {
-	content: "\e720";
+	content: "\E720";
 }
 .tui-icon-square-fill:before {
-	content: "\e721";
+	content: "\E721";
 }
 .tui-icon-square-selected:before {
-	content: "\e722";
+	content: "\E722";
 }
 .tui-icon-close:before {
-	content: "\e725";
+	content: "\E725";
 }
 .tui-icon-close-fill:before {
-	content: "\e724";
+	content: "\E724";
 }
 .tui-icon-shut:before {
-	content: "\e723";
+	content: "\E723";
 }
 .tui-icon-plus:before {
-	content: "\e727";
+	content: "\E727";
 }
 .tui-icon-add:before {
-	content: "\e726";
+	content: "\E726";
 }
 .tui-icon-add-fill:before {
-	content: "\e728";
+	content: "\E728";
 }
 .tui-icon-reduce:before {
-	content: "\e729";
+	content: "\E729";
 }
 .tui-icon-about:before {
-	content: "\e72b";
+	content: "\E72B";
 }
 .tui-icon-about-fill:before {
-	content: "\e72a";
+	content: "\E72A";
 }
 .tui-icon-explain:before {
-	content: "\e72d";
+	content: "\E72D";
 }
 .tui-icon-explain-fill:before {
-	content: "\e72c";
+	content: "\E72C";
 }
 .tui-icon-check:before {
-	content: "\e72e";
+	content: "\E72E";
 }
 .tui-icon-circle:before {
-	content: "\e72f";
+	content: "\E72F";
 }
 .tui-icon-circle-fill:before {
-	content: "\e732";
+	content: "\E732";
 }
 .tui-icon-circle-selected:before {
-	content: "\e733";
+	content: "\E733";
 }
 .tui-icon-star:before {
-	content: "\e737";
+	content: "\E737";
 }
 .tui-icon-star-fill:before {
-	content: "\e734";
+	content: "\E734";
 }
 .tui-icon-revoke:before {
-	content: "\e738";
+	content: "\E738";
 }
 .tui-icon-shop:before {
-	content: "\e73a";
+	content: "\E73A";
 }
 .tui-icon-shop-fill:before {
-	content: "\e739";
+	content: "\E739";
 }
 .tui-icon-order:before {
-	content: "\e73b";
+	content: "\E73B";
 }
 .tui-icon-feedback:before {
-	content: "\e73c";
+	content: "\E73C";
 }
 .tui-icon-share:before {
-	content: "\e75c";
+	content: "\E75C";
 }
 .tui-icon-share-fill:before {
-	content: "\e75b";
+	content: "\E75B";
 }
 .tui-icon-more:before {
-	content: "\e633";
+	content: "\E633";
 }
 .tui-icon-more-fill:before {
-	content: "\eb98";
+	content: "\EB98";
 }
 .tui-icon-strategy:before {
-	content: "\e73f";
+	content: "\E73F";
 }
 .tui-icon-cart:before {
-	content: "\e743";
+	content: "\E743";
 }
 .tui-icon-cart-fill:before {
-	content: "\e742";
+	content: "\E742";
 }
 .tui-icon-sweep:before {
-	content: "\e74b";
+	content: "\E74B";
 }
 .tui-icon-screen:before {
-	content: "\e74c";
+	content: "\E74C";
 }
 .tui-icon-clock:before {
-	content: "\e750";
+	content: "\E750";
 }
 .tui-icon-clock-fill:before {
-	content: "\e74f";
+	content: "\E74F";
 }
 .tui-icon-home:before {
-	content: "\e752";
+	content: "\E752";
 }
 .tui-icon-home-fill:before {
-	content: "\e751";
+	content: "\E751";
 }
 .tui-icon-category:before {
-	content: "\e754";
+	content: "\E754";
 }
 .tui-icon-category-fill:before {
-	content: "\e753";
+	content: "\E753";
 }
 .tui-icon-notice:before {
-	content: "\e759";
+	content: "\E759";
 }
 .tui-icon-notice-fill:before {
-	content: "\e758";
+	content: "\E758";
 }
 .tui-icon-like:before {
-	content: "\e761";
+	content: "\E761";
 }
 .tui-icon-like-fill:before {
-	content: "\e760";
+	content: "\E760";
 }
 .tui-icon-bottom:before {
-	content: "\e76a";
+	content: "\E76A";
 }
 .tui-icon-top:before {
-	content: "\e76c";
+	content: "\E76C";
 }
 .tui-icon-towardsright:before {
-	content: "\e778";
+	content: "\E778";
 }
 .tui-icon-towardsright-fill:before {
-	content: "\e777";
+	content: "\E777";
 }
 .tui-icon-towardsleft:before {
-	content: "\e77a";
+	content: "\E77A";
 }
 .tui-icon-camera:before {
-	content: "\e77f";
+	content: "\E77F";
 }
 .tui-icon-camera-fill:before {
-	content: "\e77e";
+	content: "\E77E";
 }
 .tui-icon-camera-add:before {
-	content: "\e780";
+	content: "\E780";
 }
 .tui-icon-loading:before {
-	content: "\e781";
+	content: "\E781";
 }
 .tui-icon-wifi:before {
-	content: "\e783";
+	content: "\E783";
 }
 .tui-icon-agree:before {
-	content: "\e794";
+	content: "\E794";
 }
 .tui-icon-agree-fill:before {
-	content: "\e793";
+	content: "\E793";
 }
 .tui-icon-mobile:before {
-	content: "\e655";
+	content: "\E655";
 }
 .tui-icon-qrcode:before {
-	content: "\e605";
+	content: "\E605";
 }
 .tui-icon-coupon:before {
-	content: "\e600";
+	content: "\E600";
 }
 .tui-icon-back:before {
-	content: "\e7ed";
+	content: "\E7ED";
 }
 .tui-icon-transport:before {
-	content: "\e882";
+	content: "\E882";
 }
 .tui-icon-transport-fill:before {
-	content: "\e883";
+	content: "\E883";
 }
 .tui-icon-send:before {
-	content: "\e893";
+	content: "\E893";
 }
 .tui-icon-bankcard:before {
-	content: "\e937";
+	content: "\E937";
 }
 .tui-icon-bankcard-fill:before {
-	content: "\e936";
+	content: "\E936";
 }
 .tui-icon-eye:before {
-	content: "\e6cf";
+	content: "\E6CF";
 }
 .tui-icon-calendar:before {
-	content: "\eb93";
+	content: "\EB93";
 }
 .tui-icon-picture:before {
-	content: "\e6c7";
+	content: "\E6C7";
 }
 .tui-icon-oppose:before {
-	content: "\e815";
+	content: "\E815";
 }
 .tui-icon-oppose-fill:before {
-	content: "\e814";
+	content: "\E814";
 }
 .tui-icon-pie:before {
-	content: "\eb95";
+	content: "\EB95";
 }
 .tui-icon-polygonal:before {
-	content: "\eb96";
+	content: "\EB96";
 }
 .tui-icon-histogram:before {
-	content: "\eb99";
+	content: "\EB99";
 }
 .tui-icon-down:before {
-	content: "\ec0b";
+	content: "\EC0B";
 }
 .tui-icon-up:before {
-	content: "\ec0c";
+	content: "\EC0C";
 }
 .tui-icon-narrow:before {
-	content: "\ec13";
+	content: "\EC13";
 }
 .tui-icon-enlarge:before {
-	content: "\ec14";
+	content: "\EC14";
 }
 .tui-icon-pwd:before {
-	content: "\e626";
+	content: "\E626";
 }
 .tui-icon-ellipsis:before {
-	content: "\e76b";
+	content: "\E76B";
 }
 .tui-icon-location:before {
-	content: "\e7f2";
+	content: "\E7F2";
 }
 .tui-icon-delete:before {
-	content: "\e608";
+	content: "\E608";
 }
 .tui-icon-card:before {
-	content: "\e91c";
+	content: "\E91C";
 }
 .tui-icon-card-fill:before {
-	content: "\e91b";
+	content: "\E91B";
 }
 .tui-icon-alarm:before {
-	content: "\e6e9";
+	content: "\E6E9";
 }
 .tui-icon-alarm-fill:before {
-	content: "\e6e8";
+	content: "\E6E8";
 }
 .tui-icon-computer:before {
-	content: "\e6ec";
+	content: "\E6EC";
 }
 .tui-icon-computer-fill:before {
-	content: "\e6eb";
+	content: "\E6EB";
 }
 .tui-icon-position:before {
-	content: "\e8fe";
+	content: "\E8FE";
 }
 .tui-icon-position-fill:before {
-	content: "\e8ff";
+	content: "\E8FF";
 }
 .tui-icon-member:before {
-	content: "\e704";
+	content: "\E704";
 }
 .tui-icon-member-fill:before {
-	content: "\e703";
+	content: "\E703";
 }
 .tui-icon-label:before {
-	content: "\e707";
+	content: "\E707";
 }
 .tui-icon-label-fill:before {
-	content: "\e708";
+	content: "\E708";
 }
 .tui-icon-mail:before {
-	content: "\e70b";
+	content: "\E70B";
 }
 .tui-icon-mail-fill:before {
-	content: "\e70c";
+	content: "\E70C";
 }
 .tui-icon-manage:before {
-	content: "\e70e";
+	content: "\E70E";
 }
 .tui-icon-manage-fill:before {
-	content: "\e70d";
+	content: "\E70D";
 }
 .tui-icon-message:before {
-	content: "\e70f";
+	content: "\E70F";
 }
 .tui-icon-message-fill:before {
-	content: "\e710";
+	content: "\E710";
 }
 .tui-icon-offline:before {
-	content: "\e716";
+	content: "\E716";
 }
 .tui-icon-offline-fill:before {
-	content: "\e715";
+	content: "\E715";
 }
 .tui-icon-redpacket:before {
-	content: "\e71e";
+	content: "\E71E";
 }
 .tui-icon-redpacket-fill:before {
-	content: "\e71d";
+	content: "\E71D";
 }
 .tui-icon-bag:before {
-	content: "\e756";
+	content: "\E756";
 }
 .tui-icon-bag-fill:before {
-	content: "\e755";
+	content: "\E755";
 }
 .tui-icon-setup:before {
-	content: "\e75a";
+	content: "\E75A";
 }
 .tui-icon-setup-fill:before {
-	content: "\e757";
+	content: "\E757";
 }
 .tui-icon-news:before {
-	content: "\e75e";
+	content: "\E75E";
 }
 .tui-icon-news-fill:before {
-	content: "\e75d";
+	content: "\E75D";
 }
 .tui-icon-time:before {
-	content: "\e764";
+	content: "\E764";
 }
 .tui-icon-time-fill:before {
-	content: "\e75f";
+	content: "\E75F";
 }
 .tui-icon-voice:before {
-	content: "\e766";
+	content: "\E766";
 }
 .tui-icon-voice-fill:before {
-	content: "\e765";
+	content: "\E765";
 }
 .tui-icon-nodata:before {
-	content: "\e611";
+	content: "\E611";
 }
 .tui-icon-link:before {
-	content: "\eb97";
+	content: "\EB97";
 }
 .tui-icon-edit:before {
-	content: "\e69a";
+	content: "\E69A";
 }
 .tui-icon-unseen:before {
-	content: "\e6a2";
+	content: "\E6A2";
 }
 .tui-icon-arrowup:before {
-	content: "\e658";
+	content: "\E658";
 }
 .tui-icon-arrowleft:before {
-	content: "\e659";
+	content: "\E659";
 }
 .tui-icon-arrowdown:before {
-	content: "\e65a";
+	content: "\E65A";
 }
 .tui-icon-arrowright:before {
-	content: "\e65b";
+	content: "\E65B";
 }
 .tui-icon-turningleft:before {
-	content: "\e65c";
+	content: "\E65C";
 }
 .tui-icon-turningright:before {
-	content: "\e65d";
+	content: "\E65D";
 }
 .tui-icon-turningup:before {
-	content: "\e65e";
+	content: "\E65E";
 }
 .tui-icon-turningdown:before {
-	content: "\e65f";
+	content: "\E65F";
 }
 .tui-icon-sina:before {
-	content: "\e662";
+	content: "\E662";
 }
 .tui-icon-applets:before {
-	content: "\e673";
+	content: "\E673";
 }
 .tui-icon-qq:before {
-	content: "\e604";
+	content: "\E604";
 }
 .tui-icon-wechat:before {
-	content: "\e674";
+	content: "\E674";
 }
 .tui-icon-moments:before {
-	content: "\e61e";
+	content: "\E61E";
 }
 .tui-icon-dingtalk:before {
-	content: "\e675";
+	content: "\E675";
 }
 .tui-icon-alipay:before {
-	content: "\e677";
+	content: "\E677";
 }
 .tui-icon-skin:before {
-	content: "\eb9e";
+	content: "\EB9E";
 }
 .tui-icon-house:before {
-	content: "\eb9f";
+	content: "\EB9F";
 }
 .tui-icon-download:before {
-	content: "\e602";
+	content: "\E602";
 }
 .tui-icon-upload:before {
-	content: "\e63b";
+	content: "\E63B";
 }
 .tui-icon-kefu:before {
-	content: "\e601";
+	content: "\E601";
 }
 .tui-icon-sport:before {
-	content: "\eba0";
+	content: "\EBA0";
 }
 .tui-icon-gps:before {
-	content: "\eb9a";
+	content: "\EB9A";
 }
 .tui-icon-shield:before {
-	content: "\eba3";
+	content: "\EBA3";
 }
 .tui-icon-voipphone:before {
-	content: "\eba2";
+	content: "\EBA2";
 }
 .tui-icon-wallet:before {
-	content: "\eb92";
+	content: "\EB92";
 }
 .tui-icon-attestation:before {
-	content: "\eb91";
+	content: "\EB91";
 }
 .tui-icon-addressbook:before {
-	content: "\eb90";
+	content: "\EB90";
 }
 .tui-icon-addmessage:before {
-	content: "\eb8f";
+	content: "\EB8F";
 }
 .tui-icon-signin:before {
-	content: "\e643";
+	content: "\E643";
 }
 .tui-icon-evaluate:before {
-	content: "\e642";
+	content: "\E642";
 }
 .tui-icon-unreceive:before {
-	content: "\e641";
+	content: "\E641";
 }
 .tui-icon-balloon:before {
-	content: "\e627";
+	content: "\E627";
 }
 .tui-icon-partake:before {
-	content: "\e603";
+	content: "\E603";
 }
 .tui-icon-listview:before {
-	content: "\e67b";
+	content: "\E67B";
 }
 .tui-icon-weather:before {
-	content: "\e694";
+	content: "\E694";
 }
 .tui-icon-tool:before {
-	content: "\e61b";
+	content: "\E61B";
 }
 .tui-icon-imface:before {
-	content: "\eb9b";
+	content: "\EB9B";
 }
 .tui-icon-deletekey:before {
-	content: "\e7b8";
+	content: "\E7B8";
 }
 .tui-icon-fingerprint:before {
-	content: "\e66e";
+	content: "\E66E";
 }
 .tui-icon-warning:before {
-	content: "\e8eb";
+	content: "\E8EB";
 }
 .tui-icon-soso:before {
-	content: "\e8da";
+	content: "\E8DA";
 }
 .tui-icon-satisfied:before {
-	content: "\e8db";
+	content: "\E8DB";
 }
 .tui-icon-dissatisfied:before {
-	content: "\e8dc";
+	content: "\E8DC";
 }
 .tui-icon-pic:before {
-	content: "\e8d2";
+	content: "\E8D2";
 }
 .tui-icon-pic-fill:before {
-	content: "\e8d3";
+	content: "\E8D3";
 }
 .tui-icon-play:before {
-	content: "\e606";
+	content: "\E606";
 }
 

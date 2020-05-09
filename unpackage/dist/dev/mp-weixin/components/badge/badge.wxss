@@ -84,8 +84,10 @@
 }
 .tui-badge-small {
 	-webkit-transform: scale(0.8);
+	    -ms-transform: scale(0.8);
 	        transform: scale(0.8);
 	-webkit-transform-origin: center center;
+	    -ms-transform-origin: center center;
 	        transform-origin: center center;
 }
 

@@ -48,7 +48,11 @@
 				"backgroundColorBottom": "#ffffff",
 				"navigationBarTitleText": "直播"
 			}
-        }],
+        }    ,{
+            "path" : "pages/video/video",
+            "style" : {}
+        }
+    ],
 	"subPackages": [{
 		"root": "pages/extend-view/",
 		"pages": [
@@ -188,8 +192,8 @@
 				"selectedIconPath": "static/images/tabbar/category_active.png"
 			},
 			{
-				"pagePath": "pages/live/live",
-				"text": "直播",
+				"pagePath": "pages/video/video",
+				"text": "实拍",
 				"iconPath": "static/images/tabbar/live.png",
 				"selectedIconPath": "static/images/tabbar/live_active.png"
 			},

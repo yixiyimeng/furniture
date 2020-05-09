@@ -31,23 +31,29 @@
 .tui-addr-tag {
 	padding: 5rpx 8rpx;
 	-webkit-flex-shrink: 0;
+	    -ms-flex-negative: 0;
 	        flex-shrink: 0;
 	background: #EB0909;
 	color: #fff;
 	display: -webkit-inline-box;
 	display: -webkit-inline-flex;
+	display: -ms-inline-flexbox;
 	display: inline-flex;
 	-webkit-box-align: center;
 	-webkit-align-items: center;
+	    -ms-flex-align: center;
 	        align-items: center;
 	-webkit-box-pack: center;
 	-webkit-justify-content: center;
+	    -ms-flex-pack: center;
 	        justify-content: center;
 	font-size: 25rpx;
 	line-height: 25rpx;
 	-webkit-transform: scale(0.8);
+	    -ms-transform: scale(0.8);
 	        transform: scale(0.8);
 	-webkit-transform-origin: 0 center;
+	    -ms-transform-origin: 0 center;
 	        transform-origin: 0 center;
 	border-radius: 6rpx;
 }
@@ -67,9 +73,11 @@
 	font-size: 28rpx;
 	display: -webkit-box;
 	display: -webkit-flex;
+	display: -ms-flexbox;
 	display: flex;
 	-webkit-box-align: center;
 	-webkit-align-items: center;
+	    -ms-flex-align: center;
 	        align-items: center;
 }
 .tui-padding {
@@ -83,9 +91,11 @@
 	        box-sizing: border-box;
 	display: -webkit-box;
 	display: -webkit-flex;
+	display: -ms-flexbox;
 	display: flex;
 	-webkit-box-pack: justify;
 	-webkit-justify-content: space-between;
+	    -ms-flex-pack: justify;
 	        justify-content: space-between;
 }
 .tui-goods-img {
@@ -93,11 +103,13 @@
 	height: 180rpx;
 	display: block;
 	-webkit-flex-shrink: 0;
+	    -ms-flex-negative: 0;
 	        flex-shrink: 0;
 }
 .tui-goods-center {
 	-webkit-box-flex: 1;
 	-webkit-flex: 1;
+	    -ms-flex: 1;
 	        flex: 1;
 	padding: 20rpx 8rpx;
 	-webkit-box-sizing: border-box;
@@ -107,7 +119,8 @@
 	max-width: 310rpx;
 	word-break: break-all;
 	overflow: hidden;
-	text-overflow: ellipsis;
+	-o-text-overflow: ellipsis;
+	   text-overflow: ellipsis;
 	display: -webkit-box;
 	-webkit-box-orient: vertical;
 	-webkit-line-clamp: 2;
@@ -121,7 +134,8 @@
 	padding-top: 20rpx;
 	word-break: break-all;
 	overflow: hidden;
-	text-overflow: ellipsis;
+	-o-text-overflow: ellipsis;
+	   text-overflow: ellipsis;
 	display: -webkit-box;
 	-webkit-box-orient: vertical;
 	-webkit-line-clamp: 2;
@@ -137,18 +151,22 @@
 	width: 100%;
 	display: -webkit-box;
 	display: -webkit-flex;
+	display: -ms-flexbox;
 	display: flex;
 	-webkit-box-align: center;
 	-webkit-align-items: center;
+	    -ms-flex-align: center;
 	        align-items: center;
 	-webkit-box-pack: justify;
 	-webkit-justify-content: space-between;
+	    -ms-flex-pack: justify;
 	        justify-content: space-between;
 	font-size: 26rpx;
 }
 .tui-total-flex {
 	-webkit-box-pack: end;
 	-webkit-justify-content: flex-end;
+	    -ms-flex-pack: end;
 	        justify-content: flex-end;
 }
 .tui-color-red,
@@ -174,9 +192,11 @@
 .tui-goods-price {
 	display: -webkit-box;
 	display: -webkit-flex;
+	display: -ms-flexbox;
 	display: flex;
 	-webkit-box-align: center;
 	-webkit-align-items: center;
+	    -ms-flex-align: center;
 	        align-items: center;
 	padding-top: 20rpx;
 }
@@ -192,9 +212,11 @@
 .tui-flex-end {
 	display: -webkit-box;
 	display: -webkit-flex;
+	display: -ms-flexbox;
 	display: flex;
 	-webkit-box-align: end;
 	-webkit-align-items: flex-end;
+	    -ms-flex-align: end;
 	        align-items: flex-end;
 	padding-right: 0;
 }
@@ -202,25 +224,36 @@
 	color: #B3B3B3;
 	font-size: 26rpx;
 }
+
+
 .tui-remark-box {
 	padding: 22rpx 30rpx;
 }
+
+
+
+
 .tui-remark {
 	-webkit-box-flex: 1;
 	-webkit-flex: 1;
+	    -ms-flex: 1;
 	        flex: 1;
 	font-size: 26rpx;
 	padding-left: 64rpx;
 }
 .tui-scale-small {
 	-webkit-transform: scale(0.8);
+	    -ms-transform: scale(0.8);
 	        transform: scale(0.8);
 	-webkit-transform-origin: 100% center;
+	    -ms-transform-origin: 100% center;
 	        transform-origin: 100% center;
 }
 .tui-scale-small .wx-switch-input {
 	margin: 0 !important;
 }
+
+
 .tui-tabbar {
 	width: 100%;
 	height: 98rpx;
@@ -230,12 +263,15 @@
 	bottom: 0;
 	display: -webkit-box;
 	display: -webkit-flex;
+	display: -ms-flexbox;
 	display: flex;
 	-webkit-box-align: center;
 	-webkit-align-items: center;
+	    -ms-flex-align: center;
 	        align-items: center;
 	-webkit-box-pack: end;
 	-webkit-justify-content: flex-end;
+	    -ms-flex-pack: end;
 	        justify-content: flex-end;
 	font-size: 26rpx;
 	-webkit-box-shadow: 0 0 1px rgba(0, 0, 0, .3);
@@ -254,9 +290,11 @@
 	padding-left: 5rpx;
 	display: -webkit-box;
 	display: -webkit-flex;
+	display: -ms-flexbox;
 	display: flex;
 	-webkit-box-align: center;
 	-webkit-align-items: center;
+	    -ms-flex-align: center;
 	        align-items: center;
 }
 .tui-addr-img {
@@ -275,12 +313,15 @@
 .tui-number-box {
 	display: -webkit-box;
 	display: -webkit-flex;
+	display: -ms-flexbox;
 	display: flex;
 	-webkit-box-align: center;
 	-webkit-align-items: center;
+	    -ms-flex-align: center;
 	        align-items: center;
 	-webkit-box-pack: justify;
 	-webkit-justify-content: space-between;
+	    -ms-flex-pack: justify;
 	        justify-content: space-between;
 	padding: 20rpx 0 30rpx 0;
 	-webkit-box-sizing: border-box;

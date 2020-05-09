@@ -13,12 +13,15 @@ page {
 	position: fixed;
 	display: -webkit-box;
 	display: -webkit-flex;
+	display: -ms-flexbox;
 	display: flex;
 	-webkit-box-align: center;
 	-webkit-align-items: center;
+	    -ms-flex-align: center;
 	        align-items: center;
 	-webkit-box-pack: justify;
 	-webkit-justify-content: space-between;
+	    -ms-flex-pack: justify;
 	        justify-content: space-between;
 	z-index: 99999;
 	background: #fff;
@@ -39,25 +42,31 @@ page {
 	top: 0;
 	left: 0;
 	-webkit-transform: scaleY(0.5);
-	transform: scaleY(0.5);
+	-ms-transform: scaleY(0.5);
+	    transform: scaleY(0.5);
 }
 .tui-tabbar-item {
 	-webkit-box-flex: 1;
 	-webkit-flex: 1;
+	    -ms-flex: 1;
 	        flex: 1;
 	width: 25%;
 	display: -webkit-box;
 	display: -webkit-flex;
+	display: -ms-flexbox;
 	display: flex;
 	-webkit-box-align: center;
 	-webkit-align-items: center;
+	    -ms-flex-align: center;
 	        align-items: center;
 	-webkit-box-orient: vertical;
 	-webkit-box-direction: normal;
 	-webkit-flex-direction: column;
+	    -ms-flex-direction: column;
 	        flex-direction: column;
 	-webkit-box-pack: justify;
 	-webkit-justify-content: space-between;
+	    -ms-flex-pack: justify;
 	        justify-content: space-between;
 	font-size: 24rpx;
 	color: #666;
@@ -69,8 +78,10 @@ page {
 .tui-scale {
 	font-weight: bold;
 	-webkit-transform: scale(0.8);
+	    -ms-transform: scale(0.8);
 	        transform: scale(0.8);
 	-webkit-transform-origin: center 100%;
+	    -ms-transform-origin: center 100%;
 	        transform-origin: center 100%;
 	line-height: 30rpx;
 }
@@ -88,19 +99,20 @@ page {
 	background: #e41f19;
 	display: -webkit-box;
 	display: -webkit-flex;
+	display: -ms-flexbox;
 	display: flex;
 	-webkit-box-align: center;
 	-webkit-align-items: center;
+	    -ms-flex-align: center;
 	        align-items: center;
 	-webkit-box-pack: justify;
 	-webkit-justify-content: space-between;
+	    -ms-flex-pack: justify;
 	        justify-content: space-between;
 	position: fixed;
 	left: 0;
 	top: 0;
-
-
-
+	
 	z-index: 999;
 }
 .tui-searchbox {
@@ -109,9 +121,11 @@ page {
 	        box-sizing: border-box;
 	display: -webkit-box;
 	display: -webkit-flex;
+	display: -ms-flexbox;
 	display: flex;
 	-webkit-box-align: center;
 	-webkit-align-items: center;
+	    -ms-flex-align: center;
 	        align-items: center;
 	width: 100%;
 }
@@ -125,16 +139,20 @@ page {
 	background: #f2f2f2;
 	display: -webkit-box;
 	display: -webkit-flex;
+	display: -ms-flexbox;
 	display: flex;
 	-webkit-box-align: center;
 	-webkit-align-items: center;
+	    -ms-flex-align: center;
 	        align-items: center;
 	-webkit-flex-wrap: nowrap;
+	    -ms-flex-wrap: nowrap;
 	        flex-wrap: nowrap;
 }
 .tui-input {
 	-webkit-box-flex: 1;
 	-webkit-flex: 1;
+	    -ms-flex: 1;
 	        flex: 1;
 	color: #333;
 	padding: 0 16rpx;
@@ -149,6 +167,7 @@ page {
 	font-size: 28rpx;
 	padding-left: 30rpx;
 	-webkit-flex-shrink: 0;
+	    -ms-flex-negative: 0;
 	        flex-shrink: 0;
 }
 .tui-rolling-search {
@@ -161,11 +180,14 @@ page {
 	background: #fff;
 	display: -webkit-box;
 	display: -webkit-flex;
+	display: -ms-flexbox;
 	display: flex;
 	-webkit-box-align: center;
 	-webkit-align-items: center;
+	    -ms-flex-align: center;
 	        align-items: center;
 	-webkit-flex-wrap: nowrap;
+	    -ms-flex-wrap: nowrap;
 	        flex-wrap: nowrap;
 	color: #999;
 }
@@ -174,24 +196,30 @@ page {
 	color: #fff;
 	display: -webkit-box;
 	display: -webkit-flex;
+	display: -ms-flexbox;
 	display: flex;
 	-webkit-box-align: center;
 	-webkit-align-items: center;
+	    -ms-flex-align: center;
 	        align-items: center;
 	-webkit-box-pack: center;
 	-webkit-justify-content: center;
+	    -ms-flex-pack: center;
 	        justify-content: center;
 	-webkit-box-orient: vertical;
 	-webkit-box-direction: normal;
 	-webkit-flex-direction: column;
+	    -ms-flex-direction: column;
 	        flex-direction: column;
 	margin: 0;
 	margin-right: 22rpx;
 	-webkit-flex-shrink: 0;
+	    -ms-flex-negative: 0;
 	        flex-shrink: 0;
 }
 .tui-category-scale {
 	-webkit-transform: scale(0.7);
+	    -ms-transform: scale(0.7);
 	        transform: scale(0.7);
 	line-height: 24rpx;
 }
@@ -204,22 +232,26 @@ page {
 	height: 60rpx;
 	-webkit-box-flex: 1;
 	-webkit-flex: 1;
+	    -ms-flex: 1;
 	        flex: 1;
 	padding-left: 12rpx;
 }
 .tui-swiper-item {
 	display: -webkit-box;
 	display: -webkit-flex;
+	display: -ms-flexbox;
 	display: flex;
 	-webkit-box-align: center;
 	-webkit-align-items: center;
+	    -ms-flex-align: center;
 	        align-items: center;
 }
 .tui-hot-item {
 	line-height: 26rpx;
 	white-space: nowrap;
 	overflow: hidden;
-	text-overflow: ellipsis;
+	-o-text-overflow: ellipsis;
+	   text-overflow: ellipsis;
 }
 .tui-header-banner {
 	padding-top: 100rpx;
@@ -232,12 +264,15 @@ page {
 	font-size: 24rpx;
 	display: -webkit-box;
 	display: -webkit-flex;
+	display: -ms-flexbox;
 	display: flex;
 	-webkit-box-align: center;
 	-webkit-align-items: center;
+	    -ms-flex-align: center;
 	        align-items: center;
 	-webkit-box-pack: justify;
 	-webkit-justify-content: space-between;
+	    -ms-flex-pack: justify;
 	        justify-content: space-between;
 	padding: 0 20rpx;
 	-webkit-box-sizing: border-box;
@@ -251,12 +286,15 @@ page {
 	border-radius: 30rpx;
 	display: -webkit-box;
 	display: -webkit-flex;
+	display: -ms-flexbox;
 	display: flex;
 	-webkit-box-align: center;
 	-webkit-align-items: center;
+	    -ms-flex-align: center;
 	        align-items: center;
 	-webkit-box-pack: center;
 	-webkit-justify-content: center;
+	    -ms-flex-pack: center;
 	        justify-content: center;
 	line-height: 24rpx;
 	/* margin-left: 20rpx; */
@@ -264,6 +302,7 @@ page {
 .tui-banner-bg {
 	display: -webkit-box;
 	display: -webkit-flex;
+	display: -ms-flexbox;
 	display: flex;
 	height: 180rpx;
 	background: #e41f19;
@@ -280,10 +319,12 @@ page {
 }
 .tui-route-left {
 	-webkit-transform: skewY(8deg);
+	    -ms-transform: skewY(8deg);
 	        transform: skewY(8deg);
 }
 .tui-route-right {
 	-webkit-transform: skewY(-8deg);
+	    -ms-transform: skewY(-8deg);
 	        transform: skewY(-8deg);
 }
 .tui-banner-box {
@@ -303,6 +344,7 @@ page {
 	border-radius: 12rpx;
 	overflow: hidden;
 	-webkit-transform: translateY(0);
+	    -ms-transform: translateY(0);
 	        transform: translateY(0);
 }
 .tui-slide-image {
@@ -310,21 +352,26 @@ page {
 	height: 240rpx;
 	display: block;
 }
+
+
 .tui-banner-swiper .wx-swiper-dot {
 	width: 8rpx;
 	height: 8rpx;
 	display: -webkit-inline-box;
 	display: -webkit-inline-flex;
+	display: -ms-inline-flexbox;
 	display: inline-flex;
 	background: none;
 	-webkit-box-pack: justify;
 	-webkit-justify-content: space-between;
+	    -ms-flex-pack: justify;
 	        justify-content: space-between;
 }
 .tui-banner-swiper .wx-swiper-dot::before {
 	content: '';
 	-webkit-box-flex: 1;
 	-webkit-flex-grow: 1;
+	    -ms-flex-positive: 1;
 	        flex-grow: 1;
 	background: rgba(255, 255, 255, 0.8);
 	border-radius: 16rpx;
@@ -336,6 +383,10 @@ page {
 .tui-banner-swiper .wx-swiper-dot.wx-swiper-dot-active {
 	width: 16rpx;
 }
+
+
+
+
 .tui-product-category {
 	background: #fff;
 	padding: 80rpx 20rpx 30rpx 20rpx;
@@ -343,14 +394,18 @@ page {
 	        box-sizing: border-box;
 	display: -webkit-box;
 	display: -webkit-flex;
+	display: -ms-flexbox;
 	display: flex;
 	-webkit-box-align: center;
 	-webkit-align-items: center;
+	    -ms-flex-align: center;
 	        align-items: center;
 	-webkit-box-pack: justify;
 	-webkit-justify-content: space-between;
+	    -ms-flex-pack: justify;
 	        justify-content: space-between;
 	-webkit-flex-wrap: wrap;
+	    -ms-flex-wrap: wrap;
 	        flex-wrap: wrap;
 	font-size: 24rpx;
 	color: #555;
@@ -361,16 +416,20 @@ page {
 	height: 118rpx;
 	display: -webkit-box;
 	display: -webkit-flex;
+	display: -ms-flexbox;
 	display: flex;
 	-webkit-box-align: center;
 	-webkit-align-items: center;
+	    -ms-flex-align: center;
 	        align-items: center;
 	-webkit-box-pack: justify;
 	-webkit-justify-content: space-between;
+	    -ms-flex-pack: justify;
 	        justify-content: space-between;
 	-webkit-box-orient: vertical;
 	-webkit-box-direction: normal;
 	-webkit-flex-direction: column;
+	    -ms-flex-direction: column;
 	        flex-direction: column;
 	padding-top: 30rpx;
 }
@@ -403,6 +462,7 @@ page {
 .tui-activity-box {
 	display: -webkit-box;
 	display: -webkit-flex;
+	display: -ms-flexbox;
 	display: flex;
 	border-radius: 12rpx;
 	overflow: hidden;
@@ -414,14 +474,18 @@ page {
 .tui-new-box {
 	display: -webkit-box;
 	display: -webkit-flex;
+	display: -ms-flexbox;
 	display: flex;
 	-webkit-box-align: center;
 	-webkit-align-items: center;
+	    -ms-flex-align: center;
 	        align-items: center;
 	-webkit-box-pack: justify;
 	-webkit-justify-content: space-between;
+	    -ms-flex-pack: justify;
 	        justify-content: space-between;
 	-webkit-flex-wrap: wrap;
+	    -ms-flex-wrap: wrap;
 	        flex-wrap: wrap;
 }
 .tui-new-item {
@@ -432,9 +496,11 @@ page {
 	        box-sizing: border-box;
 	display: -webkit-box;
 	display: -webkit-flex;
+	display: -ms-flexbox;
 	display: flex;
 	-webkit-box-align: center;
 	-webkit-align-items: center;
+	    -ms-flex-align: center;
 	        align-items: center;
 	background: #f5f2f9;
 	position: relative;
@@ -450,7 +516,8 @@ page {
 	line-height: 32rpx;
 	word-break: break-all;
 	overflow: hidden;
-	text-overflow: ellipsis;
+	-o-text-overflow: ellipsis;
+	   text-overflow: ellipsis;
 	display: -webkit-box;
 	-webkit-box-orient: vertical;
 	-webkit-line-clamp: 2;
@@ -468,8 +535,10 @@ page {
 	text-decoration: line-through;
 	padding-left: 12rpx;
 	-webkit-transform: scale(0.8);
+	    -ms-transform: scale(0.8);
 	        transform: scale(0.8);
 	-webkit-transform-origin: center center;
+	    -ms-transform-origin: center center;
 	        transform-origin: center center;
 }
 .tui-new-img {
@@ -477,6 +546,7 @@ page {
 	height: 160rpx;
 	display: block;
 	-webkit-flex-shrink: 0;
+	    -ms-flex-negative: 0;
 	        flex-shrink: 0;
 }
 .tui-new-label {
@@ -498,9 +568,11 @@ page {
 
 	display: -webkit-box;
 	display: -webkit-flex;
+	display: -ms-flexbox;
 	display: flex;
 	-webkit-flex-wrap: wrap;
-	flex-wrap: wrap;
+	-ms-flex-wrap: wrap;
+	    flex-wrap: wrap;
 	padding: 0;
 }
 
@@ -511,6 +583,7 @@ page {
 .tui-product-container {
 	-webkit-box-flex: 1;
 	-webkit-flex: 1;
+	    -ms-flex: 1;
 	        flex: 1;
 	margin-right: 10rpx;
 }
@@ -531,11 +604,13 @@ page {
 	        box-shadow: 2px 2px 10px rgba(66, 135, 193, .1);
 	display: -webkit-box;
 	display: -webkit-flex;
+	display: -ms-flexbox;
 	display: flex;
 	-webkit-box-orient: vertical;
 	-webkit-box-direction: normal;
 	-webkit-flex-direction: column;
-	flex-direction: column;
+	-ms-flex-direction: column;
+	    flex-direction: column;
 	width: 48%;
 	margin-bottom: 16px;
 }
@@ -637,19 +712,23 @@ page {
 	width: 260rpx;
 	height: 260rpx !important;
 	-webkit-flex-shrink: 0;
+	    -ms-flex-negative: 0;
 	        flex-shrink: 0;
 	border-radius: 12rpx;
 }
 .tui-pro-content {
 	display: -webkit-box;
 	display: -webkit-flex;
+	display: -ms-flexbox;
 	display: flex;
 	-webkit-box-orient: vertical;
 	-webkit-box-direction: normal;
 	-webkit-flex-direction: column;
+	    -ms-flex-direction: column;
 	        flex-direction: column;
 	-webkit-box-pack: justify;
 	-webkit-justify-content: space-between;
+	    -ms-flex-pack: justify;
 	        justify-content: space-between;
 	-webkit-box-sizing: border-box;
 	        box-sizing: border-box;
@@ -660,7 +739,8 @@ page {
 	font-size: 26rpx;
 	word-break: break-all;
 	overflow: hidden;
-	text-overflow: ellipsis;
+	-o-text-overflow: ellipsis;
+	   text-overflow: ellipsis;
 	display: -webkit-box;
 	-webkit-box-orient: vertical;
 	-webkit-line-clamp: 2;

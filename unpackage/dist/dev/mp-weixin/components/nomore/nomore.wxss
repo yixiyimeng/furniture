@@ -6,9 +6,11 @@
 	font-size: 24rpx;
 	display: -webkit-box;
 	display: -webkit-flex;
+	display: -ms-flexbox;
 	display: flex;
 	-webkit-box-pack: center;
 	-webkit-justify-content: center;
+	    -ms-flex-pack: center;
 	        justify-content: center;
 }
 .tui-nomore {
@@ -17,9 +19,11 @@
 	position: relative;
 	display: -webkit-box;
 	display: -webkit-flex;
+	display: -ms-flexbox;
 	display: flex;
 	-webkit-box-pack: center;
 	-webkit-justify-content: center;
+	    -ms-flex-pack: center;
 	        justify-content: center;
 	margin-top: 10rpx;
 	padding-bottom: 6rpx;
@@ -29,7 +33,8 @@
 	position: absolute;
 	border-bottom: 1rpx solid #e5e5e5;
 	-webkit-transform: scaleY(0.5);
-	transform: scaleY(0.5);
+	-ms-transform: scaleY(0.5);
+	    transform: scaleY(0.5);
 	width: 100%;
 	top: 18rpx;
 	left: 0;
@@ -49,9 +54,11 @@
 	text-align: center;
 	-webkit-display: flex;
 	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
 	-webkit-justify-content: center;
 	-webkit-box-pack: center;
+	    -ms-flex-pack: center;
 	        justify-content: center;
 	margin-top: 10rpx;
 	padding-bottom: 6rpx;
@@ -61,7 +68,8 @@
 	position: absolute;
 	border-bottom: 1rpx solid #e5e5e5;
 	-webkit-transform: scaleY(0.5);
-	transform: scaleY(0.5);
+	-ms-transform: scaleY(0.5);
+	    transform: scaleY(0.5);
 	width: 360rpx;
 	top: 18rpx;
 }
@@ -74,9 +82,11 @@
 	height: 36rpx;
 	line-height: 36rpx;
 	-webkit-transform: scale(0.8);
-	transform: scale(0.8);
+	-ms-transform: scale(0.8);
+	    transform: scale(0.8);
 	-webkit-transform-origin: center center;
-	transform-origin: center center;
+	-ms-transform-origin: center center;
+	    transform-origin: center center;
 	z-index: 1;
 }
 

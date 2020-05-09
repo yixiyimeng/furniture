@@ -11,6 +11,7 @@
 	overflow: hidden;
 	visibility: hidden;
 	-webkit-transition: all 0.3s ease-in-out;
+	-o-transition: all 0.3s ease-in-out;
 	transition: all 0.3s ease-in-out;
 	z-index: 989;
 	top: 0;
@@ -27,6 +28,7 @@
 	background: rgba(0, 0, 0, 0.6);
 	z-index: 986;
 	-webkit-transition: all 0.3s ease-in-out;
+	-o-transition: all 0.3s ease-in-out;
 	transition: all 0.3s ease-in-out;
 	opacity: 0;
 	visibility: hidden;

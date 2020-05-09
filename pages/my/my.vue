@@ -4,8 +4,8 @@
 			<image :src="`/static/images/mall/my/img_bg_3x.png`" class="tui-my-bg" mode="widthFix"></image>
 			<!-- <div class="tui-my-bg"></div> -->
 			<view class="tui-header-center" @tap="href(1)">
-				<!-- <open-data type="userAvatarUrl" class="tui-avatar"></open-data> -->
-				<image :src="avatarUrl" class="tui-avatar"></image>
+				<open-data type="userAvatarUrl" class="tui-avatar"></open-data>
+				<!-- <image :src="avatarUrl" class="tui-avatar"></image> -->
 				<view class="tui-info">
 					<view class="tui-nickname">{{userName}}
 					</view>
@@ -66,10 +66,14 @@
 				</view>
 			</tui-list-cell>
 		</view>
-		<!-- <view class="tui-exit">
-			<tui-button type="danger" height="88rpx">退出登录</tui-button>
-		</view> -->
-		<tui-footer copyright="Copyright © 2019 Thor UI All Rights Reserved." bgcolor="#fafafa"></tui-footer>
+		<!-- cropRight -->
+		<div class="cropRight">
+			<image src="/static/images/cropright.png" mode="widthFix"></image>
+			<div>
+				<p class="name">小程序制作请联系微信：xhh527317</p>
+				<p>©2013-{{today}}核桃妹的妈妈</p>
+			</div>
+		</div>
 	</view>
 </template>
 
@@ -97,19 +101,21 @@
 				/* nickName: "哈尼",
 				phoneNumber: null, */
 				avatarUrl: null,
-				mobile:"",
-				isCanUse: uni.getStorageSync('isCanUse') || true //默认为true
+				mobile: "",
+				isCanUse: uni.getStorageSync('isCanUse') || true, //默认为true
+				today: null
 			}
 		},
 		computed: mapState(['forcedLogin', 'hasLogin', 'userName', 'session_key']),
 		onLoad() {
-			this.mobile=uni.getStorageSync('mobile');
-			this.avatarUrl=uni.getStorageSync('avatarUrl');
+			this.mobile = uni.getStorageSync('mobile');
+			this.avatarUrl = uni.getStorageSync('avatarUrl');
 			console.log(JSON.stringify(this.mobile))
+			this.today = new Date().getFullYear()
 		},
 		onShow() {
-			this.mobile=uni.getStorageSync('mobile');
-			this.avatarUrl=uni.getStorageSync('avatarUrl');
+			this.mobile = uni.getStorageSync('mobile');
+			this.avatarUrl = uni.getStorageSync('avatarUrl');
 			if (!this.hasLogin) {
 				/**
 				 * 如果需要强制登录，使用reLaunch方式
@@ -128,7 +134,7 @@
 					}, 200);
 				}
 			} else {
-			
+
 			}
 
 		},
@@ -152,8 +158,8 @@
 					case 5:
 						//url = '../extend-view/news/news'
 						uni.requestSubscribeMessage({
-						  tmplIds: [''],
-						  success (res) { }
+							tmplIds: [''],
+							success(res) {}
 						})
 						break;
 					case 6:
@@ -249,11 +255,13 @@
 		font-size: 30rpx;
 
 	}
-	.tui-list-icon{
+
+	.tui-list-icon {
 		width: 58rpx;
 		height: 58rpx;
 		margin-right: 10rpx;
 	}
+
 	.tui-mtop {
 		margin-top: 20rpx;
 	}

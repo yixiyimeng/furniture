@@ -1,8 +1,8 @@
 <template>
 	<div class="authButh">
 		<view class="tip">请点击下方按钮使用微信登录</view>
-		<button class="btn-primary tui-btn-submit" hover-class="btn-hover" open-type="getUserInfo" withCredentials="true"
-		 lang="zh_CN" @getuserinfo="wxGetUserInfo">微信登录</button>
+		<button class="btn-primary tui-btn-submit" hover-class="btn-hover" open-type="getPhoneNumber" withCredentials="true"
+		 lang="zh_CN" @getphonenumber="wxGetUserInfo">微信登录</button>
 		<view class="cancel" @click="cancel">取消</view>
 		<!-- <button open-type="getPhoneNumber" @getphonenumber="decryptPhoneNumber">获取电话号码</button> -->
 	</div>
@@ -49,11 +49,11 @@
 					.then(res => {
 						console.log("解密" + JSON.stringify(res))
 						if (res.code == 0) {
-								this.mobile=res.data.watermark.timestamp;
-								uni.setStorageSync('mobile', this.mobile);
-							} else {
-								
-							}
+							this.mobile = res.data.phoneNumber
+							uni.setStorageSync('mobile', this.mobile);
+						} else {
+
+						}
 
 
 					})
@@ -61,20 +61,26 @@
 
 					});
 			},
-			wxGetUserInfo() {
+			wxGetUserInfo(e) {
 				var $me = this;
+				$me.infoRes = {
+					encryptedData: e.detail.encryptedData,
+					iv: e.detail.iv
+				};
+				 console.log(e)
 				uni.login({
 					provider: 'weixin',
 					success: function(loginRes) {
 						let code = loginRes.code;
-						uni.getUserInfo({
-							provider: 'weixin',
-							success: function(infoRes) {
-								$me.infoRes = infoRes;
-								$me.islogin(code)
-							},
-							fail(res) {}
-						});
+						$me.islogin(code)
+						// uni.getUserInfo({
+						// 	provider: 'weixin',
+						// 	success: function(infoRes) {
+						// 		$me.infoRes = infoRes;
+						// 		$me.islogin(code)
+						// 	},
+						// 	fail(res) {}
+						// });
 
 
 					},
@@ -92,30 +98,29 @@
 					.then(res => {
 						console.log("登录返回" + JSON.stringify(res))
 						if (res.code == 0) {
-
+							$me.decrypt(res.data)
 							uni.setStorageSync("member_id", res.data.member_id);
 							uni.setStorageSync("openid", res.data.openid);
 							uni.setStorageSync('session_key', res.data.session_key);
 							uni.setStorageSync('hasLogin', true);
-							
+
 							uni.setStorageSync('userName', this.infoRes.userInfo.nickName);
 							uni.setStorageSync('avatarUrl', this.infoRes.userInfo.avatarUrl);
-							$me.decrypt(res.data)
+
 							let payload = {
 								/* mobile: util.formatNum(mobile), */
-								mobile:this.mobile,
+								mobile: this.mobile,
 								hasLogin: true,
 								member_id: res.data.member_id,
 								openid: res.data.openid,
 								session_key: res.data.session_key,
-								userName:this.infoRes.userInfo.nickName,
-								avatarUrl:this.infoRes.userInfo.avatarUrl,
+								userName: this.infoRes.userInfo.nickName,
+								avatarUrl: this.infoRes.userInfo.avatarUrl,
 							};
 							$me.tui.toast("登录成功", 2000, true);
 							$me.toMy(payload);
 
-						} else {
-						}
+						} else {}
 
 
 					})
@@ -141,7 +146,7 @@
 				}
 
 			},
-			
+
 
 			cancel() {
 				uni.reLaunch({
