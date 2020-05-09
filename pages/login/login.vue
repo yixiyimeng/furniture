@@ -71,18 +71,7 @@
 							provider: 'weixin',
 							success: function(infoRes) {
 								$me.infoRes = infoRes;
-								/* this.userInfo.nickName = infoRes.userInfo.nickName; //昵称
-								this.userInfo.avatarUrl = infoRes.userInfo.avatarUrl; //头像 */
-								/* uni.setStorageSync("encryptedData", infoRes.encryptedData);
-								uni.setStorageSync("iv", infoRes.iv); */
 								$me.islogin(code)
-								/* try {
-									uni.setStorageSync('isCanUse', false); //记录是否第一次授权  false:表示不是第一次授权
-									
-									//this.updateUserInfo();
-								} catch (e) {} */
-
-
 							},
 							fail(res) {}
 						});

@@ -142,7 +142,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var _member = _interopRequireDefault(__webpack_require__(/*! @/api/member */ 44));
-var _vuex = __webpack_require__(/*! vuex */ 16);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var tuiIcon = function tuiIcon() {__webpack_require__.e(/*! require.ensure | components/icon/icon */ "components/icon/icon").then((function () {return resolve(__webpack_require__(/*! @/components/icon/icon */ 199));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var tuiButton = function tuiButton() {__webpack_require__.e(/*! require.ensure | components/button/button */ "components/button/button").then((function () {return resolve(__webpack_require__(/*! @/components/button/button */ 248));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};
+var _vuex = __webpack_require__(/*! vuex */ 16);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var tuiIcon = function tuiIcon() {__webpack_require__.e(/*! require.ensure | components/icon/icon */ "components/icon/icon").then((function () {return resolve(__webpack_require__(/*! @/components/icon/icon */ 159));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var tuiButton = function tuiButton() {__webpack_require__.e(/*! require.ensure | components/button/button */ "components/button/button").then((function () {return resolve(__webpack_require__(/*! @/components/button/button */ 208));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};
 
 
 
@@ -203,18 +203,7 @@ var util = __webpack_require__(/*! ../../utils/util.js */ 20);var _default =
             provider: 'weixin',
             success: function success(infoRes) {
               $me.infoRes = infoRes;
-              /* this.userInfo.nickName = infoRes.userInfo.nickName; //昵称
-                                     this.userInfo.avatarUrl = infoRes.userInfo.avatarUrl; //头像 */
-              /* uni.setStorageSync("encryptedData", infoRes.encryptedData);
-                                                                                                   uni.setStorageSync("iv", infoRes.iv); */
               $me.islogin(code);
-              /* try {
-                                 	uni.setStorageSync('isCanUse', false); //记录是否第一次授权  false:表示不是第一次授权
-                                 	
-                                 	//this.updateUserInfo();
-                                 } catch (e) {} */
-
-
             },
             fail: function fail(res) {} });
 

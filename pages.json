@@ -53,29 +53,6 @@
 		"root": "pages/extend-view/",
 		"pages": [
 			{
-				"path": "news-search/news-search",
-				"style": {
-					"navigationBarTitleText": "搜索",
-					"navigationBarBackgroundColor": "#fff",
-					"navigationBarTextStyle": "black",
-					"backgroundColorTop": "#fff",
-					"backgroundColorBottom": "#fff"
-				}
-			}, {
-				"path": "productList/productList",
-				"style": {
-					"navigationBarBackgroundColor": "#fff",
-					"navigationBarTextStyle": "black",
-					"backgroundColorTop": "#F7F7F7",
-					"backgroundColorBottom": "#F7F7F7",
-					"navigationBarTitleText": "商品列表 ",
-					"onReachBottomDistance": 50,
-					"navigationStyle": "custom",
-					"app-plus": {
-						"titleNView": false
-					}
-				}
-			}, {
 				"path": "productDetail/productDetail",
 				"style": {
 					"navigationBarBackgroundColor": "#fff",
@@ -104,13 +81,6 @@
 					"navigationBarTitleText": "我的订单"
 				}
 			}, {
-				"path": "set/set",
-				"style": {
-					"navigationBarBackgroundColor": "#FFFFFF",
-					"navigationBarTextStyle": "black",
-					"navigationBarTitleText": "设置中心"
-				}
-			}, {
 				"path": "userInfo/userInfo",
 				"style": {
 					"navigationBarBackgroundColor": "#FFFFFF",
@@ -123,16 +93,7 @@
 			    "style": {
 			    	"navigationBarBackgroundColor": "#FFFFFF",
 			    	"navigationBarTextStyle": "black",
-			    	"navigationBarTitleText": "",
-					"app-plus": {  
-					"titleNView": {  
-						"buttons": [{  
-							"text": "保存",  
-							"float":"right",
-							"fontSize": "22px"  
-						}]  
-					}  
-				}
+			    	"navigationBarTitleText": ""
 			    }
 			},
 			{
@@ -152,13 +113,6 @@
 			},
 			{
 				"path": "submitOrder/submitOrder",
-				"style": {
-					"navigationBarBackgroundColor": "#FFFFFF",
-					"navigationBarTextStyle": "black",
-					"navigationBarTitleText": "提交订单"
-				}
-			}, {
-				"path": "coupon/coupon",
 				"style": {
 					"navigationBarBackgroundColor": "#FFFFFF",
 					"navigationBarTextStyle": "black",
@@ -189,16 +143,7 @@
 					"enablePullDownRefresh": true,
 					"onReachBottomDistance": 50
 				}
-			}, {
-				"path": "chat/chat",
-				"style": {
-					"navigationBarBackgroundColor": "#fff",
-					"navigationBarTextStyle": "black",
-					"backgroundColorTop": "#E41F19",
-					"backgroundColorBottom": "#E41F19",
-					"navigationBarTitleText": "技术交流群"
-				}
-			},
+			}, 
 			{
 				"path": "facorites/facorites",
 				"style": {

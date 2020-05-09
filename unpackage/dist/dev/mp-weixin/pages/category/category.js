@@ -211,35 +211,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 var _index = __webpack_require__(/*! @/utils/index */ 18);
 
 
@@ -323,36 +294,7 @@ var _category = _interopRequireDefault(__webpack_require__(/*! @/api/category */
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-var util = __webpack_require__(/*! @/utils/util.js */ 20);var tuiLoadmore = function tuiLoadmore() {__webpack_require__.e(/*! require.ensure | components/loadmore/loadmore */ "components/loadmore/loadmore").then((function () {return resolve(__webpack_require__(/*! @/components/loadmore/loadmore */ 213));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var tuiNomore = function tuiNomore() {__webpack_require__.e(/*! require.ensure | components/nomore/nomore */ "components/nomore/nomore").then((function () {return resolve(__webpack_require__(/*! @/components/nomore/nomore */ 220));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default = { components: { tuiLoadmore: tuiLoadmore, tuiNomore: tuiNomore }, data: function data() {return { basePath: _index.basePath, tabbar: [], subtabbar: [], productList: [], height: 0, //scroll-view高度
+var util = __webpack_require__(/*! @/utils/util.js */ 20);var tuiLoadmore = function tuiLoadmore() {__webpack_require__.e(/*! require.ensure | components/loadmore/loadmore */ "components/loadmore/loadmore").then((function () {return resolve(__webpack_require__(/*! @/components/loadmore/loadmore */ 173));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var tuiNomore = function tuiNomore() {__webpack_require__.e(/*! require.ensure | components/nomore/nomore */ "components/nomore/nomore").then((function () {return resolve(__webpack_require__(/*! @/components/nomore/nomore */ 180));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default = { components: { tuiLoadmore: tuiLoadmore, tuiNomore: tuiNomore }, data: function data() {return { basePath: _index.basePath, tabbar: [], subtabbar: [], productList: [], height: 0, //scroll-view高度
       top: 0, currentTab: null, //预设当前项的值
       currentsubTab: null, //预设当前二級分类项的值
       isSHowSub: false, //默认不显示二级分类
@@ -362,8 +304,37 @@ var util = __webpack_require__(/*! @/utils/util.js */ 20);var tuiLoadmore = func
           //this.swichNav(this.currentTab)
         } });}, 50);console.log("跳轉參數" + options.searchKey);this.currentTab = options.searchKey;}, onShow: function onShow() {this.getCategory();this.getProduct();}, watch: { pageIndex: function pageIndex(newValue, oldValue) {if (this.pageIndex == this.lastPage) {console.log(22222);this.pullUpOn = false;}} }, methods: { //获取分类
     getCategory: function getCategory() {var _this2 = this;var param = { page: this.$pagination.page, limit: this.$pagination.limit, name: "" };this.$postajax(_category.default.getCategory, param).then(function (res) {console.log(JSON.stringify(res));if (res.code == 0) {_this2.tabbar = res.data;_this2.tabbar.unshift({ id: null, name: "全部" });}}).catch(function (err) {});}, //获取二级分类
-    getClass: function getClass() {var _this3 = this;if (this.currentTab) {var param = { page: this.$pagination.page, limit: this.$pagination.limit, /* name: item.name, */cid: this.currentTab };this.$postajax(_category.default.getClass, param).then(function (res) {//console.log(JSON.stringify(res))
-          if (res.code == 0) {_this3.subtabbar = res.data;if (res.data && res.data.length > 0) {_this3.isSHowSub = true;_this3.subtabbar.unshift({ id: null, name: "全部" });} else {_this3.subtabbar = [];_this3.isSHowSub = false;}}}).catch(function (err) {});} else {
+    getClass: function getClass() {var _this3 = this;if (this.currentTab) {var param = { page: this.$pagination.page,
+          limit: this.$pagination.limit,
+          /* name: item.name, */
+          cid: this.currentTab };
+
+        this.$postajax(_category.default.getClass, param).
+        then(function (res) {
+          //console.log(JSON.stringify(res))
+          if (res.code == 0) {
+            _this3.subtabbar = res.data;
+            if (res.data && res.data.length > 0) {
+              _this3.isSHowSub = true;
+              _this3.subtabbar.unshift({
+                id: null,
+                name: "全部" });
+
+            } else {
+              _this3.subtabbar = [];
+              _this3.isSHowSub = false;
+            }
+
+
+
+          }
+
+
+        }).
+        catch(function (err) {
+
+        });
+      } else {
         this.subtabbar = [];
         this.isSHowSub = false;
       }
@@ -443,18 +414,9 @@ var util = __webpack_require__(/*! @/utils/util.js */ 20);var tuiLoadmore = func
         url: '../extend-view/productDetail/productDetail?id=' + item.id });
 
     },
-    /* detail(e) {
-       	let key = e.currentTarget.dataset.key;
-       	uni.navigateTo({
-       		url: '../extend-view/productList/productList?searchKey=' + key
-       	})
-       }, */
     //模糊搜索
     search: function search() {
       this.getProduct();
-      /* uni.navigateTo({
-                         	url: '../extend-view/news-search/news-search'
-                         }) */
     },
     //清空搜索关键字
     cleanKey: function cleanKey() {

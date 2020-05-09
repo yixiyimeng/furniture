@@ -12,12 +12,6 @@
 				</view>
 			</view>
 		</view>
-		<!-- <view class="tui-tips">
-			<view class="tui-grey">温馨提示:</view>
-			<view class="tui-light-grey">
-				付款成功后，ThorUI不会以付款异常、卡单、系统升级为由联系您。请勿泄露银行卡号、手机验证码，否则会造成钱款损失！谨防电话诈骗！
-			</view>
-		</view> -->
 	</view>
 </template>
 

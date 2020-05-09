@@ -13,7 +13,7 @@
 						</view>
 					</view>
 					<view class="tui-none-addr" v-else>
-						<image src="/static/images/index/map.png" class="tui-addr-img" mode="widthFix"></image>
+						<image src="/static/images/mall/order/map.png" class="tui-addr-img" mode="widthFix"></image>
 						<text>选择收货地址</text>
 					</view>
 				</view>

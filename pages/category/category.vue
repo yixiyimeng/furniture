@@ -45,23 +45,8 @@
 
 				<view class="page-view">
 					<view class="class-box">
-						<!-- <view class="class-item"  v-for="(product,indexs) in productList"  @tap.stop="detail(product)" data-key="product.id">
-							<view class="class-name">{{product.name}}</view>
-							<view class="g-container">
-								<view class="g-box" >
-									<image :src="basePath+product.img_url[0]" class="g-image" />
-									<view class="g-title">{{product.name}}</view>
-								</view>
-							</view>
-						</view> -->
 						<view class="tui-product-box">
-							<!-- <view class="tui-group-name">
-								<text>热门推荐</text>
-							</view> -->
 							<view class="tui-product-list">
-								<!-- <view class="tui-product-container">
-									<block  > -->
-								<!--商品列表-->
 								<view class="tui-pro-item" v-for="(item,index) in productList" :key="index" hover-class="hover"
 								 :hover-start-time="150" @tap.stop="detail(item)">
 									<view class="tui-pro-img-container">
@@ -79,23 +64,9 @@
 									</view>
 								</view>
 								<!--商品列表-->
-								<!-- <template is="productItem" data="{{item,index:index}}" /> -->
-								<!-- </block>
-								</view> -->
 							</view>
 						</view>
 					</view>
-					<!-- <view class="class-box">
-						<view class="class-item">
-							<view class="class-name">{{item.name}}</view>
-							<view class="g-container">
-								<view class="g-box" v-for="(items,indexs) in subtabbar"  @tap.stop="productList" data-key="items.id">
-									<image :src="basePath+items.category_img_url" class="g-image" />
-									<view class="g-title">{{items.name}}</view>
-								</view>
-							</view>
-						</view>
-					</view> -->
 					<!--加载loadding-->
 					<tui-loadmore :visible="loadding" :index="3" type="red"></tui-loadmore>
 					<tui-nomore :visible="!pullUpOn" bgcolor="#fafafa"></tui-nomore>
@@ -311,18 +282,9 @@
 					url: '../extend-view/productDetail/productDetail?id=' + item.id
 				})
 			},
-			/* detail(e) {
-				let key = e.currentTarget.dataset.key;
-				uni.navigateTo({
-					url: '../extend-view/productList/productList?searchKey=' + key
-				})
-			}, */
 			//模糊搜索
 			search: function() {
 				this.getProduct();
-				/* uni.navigateTo({
-					url: '../extend-view/news-search/news-search'
-				}) */
 			},
 			//清空搜索关键字
 			cleanKey: function() {
@@ -620,45 +582,24 @@
 	}
 
 	.tui-product-list {
-		/* display: flex;
-		justify-content: space-between;
-		flex-direction: row;
-		flex-wrap: wrap;
-		box-sizing: border-box; */
-
 		display: -webkit-box;
 		display: -webkit-flex;
 		display: flex;
 		-webkit-flex-wrap: wrap;
 		flex-wrap: wrap;
 		padding: 0;
-		/* background: #fff; */
 	}
 
-	/* .tui-product-container {
-		flex: 1;
-		margin-right: 2%;
-	} */
 	.tui-product-container {
 		flex: 1;
 		margin-right: 10rpx;
 	}
-
-	/*.tui-product-container:last-child {
-		 margin-right: 0;
-	} */
 
 	.tui-product-list .tui-pro-item:nth-child(2n+1) {
 		margin-right: 4%;
 	}
 
 	.tui-pro-item {
-		/* width: 100%;
-		margin-bottom: 4%;
-		background: #fff;
-		box-sizing: border-box;
-		border-radius: 12rpx;
-		overflow: hidden; */
 		box-shadow: 2px 2px 10px rgba(66, 135, 193, .1);
 		display: -webkit-box;
 		display: -webkit-flex;

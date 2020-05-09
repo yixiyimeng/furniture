@@ -1560,143 +1560,13 @@ uni$1;exports.default = _default;
 
 /***/ }),
 
-/***/ 14:
-/*!**********************************************************************************************************!*\
-  !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/runtime/componentNormalizer.js ***!
-  \**********************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return normalizeComponent; });
-/* globals __VUE_SSR_CONTEXT__ */
-
-// IMPORTANT: Do NOT use ES2015 features in this file (except for modules).
-// This module is a runtime utility for cleaner component module output and will
-// be included in the final webpack user bundle.
-
-function normalizeComponent (
-  scriptExports,
-  render,
-  staticRenderFns,
-  functionalTemplate,
-  injectStyles,
-  scopeId,
-  moduleIdentifier, /* server only */
-  shadowMode, /* vue-cli only */
-  components, // fixed by xxxxxx auto components
-  renderjs // fixed by xxxxxx renderjs
-) {
-  // Vue.extend constructor export interop
-  var options = typeof scriptExports === 'function'
-    ? scriptExports.options
-    : scriptExports
-
-  // fixed by xxxxxx auto components
-  if (components) {
-    if (!options.components) {
-      options.components = {}
-    }
-    var hasOwn = Object.prototype.hasOwnProperty
-    for (var name in components) {
-      if (hasOwn.call(components, name) && !hasOwn.call(options.components, name)) {
-        options.components[name] = components[name]
-      }
-    }
-  }
-  // fixed by xxxxxx renderjs
-  if (renderjs) {
-    (renderjs.beforeCreate || (renderjs.beforeCreate = [])).unshift(function() {
-      this[renderjs.__module] = this
-    });
-    (options.mixins || (options.mixins = [])).push(renderjs)
-  }
-
-  // render functions
-  if (render) {
-    options.render = render
-    options.staticRenderFns = staticRenderFns
-    options._compiled = true
-  }
-
-  // functional template
-  if (functionalTemplate) {
-    options.functional = true
-  }
-
-  // scopedId
-  if (scopeId) {
-    options._scopeId = 'data-v-' + scopeId
-  }
-
-  var hook
-  if (moduleIdentifier) { // server build
-    hook = function (context) {
-      // 2.3 injection
-      context =
-        context || // cached call
-        (this.$vnode && this.$vnode.ssrContext) || // stateful
-        (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext) // functional
-      // 2.2 with runInNewContext: true
-      if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
-        context = __VUE_SSR_CONTEXT__
-      }
-      // inject component styles
-      if (injectStyles) {
-        injectStyles.call(this, context)
-      }
-      // register component module identifier for async chunk inferrence
-      if (context && context._registeredComponents) {
-        context._registeredComponents.add(moduleIdentifier)
-      }
-    }
-    // used by ssr in case component is cached and beforeCreate
-    // never gets called
-    options._ssrRegister = hook
-  } else if (injectStyles) {
-    hook = shadowMode
-      ? function () { injectStyles.call(this, this.$root.$options.shadowRoot) }
-      : injectStyles
-  }
-
-  if (hook) {
-    if (options.functional) {
-      // for template-only hot-reload because in that case the render fn doesn't
-      // go through the normalizer
-      options._injectStyles = hook
-      // register for functioal component in vue file
-      var originalRender = options.render
-      options.render = function renderWithStyleInjection (h, context) {
-        hook.call(context)
-        return originalRender(h, context)
-      }
-    } else {
-      // inject component registration as beforeCreate hook
-      var existing = options.beforeCreate
-      options.beforeCreate = existing
-        ? [].concat(existing, hook)
-        : [hook]
-    }
-  }
-
-  return {
-    exports: scriptExports,
-    options: options
-  }
-}
-
-
-/***/ }),
-
-/***/ 140:
+/***/ 116:
 /*!*******************************************************************!*\
   !*** I:/ThorUI组件库（微信小程序原生版）示例/ThorUI-uniapp/utils/picker.city.js ***!
   \*******************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-//测试数据，数据并非完整，只验证功能
 module.exports = [{
   "id": "11",
   "name": "北京市",
@@ -12412,6 +12282,135 @@ module.exports = [{
 
 /***/ }),
 
+/***/ 14:
+/*!**********************************************************************************************************!*\
+  !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/runtime/componentNormalizer.js ***!
+  \**********************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return normalizeComponent; });
+/* globals __VUE_SSR_CONTEXT__ */
+
+// IMPORTANT: Do NOT use ES2015 features in this file (except for modules).
+// This module is a runtime utility for cleaner component module output and will
+// be included in the final webpack user bundle.
+
+function normalizeComponent (
+  scriptExports,
+  render,
+  staticRenderFns,
+  functionalTemplate,
+  injectStyles,
+  scopeId,
+  moduleIdentifier, /* server only */
+  shadowMode, /* vue-cli only */
+  components, // fixed by xxxxxx auto components
+  renderjs // fixed by xxxxxx renderjs
+) {
+  // Vue.extend constructor export interop
+  var options = typeof scriptExports === 'function'
+    ? scriptExports.options
+    : scriptExports
+
+  // fixed by xxxxxx auto components
+  if (components) {
+    if (!options.components) {
+      options.components = {}
+    }
+    var hasOwn = Object.prototype.hasOwnProperty
+    for (var name in components) {
+      if (hasOwn.call(components, name) && !hasOwn.call(options.components, name)) {
+        options.components[name] = components[name]
+      }
+    }
+  }
+  // fixed by xxxxxx renderjs
+  if (renderjs) {
+    (renderjs.beforeCreate || (renderjs.beforeCreate = [])).unshift(function() {
+      this[renderjs.__module] = this
+    });
+    (options.mixins || (options.mixins = [])).push(renderjs)
+  }
+
+  // render functions
+  if (render) {
+    options.render = render
+    options.staticRenderFns = staticRenderFns
+    options._compiled = true
+  }
+
+  // functional template
+  if (functionalTemplate) {
+    options.functional = true
+  }
+
+  // scopedId
+  if (scopeId) {
+    options._scopeId = 'data-v-' + scopeId
+  }
+
+  var hook
+  if (moduleIdentifier) { // server build
+    hook = function (context) {
+      // 2.3 injection
+      context =
+        context || // cached call
+        (this.$vnode && this.$vnode.ssrContext) || // stateful
+        (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext) // functional
+      // 2.2 with runInNewContext: true
+      if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
+        context = __VUE_SSR_CONTEXT__
+      }
+      // inject component styles
+      if (injectStyles) {
+        injectStyles.call(this, context)
+      }
+      // register component module identifier for async chunk inferrence
+      if (context && context._registeredComponents) {
+        context._registeredComponents.add(moduleIdentifier)
+      }
+    }
+    // used by ssr in case component is cached and beforeCreate
+    // never gets called
+    options._ssrRegister = hook
+  } else if (injectStyles) {
+    hook = shadowMode
+      ? function () { injectStyles.call(this, this.$root.$options.shadowRoot) }
+      : injectStyles
+  }
+
+  if (hook) {
+    if (options.functional) {
+      // for template-only hot-reload because in that case the render fn doesn't
+      // go through the normalizer
+      options._injectStyles = hook
+      // register for functioal component in vue file
+      var originalRender = options.render
+      options.render = function renderWithStyleInjection (h, context) {
+        hook.call(context)
+        return originalRender(h, context)
+      }
+    } else {
+      // inject component registration as beforeCreate hook
+      var existing = options.beforeCreate
+      options.beforeCreate = existing
+        ? [].concat(existing, hook)
+        : [hook]
+    }
+  }
+
+  return {
+    exports: scriptExports,
+    options: options
+  }
+}
+
+
+/***/ }),
+
 /***/ 15:
 /*!*************************************************************!*\
   !*** I:/ThorUI组件库（微信小程序原生版）示例/ThorUI-uniapp/store/index.js ***!
@@ -20701,7 +20700,7 @@ module.exports = {"_from":"@dcloudio/uni-stat@next","_id":"@dcloudio/uni-stat@2.
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/mall/mall": { "navigationBarTitleText": "家具商城", "navigationBarBackgroundColor": "#fff", "navigationBarTextStyle": "black" }, "pages/category/category": { "navigationBarTitleText": "产品分类", "navigationBarBackgroundColor": "#E41F19", "navigationBarTextStyle": "white" }, "pages/my/my": { "navigationBarTitleText": "", "navigationStyle": "custom" }, "pages/login/login": { "backgroundColorTop": "#E41F19", "backgroundColorBottom": "#ffffff", "navigationBarTitleText": "登录" }, "pages/live/live": { "backgroundColorTop": "#E41F19", "backgroundColorBottom": "#ffffff", "navigationBarTitleText": "直播" }, "pages/extend-view/news-search/news-search": { "navigationBarTitleText": "搜索", "navigationBarBackgroundColor": "#fff", "navigationBarTextStyle": "black", "backgroundColorTop": "#fff", "backgroundColorBottom": "#fff" }, "pages/extend-view/productList/productList": { "navigationBarBackgroundColor": "#fff", "navigationBarTextStyle": "black", "backgroundColorTop": "#F7F7F7", "backgroundColorBottom": "#F7F7F7", "navigationBarTitleText": "商品列表 ", "onReachBottomDistance": 50, "navigationStyle": "custom" }, "pages/extend-view/productDetail/productDetail": { "navigationBarBackgroundColor": "#fff", "navigationBarTextStyle": "black", "backgroundColorTop": "#F7F7F7", "backgroundColorBottom": "#F7F7F7", "navigationBarTitleText": "商品详情 ", "navigationStyle": "custom" }, "pages/extend-view/shopcart/shopcart": { "navigationBarBackgroundColor": "#FFFFFF", "navigationBarTextStyle": "black", "navigationBarTitleText": "购物车" }, "pages/extend-view/myOrder/myOrder": { "navigationBarBackgroundColor": "#FFFFFF", "navigationBarTextStyle": "black", "navigationBarTitleText": "我的订单" }, "pages/extend-view/set/set": { "navigationBarBackgroundColor": "#FFFFFF", "navigationBarTextStyle": "black", "navigationBarTitleText": "设置中心" }, "pages/extend-view/userInfo/userInfo": { "navigationBarBackgroundColor": "#FFFFFF", "navigationBarTextStyle": "black", "navigationBarTitleText": "个人信息" }, "pages/extend-view/editUserInfo/editUserInfo": { "navigationBarBackgroundColor": "#FFFFFF", "navigationBarTextStyle": "black", "navigationBarTitleText": "" }, "pages/extend-view/address/address": { "navigationBarBackgroundColor": "#FFFFFF", "navigationBarTextStyle": "black", "navigationBarTitleText": "收货地址" }, "pages/extend-view/editAddress/editAddress": { "navigationBarBackgroundColor": "#FFFFFF", "navigationBarTextStyle": "black", "navigationBarTitleText": "新增地址" }, "pages/extend-view/submitOrder/submitOrder": { "navigationBarBackgroundColor": "#FFFFFF", "navigationBarTextStyle": "black", "navigationBarTitleText": "提交订单" }, "pages/extend-view/coupon/coupon": { "navigationBarBackgroundColor": "#FFFFFF", "navigationBarTextStyle": "black", "navigationBarTitleText": "提交订单" }, "pages/extend-view/success/success": { "navigationBarBackgroundColor": "#FFFFFF", "navigationBarTextStyle": "black", "navigationBarTitleText": "支付成功" }, "pages/extend-view/orderDetail/orderDetail": { "navigationBarBackgroundColor": "#FFFFFF", "navigationBarTextStyle": "black", "navigationBarTitleText": "订单详情" }, "pages/extend-view/news/news": { "navigationBarTitleText": "消息", "backgroundColorTop": "#E41F19", "backgroundColorBottom": "#E41F19", "enablePullDownRefresh": true, "onReachBottomDistance": 50 }, "pages/extend-view/chat/chat": { "navigationBarBackgroundColor": "#fff", "navigationBarTextStyle": "black", "backgroundColorTop": "#E41F19", "backgroundColorBottom": "#E41F19", "navigationBarTitleText": "技术交流群" }, "pages/extend-view/facorites/facorites": { "navigationBarBackgroundColor": "#fff", "navigationBarTextStyle": "black", "backgroundColorTop": "#E41F19", "backgroundColorBottom": "#E41F19", "navigationBarTitleText": "收藏夾", "enablePullDownRefresh": true, "onReachBottomDistance": 50 } }, "globalStyle": { "backgroundTextStyle": "dark", "navigationBarBackgroundColor": "#E41F19", "navigationBarTitleText": "家具商城", "navigationBarTextStyle": "white", "backgroundColor": "#fafafa", "backgroundColorTop": "#fafafa", "backgroundColorBottom": "#fafafa" } };exports.default = _default;
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/mall/mall": { "navigationBarTitleText": "家具商城", "navigationBarBackgroundColor": "#fff", "navigationBarTextStyle": "black" }, "pages/category/category": { "navigationBarTitleText": "产品分类", "navigationBarBackgroundColor": "#E41F19", "navigationBarTextStyle": "white" }, "pages/my/my": { "navigationBarTitleText": "", "navigationStyle": "custom" }, "pages/login/login": { "backgroundColorTop": "#E41F19", "backgroundColorBottom": "#ffffff", "navigationBarTitleText": "登录" }, "pages/live/live": { "backgroundColorTop": "#E41F19", "backgroundColorBottom": "#ffffff", "navigationBarTitleText": "直播" }, "pages/extend-view/productDetail/productDetail": { "navigationBarBackgroundColor": "#fff", "navigationBarTextStyle": "black", "backgroundColorTop": "#F7F7F7", "backgroundColorBottom": "#F7F7F7", "navigationBarTitleText": "商品详情 ", "navigationStyle": "custom" }, "pages/extend-view/shopcart/shopcart": { "navigationBarBackgroundColor": "#FFFFFF", "navigationBarTextStyle": "black", "navigationBarTitleText": "购物车" }, "pages/extend-view/myOrder/myOrder": { "navigationBarBackgroundColor": "#FFFFFF", "navigationBarTextStyle": "black", "navigationBarTitleText": "我的订单" }, "pages/extend-view/userInfo/userInfo": { "navigationBarBackgroundColor": "#FFFFFF", "navigationBarTextStyle": "black", "navigationBarTitleText": "个人信息" }, "pages/extend-view/editUserInfo/editUserInfo": { "navigationBarBackgroundColor": "#FFFFFF", "navigationBarTextStyle": "black", "navigationBarTitleText": "" }, "pages/extend-view/address/address": { "navigationBarBackgroundColor": "#FFFFFF", "navigationBarTextStyle": "black", "navigationBarTitleText": "收货地址" }, "pages/extend-view/editAddress/editAddress": { "navigationBarBackgroundColor": "#FFFFFF", "navigationBarTextStyle": "black", "navigationBarTitleText": "新增地址" }, "pages/extend-view/submitOrder/submitOrder": { "navigationBarBackgroundColor": "#FFFFFF", "navigationBarTextStyle": "black", "navigationBarTitleText": "提交订单" }, "pages/extend-view/success/success": { "navigationBarBackgroundColor": "#FFFFFF", "navigationBarTextStyle": "black", "navigationBarTitleText": "支付成功" }, "pages/extend-view/orderDetail/orderDetail": { "navigationBarBackgroundColor": "#FFFFFF", "navigationBarTextStyle": "black", "navigationBarTitleText": "订单详情" }, "pages/extend-view/news/news": { "navigationBarTitleText": "消息", "backgroundColorTop": "#E41F19", "backgroundColorBottom": "#E41F19", "enablePullDownRefresh": true, "onReachBottomDistance": 50 }, "pages/extend-view/facorites/facorites": { "navigationBarBackgroundColor": "#fff", "navigationBarTextStyle": "black", "backgroundColorTop": "#E41F19", "backgroundColorBottom": "#E41F19", "navigationBarTitleText": "收藏夾", "enablePullDownRefresh": true, "onReachBottomDistance": 50 } }, "globalStyle": { "backgroundTextStyle": "dark", "navigationBarBackgroundColor": "#E41F19", "navigationBarTitleText": "家具商城", "navigationBarTextStyle": "white", "backgroundColor": "#fafafa", "backgroundColorTop": "#fafafa", "backgroundColorBottom": "#fafafa" } };exports.default = _default;
 
 /***/ }),
 
@@ -20717,7 +20716,7 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 /***/ }),
 
-/***/ 99:
+/***/ 83:
 /*!***********************************************************!*\
   !*** I:/ThorUI组件库（微信小程序原生版）示例/ThorUI-uniapp/api/order.js ***!
   \***********************************************************/

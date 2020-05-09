@@ -106,27 +106,6 @@
 			this.mobile=uni.getStorageSync('mobile');
 			this.avatarUrl=uni.getStorageSync('avatarUrl');
 			console.log(JSON.stringify(this.mobile))
-			console.log("是否登录" + JSON.stringify(this.hasLogin))
-			if (!this.hasLogin) {
-				/**
-				 * 如果需要强制登录，使用reLaunch方式
-				 */
-				/* if (this.forcedLogin) {
-					setTimeout(() => {
-						uni.reLaunch({
-							url: '../login/login'
-						});
-					}, 200);
-				} else {
-					setTimeout(() => {
-						uni.navigateTo({
-							url: '../login/login'
-						});
-					}, 200);
-				} */
-			} else {
-
-			}
 		},
 		onShow() {
 			this.mobile=uni.getStorageSync('mobile');
@@ -171,7 +150,6 @@
 						url = "../extend-view/facorites/facorites"
 						break;
 					case 5:
-						console.log(111)
 						//url = '../extend-view/news/news'
 						uni.requestSubscribeMessage({
 						  tmplIds: [''],
@@ -179,7 +157,6 @@
 						})
 						break;
 					case 6:
-						console.log(111)
 						url = '../extend-view/address/address'
 						break;
 					default:

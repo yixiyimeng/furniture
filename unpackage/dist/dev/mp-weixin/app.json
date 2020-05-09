@@ -10,22 +10,17 @@
     {
       "root": "pages/extend-view/",
       "pages": [
-        "news-search/news-search",
-        "productList/productList",
         "productDetail/productDetail",
         "shopcart/shopcart",
         "myOrder/myOrder",
-        "set/set",
         "userInfo/userInfo",
         "editUserInfo/editUserInfo",
         "address/address",
         "editAddress/editAddress",
         "submitOrder/submitOrder",
-        "coupon/coupon",
         "success/success",
         "orderDetail/orderDetail",
         "news/news",
-        "chat/chat",
         "facorites/facorites"
       ]
     }

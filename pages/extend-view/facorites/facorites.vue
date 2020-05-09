@@ -46,7 +46,6 @@
 		mapState
 	} from 'vuex'
 	import tuiIcon from "@/components/icon/icon"
-	import tuiTag from "@/components/tag/tag"
 	import tuiListCell from "@/components/list-cell/list-cell"
 	import tuiLoadmore from "@/components/loadmore/loadmore"
 	import tuiNomore from "@/components/nomore/nomore"
@@ -55,7 +54,6 @@
 	export default {
 		components: {
 			tuiIcon,
-			tuiTag,
 			tuiListCell,
 			tuiLoadmore,
 			tuiNomore,

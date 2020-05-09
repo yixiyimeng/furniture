@@ -272,11 +272,6 @@
 				})
 
 			},
-			/* search: function() {
-				uni.navigateTo({
-					url: '../extend-view/news-search/news-search'
-				})
-			} */
 			//模糊搜索
 			search: function() {
 				this.getProduct();
