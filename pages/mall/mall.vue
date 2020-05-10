@@ -44,13 +44,6 @@
 		</view>
 		<!--header-->
 		<view class="tui-header-banner">
-			<!-- <view class="tui-hot-search">
-				<view>热搜</view>
-				<view class="tui-hot-tag" @tap="search">自热火锅</view>
-				<view class="tui-hot-tag" @tap="search">华为手机</view>
-				<view class="tui-hot-tag" @tap="search">有机酸奶</view>
-				<view class="tui-hot-tag" @tap="search">苹果手机</view>
-			</view> -->
 			<view class="tui-banner-bg">
 				<view class="tui-primary-bg tui-route-left"></view>
 				<view class="tui-primary-bg tui-route-right"></view>
@@ -58,8 +51,8 @@
 				<view class="tui-banner-box">
 					<swiper :indicator-dots="true" :autoplay="true" :interval="5000" :duration="150" class="tui-banner-swiper"
 					 :circular="true" indicator-color="rgba(255, 255, 255, 0.8)" indicator-active-color="#fff">
-						<swiper-item v-for="(item,index) in banner" :key="index" @tap.stop="detail">
-							<image :src="'../../static/images/mall/banner/'+item" class="tui-slide-image" mode="scaleToFill" />
+						<swiper-item v-for="(item,index) in banner" :key="index" @tap.stop="bannerSkip(item.jump)">
+							<image :src="basePath+item.img_url" class="tui-slide-image" mode="scaleToFill" />
 						</swiper-item>
 					</swiper>
 				</view>
@@ -68,7 +61,6 @@
 
 		<view class="tui-product-category">
 			<view class="tui-category-item" v-for="(item,index) in category" :key="index" :data-key="item.name" @tap="classify(item.id)">
-				<!-- <image :src="'../../static/images/mall/category/'+item.img" class="tui-category-img" mode="scaleToFill"></image> -->
 				<image :src="basePath+item.img_url" class="tui-category-img" mode="scaleToFill"></image>
 				<view class="tui-category-name">{{item.name}}</view>
 			</view>
@@ -84,7 +76,7 @@
 				<view class="tui-pro-item" v-for="(item,index) in productList" :key="index" hover-class="hover" :hover-start-time="150"
 				 @tap="detail(item)">
 					<view class="tui-pro-img-container">
-						<image :src="basePath+item.img_url[0]" class="tui-pro-img" mode="aspectFill" />
+						<image :src="item.img_url[0]" class="tui-pro-img" mode="aspectFill" />
 					</view>
 					<view class="tui-pro-content">
 						<view class="tui-pro-tit">{{item.name}}</view>
@@ -113,7 +105,6 @@
 	</view>
 </template>
 <script>
-	/* import getFileUrl from "../../utils/util.js" */
 	import {
 		basePath
 	} from '@/utils/index'
@@ -121,6 +112,7 @@
 		mapState
 	} from 'vuex'
 	import api from "@/api/category"
+	import memberApi from "@/api/member"
 	import tuiIcon from "@/components/icon/icon"
 	import tuiTag from "@/components/tag/tag"
 	import tuiLoadmore from "@/components/loadmore/loadmore"
@@ -134,7 +126,6 @@
 		},
 		data() {
 			return {
-				/* getFileUrl, */
 				basePath,
 				current: 0,
 				tabbar: [{
@@ -163,7 +154,6 @@
 				],
 				category: [],
 				productList: [],
-
 				pageIndex: this.$pagination.page,
 				lastPage: this.$pagination.page,
 				searchKey: '', //关键字
@@ -172,8 +162,9 @@
 			}
 		},
 		onLoad() {
+			this.getBannerImg();
 			this.getCategory();
-			this.getProduct();
+			this.getHostProduct();
 		},
 		watch: {
 			pageIndex(newValue, oldValue) {
@@ -186,6 +177,18 @@
 		},
 		computed: mapState(['forcedLogin', 'hasLogin', 'member_id', 'openid']),
 		methods: {
+			//获取轮播图
+			getBannerImg() {
+				this.$postajax(memberApi.getBannerImg)
+					.then(res => {
+						if (res.code == 0) {
+							this.banner = res.data;
+						}
+					})
+					.catch(err => {
+			
+					});
+			},
 			//获取分类
 			getCategory() {
 				var param = {
@@ -204,14 +207,14 @@
 					});
 			},
 			//获取产品
-			getProduct() {
+			getHostProduct() {
 				var param = {
 					page: this.$pagination.page,
 					limit: this.$pagination.limit,
 					member_id: this.member_id,
 					name: this.searchKey,
 				}
-				this.$postajax(api.getProduct, param)
+				this.$postajax(api.getHostProduct, param)
 					.then(res => {
 						if (res.code == 0) {
 							this.productList = res.data;
@@ -259,6 +262,13 @@
 					url: '../extend-view/productDetail/productDetail?id=' + item.id
 				})
 			},
+			//banner跳转页面，
+			bannerSkip(url){
+				console.log(url)
+				uni.navigateTo({
+					url: url
+				})
+			},
 			classify: function(id) {
 				uni.reLaunch({
 					url: '../category/category?searchKey=' + id
@@ -274,12 +284,12 @@
 			},
 			//模糊搜索
 			search: function() {
-				this.getProduct();
+				this.getHostProduct();
 			},
 			//清空搜索关键字
 			cleanKey: function() {
 				this.searchKey = '';
-				this.getProduct();
+				this.getHostProduct();
 			},
 		},
 		onReachBottom: function() {
@@ -305,7 +315,7 @@
 					member_id: this.member_id,
 					name: this.searchKey,
 				}
-				this.$postajax(api.getProduct, param)
+				this.$postajax(api.getHostProduct, param)
 					.then(res => {
 						console.log(JSON.stringify(res))
 						if (res.code == 0) {

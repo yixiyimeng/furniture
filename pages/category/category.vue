@@ -1,22 +1,26 @@
 <template>
 	<view class="container">
 		<view class="tui-searchbox">
-			<view class="tui-search-input" >
+			<view class="tui-search-input">
 				<!-- #ifdef APP-PLUS || MP -->
 				<icon type="search" :size='13' color='#999'></icon>
 				<!-- #endif -->
 				<!-- #ifdef H5 -->
-				<view><tui-icon name="search" :size='16' color='#999'></tui-icon></view>
+				<view>
+					<tui-icon name="search" :size='16' color='#999'></tui-icon>
+				</view>
 				<!-- #endif -->
-				<input confirm-type="search" placeholder="搜索商品" :focus="false" placeholder-class="tui-input-plholder"
-				 class="tui-input" v-model.trim="searchKey" @confirm="search"/>
+				<input confirm-type="search" placeholder="搜索商品" :focus="false" placeholder-class="tui-input-plholder" class="tui-input"
+				 v-model.trim="searchKey" @confirm="search" />
 				<!-- #ifdef APP-PLUS || MP -->
 				<icon type="clear" :size='13' color='#bcbcbc' @tap="cleanKey" v-show="searchKey"></icon>
 				<!-- #endif -->
 				<!-- #ifdef H5 -->
-				<view @tap="cleanKey" v-show="searchKey"><tui-icon name="close-fill" :size='16' color='#bcbcbc'></tui-icon></view>
+				<view @tap="cleanKey" v-show="searchKey">
+					<tui-icon name="close-fill" :size='16' color='#bcbcbc'></tui-icon>
+				</view>
 				<!-- #endif -->
-				
+
 			</view>
 		</view>
 
@@ -27,17 +31,18 @@
 					<text>{{item.name}}</text>
 
 				</view>
-				<view v-if="isSHowSub">
-				<view class="sub-tab-view"  :style="{height:height+'px',top:top+'px',background:'rgba(0, 0, 0, 0.5)'}">
-					<view v-for="(item,index) in subtabbar" :key="index" class="sub-tab-bar-item" :class="[currentsubTab==item.id ? 'active' : '']"
-					 :data-current="index" @tap.stop="swichsubNav(item.id)">
-						<text>{{item.name}}</text>
-
-					</view>
-				</view>
-				</view>
+				
 			</view>
 		</scroll-view>
+		<view v-if="isSHowSub" >
+			<view class="sub-tab-view" @click="handleClose" :style="{height:height+'px',top:top+'px',background:'rgba(0, 0, 0, 0.5)'}">
+				<view v-for="(item,index) in subtabbar" :key="index" class="sub-tab-bar-item" :class="[currentsubTab==item.id ? 'active' : '']"
+				 :data-current="index" @tap.stop="swichsubNav(item.id)">
+					<text>{{item.name}}</text>
+		
+				</view>
+			</view>
+		</view>
 		<block>
 			<scroll-view scroll-y class="right-box" :style="{height:height+'px',top:top+'px'}">
 
@@ -50,7 +55,7 @@
 								<view class="tui-pro-item" v-for="(item,index) in productList" :key="index" hover-class="hover"
 								 :hover-start-time="150" @tap.stop="detail(item)">
 									<view class="tui-pro-img-container">
-										<image :src="basePath+item.img_url[0]" class="tui-pro-img" mode="aspectFill" />
+										<image :src="item.img_url[0]" class="tui-pro-img" mode="aspectFill" />
 									</view>
 									<view class="tui-pro-content">
 										<view class="tui-pro-tit">{{item.name}}</view>
@@ -104,8 +109,8 @@
 				isSHowSub: false, //默认不显示二级分类
 				scrollTop: 0, //tab标题的滚动条位置
 				searchKey: "", //关键字
-				pageIndex:1,
-				lastPage:1,
+				pageIndex: 1,
+				lastPage: 1,
 				loadding: false,
 				pullUpOn: true,
 			}
@@ -121,14 +126,14 @@
 						//#endif
 						this.height = res.windowHeight - uni.upx2px(header)
 						this.top = top + uni.upx2px(header)
-						
+
 						//this.getProduct();
 						//this.swichNav(this.currentTab)
 					}
 				});
 			}, 50)
-			console.log("跳轉參數"+options.searchKey)
-			this.currentTab = options.searchKey;			
+			console.log("跳轉參數" + options.searchKey)
+			this.currentTab = options.searchKey;
 		},
 		onShow() {
 			this.getCategory();
@@ -136,10 +141,10 @@
 		},
 		watch: {
 			pageIndex(newValue, oldValue) {
-				if(this.pageIndex==this.lastPage){
+				if (this.pageIndex == this.lastPage) {
 					console.log(22222)
 					this.pullUpOn = false;
-					
+
 				}
 			}
 		},
@@ -222,9 +227,9 @@
 					.then(res => {
 						if (res.code == 0) {
 							this.productList = res.data;
-							this.lastPage =res.data&&res.data.length>0?(Math.ceil(res.count/this.$pagination.limit)):1;
-							console.log("最后一页"+JSON.stringify(this.lastPage))
-							if(this.pageIndex==this.lastPage){
+							this.lastPage = res.data && res.data.length > 0 ? (Math.ceil(res.count / this.$pagination.limit)) : 1;
+							console.log("最后一页" + JSON.stringify(this.lastPage))
+							if (this.pageIndex == this.lastPage) {
 								this.pullUpOn = false;
 							}
 						}
@@ -240,28 +245,32 @@
 			swichNav: function(id) {
 				//let cur = e.currentTarget.dataset.current;
 				/* let cur = index; */
-				this.currentTab=id;
+				this.currentTab = id;
 				console.log("左侧分类选中数据" + JSON.stringify(id))
-				this.currentsubTab =null;
-				this.getClass();				
+				this.currentsubTab = null;
+				this.getClass();
 				this.getProduct();
 				if (!this.currentTab) {
-					this.currentsubTab=null;
+					this.currentsubTab = null;
 					this.isSHowSub = false;
-				} 
+				}
 				if (this.currentTab == id) {
 					return false;
 				} else {
 					this.currentTab = id;
 					this.checkCor();
 				}
-				
-				
+
+
 			},
 			swichsubNav(id) {
 				this.isSHowSub = false;
 				this.currentsubTab = id;
 				this.getProduct();
+			},
+			handleClose(e) {
+				console.log(3333333)
+				this.isSHowSub = false;
 			},
 			//判断当前滚动超过一屏时，设置tab标题滚动条。
 			checkCor: function() {
@@ -300,35 +309,35 @@
 				// 每次拉到页面底部,请求页数自加
 				this.pageIndex++;
 				// 第二次之后请求数据
-				if(this.pageIndex>this.lastPage){
+				if (this.pageIndex > this.lastPage) {
 					setTimeout(() => {
 						this.loadding = false
 						this.pullUpOn = false
 					}, 1000)
 					return false;
-				}else{
-				var param = {
-					page: this.pageIndex,
-					limit: this.$pagination.limit,
-					member_id:this.member_id,
-					name: this.searchKey,
-				}
-				this.$postajax(api.getProduct,param)
-					.then(res => {
-						console.log(JSON.stringify(res))
-						if (res.code == 0) {
+				} else {
+					var param = {
+						page: this.pageIndex,
+						limit: this.$pagination.limit,
+						member_id: this.member_id,
+						name: this.searchKey,
+					}
+					this.$postajax(api.getProduct, param)
+						.then(res => {
 							console.log(JSON.stringify(res))
 							if (res.code == 0) {
-								this.productList = this.productList.concat(res.data)
-								this.loadding = false;
+								console.log(JSON.stringify(res))
+								if (res.code == 0) {
+									this.productList = this.productList.concat(res.data)
+									this.loadding = false;
+								}
 							}
-						}
-				
-				
-					})
-					.catch(err => {
-				
-					});
+
+
+						})
+						.catch(err => {
+
+						});
 				}
 			}
 		}
@@ -356,7 +365,7 @@
 		display: flex;
 		align-items: center;
 	}
-	
+
 	.tui-search-input {
 		width: 100%;
 		height: 66upx;
@@ -368,29 +377,29 @@
 		align-items: center;
 		flex-wrap: nowrap;
 	}
-	
+
 	.tui-input {
 		flex: 1;
 		color: #333;
 		padding: 0 16upx;
 		font-size: 28upx;
 	}
-	
+
 	.tui-input-plholder {
 		font-size: 28upx;
 		color: #b2b2b2;
 	}
-	
+
 	.tui-cancle {
 		color: #888;
 		font-size: 28upx;
 		padding-left: 30upx;
 		flex-shrink: 0;
 	}
+
 	.tab-view {
-		height: 100%;
 		width: 200upx;
-		position: fixed;
+		position: absolute;
 		left: 0;
 		z-index: 10;
 		/* top: 0; */
@@ -413,12 +422,13 @@
 
 	.sub-tab-view {
 		width: 100%;
-		position: fixed;
+		position: absolute;
 		left: 220rpx;
 		-webkit-box-sizing: border-box;
 		box-sizing: border-box;
 		top: 0;
 		bottom: 0;
+		z-index:999
 	}
 
 	.sub-tab-bar-item {

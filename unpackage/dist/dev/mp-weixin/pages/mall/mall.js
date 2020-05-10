@@ -30,7 +30,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _mall_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./mall.vue?vue&type=script&lang=js& */ 25);
 /* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _mall_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _mall_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
 /* harmony import */ var _mall_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./mall.vue?vue&type=style&index=0&lang=css& */ 28);
-/* harmony import */ var _HBuilderX_2_4_2_20191115_HBuilderX_plugins_uniapp_cli_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../../软件/HBuilderX.2.4.2.20191115/HBuilderX/plugins/uniapp-cli/node_modules/vue-loader/lib/runtime/componentNormalizer.js */ 14);
+/* harmony import */ var _HBuilderX_2_4_2_20191115_HBuilderX_plugins_uniapp_cli_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../../软件/HBuilderX.2.4.2.20191115/HBuilderX/plugins/uniapp-cli/node_modules/vue-loader/lib/runtime/componentNormalizer.js */ 15);
 
 
 
@@ -229,22 +229,14 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
-
-
-
-
-
-
-
-
 var _index = __webpack_require__(/*! @/utils/index */ 18);
 
 
-var _vuex = __webpack_require__(/*! vuex */ 16);
+var _vuex = __webpack_require__(/*! vuex */ 12);
 
 
-var _category = _interopRequireDefault(__webpack_require__(/*! @/api/category */ 27));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} //
+var _category = _interopRequireDefault(__webpack_require__(/*! @/api/category */ 27));
+var _member = _interopRequireDefault(__webpack_require__(/*! @/api/member */ 44));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} //
 //
 //
 //
@@ -350,19 +342,30 @@ var _category = _interopRequireDefault(__webpack_require__(/*! @/api/category */
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-/* import getFileUrl from "../../utils/util.js" */var tuiIcon = function tuiIcon() {return __webpack_require__.e(/*! import() | components/icon/icon */ "components/icon/icon").then(__webpack_require__.bind(null, /*! @/components/icon/icon */ 159));};var tuiTag = function tuiTag() {return __webpack_require__.e(/*! import() | components/tag/tag */ "components/tag/tag").then(__webpack_require__.bind(null, /*! @/components/tag/tag */ 166));};var tuiLoadmore = function tuiLoadmore() {return __webpack_require__.e(/*! import() | components/loadmore/loadmore */ "components/loadmore/loadmore").then(__webpack_require__.bind(null, /*! @/components/loadmore/loadmore */ 173));};var tuiNomore = function tuiNomore() {return __webpack_require__.e(/*! import() | components/nomore/nomore */ "components/nomore/nomore").then(__webpack_require__.bind(null, /*! @/components/nomore/nomore */ 180));};var _default = { components: { tuiIcon: tuiIcon, tuiTag: tuiTag, tuiLoadmore: tuiLoadmore, tuiNomore: tuiNomore }, data: function data() {return { /* getFileUrl, */basePath: _index.basePath, current: 0, tabbar: [{ icon: "home", text: "首页", size: 21 }, { icon: "category", text: "分类", size: 24 }, { icon: "cart", text: "购物车", size: 22 }, { icon: "people", text: "我的", size: 24 }], banner: ["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg"], category: [], productList: [], pageIndex: this.$pagination.page, lastPage: this.$pagination.page, searchKey: '', //关键字
-      loadding: false, pullUpOn: true };}, onLoad: function onLoad() {this.getCategory();this.getProduct();}, watch: { pageIndex: function pageIndex(newValue, oldValue) {if (this.pageIndex == this.lastPage) {console.log(22222);this.pullUpOn = false;}} }, computed: (0, _vuex.mapState)(['forcedLogin', 'hasLogin', 'member_id', 'openid']), methods: { //获取分类
-    getCategory: function getCategory() {var _this = this;var param = { page: this.pageIndex, limit: this.$pagination.limit, name: "" };this.$postajax(_category.default.getCategory, param).then(function (res) {if (res.code == 0) {_this.category = res.data;}}).catch(function (err) {});}, //获取产品
-    getProduct: function getProduct() {var _this2 = this;var param = { page: this.$pagination.page, limit: this.$pagination.limit, member_id: this.member_id, name: this.searchKey };this.$postajax(_category.default.getProduct, param).then(function (res) {if (res.code == 0) {_this2.productList = res.data;_this2.lastPage = res.data && res.data.length > 0 ? Math.ceil(res.count / _this2.$pagination.limit) : 1;console.log("最后一页" + JSON.stringify(_this2.lastPage));if (_this2.pageIndex == _this2.lastPage) {_this2.pullUpOn = false;} //this.count=res.count;
-        }}).catch(function (err) {});}, tabbarSwitch: function tabbarSwitch(e) {var index = e.currentTarget.dataset.index;this.current = index;if (index != 0) {if (index == 1) {this.classify();} else if (index == 2) {uni.navigateTo({ url: '../mall-extend/shopcart/shopcart' });
+var tuiIcon = function tuiIcon() {return __webpack_require__.e(/*! import() | components/icon/icon */ "components/icon/icon").then(__webpack_require__.bind(null, /*! @/components/icon/icon */ 185));};var tuiTag = function tuiTag() {return __webpack_require__.e(/*! import() | components/tag/tag */ "components/tag/tag").then(__webpack_require__.bind(null, /*! @/components/tag/tag */ 192));};var tuiLoadmore = function tuiLoadmore() {return __webpack_require__.e(/*! import() | components/loadmore/loadmore */ "components/loadmore/loadmore").then(__webpack_require__.bind(null, /*! @/components/loadmore/loadmore */ 199));};var tuiNomore = function tuiNomore() {return __webpack_require__.e(/*! import() | components/nomore/nomore */ "components/nomore/nomore").then(__webpack_require__.bind(null, /*! @/components/nomore/nomore */ 206));};var _default = { components: { tuiIcon: tuiIcon, tuiTag: tuiTag, tuiLoadmore: tuiLoadmore, tuiNomore: tuiNomore }, data: function data() {return { basePath: _index.basePath, current: 0, tabbar: [{ icon: "home", text: "首页", size: 21 }, { icon: "category", text: "分类", size: 24 }, { icon: "cart", text: "购物车", size: 22 }, { icon: "people", text: "我的", size: 24 }], banner: ["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg"], category: [], productList: [], pageIndex: this.$pagination.page, lastPage: this.$pagination.page, searchKey: '', //关键字
+      loadding: false, pullUpOn: true };}, onLoad: function onLoad() {this.getBannerImg();this.getCategory();this.getHostProduct();}, watch: { pageIndex: function pageIndex(newValue, oldValue) {if (this.pageIndex == this.lastPage) {console.log(22222);this.pullUpOn = false;}} }, computed: (0, _vuex.mapState)(['forcedLogin', 'hasLogin', 'member_id', 'openid']), methods: { //获取轮播图
+    getBannerImg: function getBannerImg() {var _this = this;this.$postajax(_member.default.getBannerImg).then(function (res) {if (res.code == 0) {_this.banner = res.data;}}).catch(function (err) {});}, //获取分类
+    getCategory: function getCategory() {var _this2 = this;var param = { page: this.pageIndex, limit: this.$pagination.limit, name: "" };this.$postajax(_category.default.getCategory, param).then(function (res) {if (res.code == 0) {_this2.category = res.data;}}).catch(function (err) {});}, //获取产品
+    getHostProduct: function getHostProduct() {var _this3 = this;var param = { page: this.$pagination.page, limit: this.$pagination.limit, member_id: this.member_id, name: this.searchKey };this.$postajax(_category.default.getHostProduct, param).then(function (res) {if (res.code == 0) {_this3.productList = res.data;_this3.lastPage = res.data && res.data.length > 0 ? Math.ceil(res.count / _this3.$pagination.limit) : 1;console.log("最后一页" + JSON.stringify(_this3.lastPage));if (_this3.pageIndex == _this3.lastPage) {_this3.pullUpOn = false;}
+          //this.count=res.count;
+        }
+
+
+      }).
+      catch(function (err) {
+
+      });
+
+    },
+    tabbarSwitch: function tabbarSwitch(e) {
+      var index = e.currentTarget.dataset.index;
+      this.current = index;
+      if (index != 0) {
+        if (index == 1) {
+          this.classify();
+        } else if (index == 2) {
+          uni.navigateTo({
+            url: '../mall-extend/shopcart/shopcart' });
 
         } else {
           uni.navigateTo({
@@ -383,6 +386,13 @@ var _category = _interopRequireDefault(__webpack_require__(/*! @/api/category */
         url: '../extend-view/productDetail/productDetail?id=' + item.id });
 
     },
+    //banner跳转页面，
+    bannerSkip: function bannerSkip(url) {
+      console.log(url);
+      uni.navigateTo({
+        url: url });
+
+    },
     classify: function classify(id) {
       uni.reLaunch({
         url: '../category/category?searchKey=' + id });
@@ -398,15 +408,15 @@ var _category = _interopRequireDefault(__webpack_require__(/*! @/api/category */
     },
     //模糊搜索
     search: function search() {
-      this.getProduct();
+      this.getHostProduct();
     },
     //清空搜索关键字
     cleanKey: function cleanKey() {
       this.searchKey = '';
-      this.getProduct();
+      this.getHostProduct();
     } },
 
-  onReachBottom: function onReachBottom() {var _this3 = this;
+  onReachBottom: function onReachBottom() {var _this4 = this;
     console.log(3333);
     //if (!this.pullUpOn) return;
     this.pullUpOn = true;
@@ -418,8 +428,8 @@ var _category = _interopRequireDefault(__webpack_require__(/*! @/api/category */
     // 第二次之后请求数据
     if (this.pageIndex > this.lastPage) {
       setTimeout(function () {
-        _this3.loadding = false;
-        _this3.pullUpOn = false;
+        _this4.loadding = false;
+        _this4.pullUpOn = false;
       }, 1000);
       return false;
     } else {
@@ -429,14 +439,14 @@ var _category = _interopRequireDefault(__webpack_require__(/*! @/api/category */
         member_id: this.member_id,
         name: this.searchKey };
 
-      this.$postajax(_category.default.getProduct, param).
+      this.$postajax(_category.default.getHostProduct, param).
       then(function (res) {
         console.log(JSON.stringify(res));
         if (res.code == 0) {
           console.log(JSON.stringify(res));
           if (res.code == 0) {
-            _this3.productList = _this3.productList.concat(res.data);
-            _this3.loadding = false;
+            _this4.productList = _this4.productList.concat(res.data);
+            _this4.loadding = false;
           }
         }
 

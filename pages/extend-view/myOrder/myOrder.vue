@@ -137,14 +137,19 @@
 				var url = api.getOrder + '/' + this.member_id;
 				this.$postajax(url, param)
 					.then(res => {
-						console.log(JSON.stringify(res))
 						if (res.code == 0) {
-							this.orderList = [];
+							// this.orderList = [];
 							if (res.data && res.data.length > 0) {
-								res.data.forEach(item => {
-									item.data = JSON.parse(item.data)
-									this.orderList.push(item)
-								})
+								// res.data.forEach(item => {
+								// 	item.data = JSON.parse(item.data)
+								// 	this.orderList.push(item)
+								// })
+								let currentPage=res.data;
+								if(this.$pagination.page==1){
+									this.orderList=currentPage;
+								}else{
+									this.orderList.concat(currentPage)
+								}
 								this.lastPage =res.data&&res.data.length>0?(Math.ceil(res.count/this.$pagination.limit)):1;
 								console.log("最后一页"+JSON.stringify(this.lastPage))
 								if(this.pageIndex==this.lastPage){
@@ -161,6 +166,7 @@
 			//切换订单状态
 			change(e) {
 				this.currentTab = e.index;
+				this.orderList=[];
 				this.getOrder();
 			},
 			//查看订单详情

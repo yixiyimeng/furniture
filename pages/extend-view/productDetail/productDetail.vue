@@ -47,10 +47,16 @@
 				</view> -->
 				<view class="tui-pro-titbox">
 					<view class="tui-pro-title">{{productInfo.name}}</view>
-					<button open-type="share" class="tui-share-btn tui-share-position">
+					<!-- <button open-type="share" class="tui-share-btn tui-share-position">
 						<tui-tag type="gray" tui-tag-class="tui-tag-share tui-size" shape="circleLeft" size="small">
 							<view class="tui-icon tui-icon-partake" style="color:#999;font-size:15px"></view>
 							<!-- <tui-icon name="partake" color="#999" size="15"></tui-icon> -->
+					<!--<text class="tui-share-text tui-gray">分享</text>
+						</tui-tag>
+					</button> -->
+					<button @click="openActionSheet" class="tui-share-btn tui-share-position">
+						<tui-tag type="gray" tui-tag-class="tui-tag-share tui-size" shape="circleLeft" size="small">
+							<view class="tui-icon tui-icon-partake" style="color:#999;font-size:15px"></view>
 							<text class="tui-share-text tui-gray">分享</text>
 						</tui-tag>
 					</button>
@@ -63,7 +69,7 @@
 						<view>浙江杭州</view>
 					</view>
 				</view> -->
-			</view>			
+			</view>
 			<view class="tui-nomore-box">
 				<tui-nomore text="宝贝详情" :visible="true" bgcolor="#f7f7f7"></tui-nomore>
 			</view>
@@ -157,6 +163,8 @@
 			</view>
 		</tui-bottom-popup>
 		<!--底部选择层-->
+		<tui-actionsheet :show="showActionSheet" :tips="tips" :item-list="itemList" :mask-closable="maskClosable" :color="color"
+		 :size="size" :is-cancel="isCancel" @click="itemClick" @cancel="closeActionSheet"></tui-actionsheet>
 
 	</view>
 </template>
@@ -178,6 +186,7 @@
 	import tuiTopDropdown from "@/components/top-dropdown/top-dropdown"
 	import tuiBottomPopup from "@/components/bottom-popup/bottom-popup"
 	import tuiNumberbox from "@/components/numberbox/numberbox"
+	import tuiActionsheet from "@/components/actionsheet/actionsheet"
 	export default {
 		components: {
 			tuiIcon,
@@ -187,7 +196,8 @@
 			tuiButton,
 			tuiTopDropdown,
 			tuiBottomPopup,
-			tuiNumberbox
+			tuiNumberbox,
+			tuiActionsheet
 		},
 		data() {
 			return {
@@ -210,6 +220,14 @@
 					"https://www.thorui.cn/img/product/7.jpg",
 					"https://www.thorui.cn/img/product/8.jpg"
 				], */
+				showActionSheet: false,
+				maskClosable: true,
+				tips: "确认清空搜索历史吗？",
+				itemList: [],
+				color: "#9a9a9a",
+				size: 26,
+				isCancel: true,
+
 				bannerIndex: 0,
 				topMenu: [{
 					icon: "message",
@@ -341,7 +359,7 @@
 				this.popupShow = true
 			},
 			//确定加入购物车
-			surePopup(){
+			surePopup() {
 				let shopCartArr = uni.getStorageSync('shopCartList');
 				let shopCartList = [];
 				this.productInfo.qyt = this.value;
@@ -357,13 +375,13 @@
 						} else {
 							shopCartList.push(this.productInfo)
 						}
-				
+
 					})
 				} else {
 					shopCartList.push(this.productInfo)
 				}
-				
-				
+
+
 				//console.log("产品数据"+JSON.stringify(this.productInfo))
 				console.log("产品数量" + JSON.stringify(shopCartList))
 				var $me = this;
@@ -378,7 +396,7 @@
 				this.popupShow = false
 			},
 			//关闭弹框
-			hidePopup: function() {				
+			hidePopup: function() {
 				this.popupShow = false
 			},
 			change: function(e) {
@@ -386,11 +404,11 @@
 			},
 			collecting: function() {
 				this.collected = !this.collected;
+				var param = {
+					member_id: this.member_id,
+					pid: this.productInfo.id
+				}
 				if (this.collected) {
-					var param = {
-						member_id: this.member_id,
-						pid: this.productInfo.id
-					}
 					this.$postajax(memberapi.addFollow, param)
 						.then(res => {
 							console.log(JSON.stringify(res))
@@ -402,14 +420,12 @@
 
 						});
 				} else {
-					var url = memberapi.closeFollow + '/' + this.productInfo.id;
-					this.$postajax(url)
+					this.$postajax(memberapi.cancelFollow, param)
 						.then(res => {
 							console.log(JSON.stringify(res))
 							if (res.code == 0) {
 								this.tui.toast("取消收藏成功", 2000, true);
 							}
-
 
 						})
 						.catch(err => {
@@ -438,6 +454,37 @@
 				uni.navigateTo({
 					url: '../extend-view/coupon/coupon'
 				})
+			},
+			closeActionSheet: function() {
+				this.showActionSheet = false
+			},
+			openActionSheet: function(type) {
+				let itemList = [{
+						text: "发送给朋友",
+					},
+					{
+						text: "生成海报",
+					}
+				];
+				let maskClosable = true;
+				let tips = "";
+				let color = "#9a9a9a";
+				let size = 26;
+				let isCancel = true;
+				setTimeout(() => {
+					this.showActionSheet = true;
+					this.itemList = itemList;
+					this.maskClosable = maskClosable;
+					this.tips = tips;
+					this.color = color;
+					this.size = size;
+					this.isCancel = isCancel
+				}, 0)
+			},
+			itemClick: function(e) {
+				let index = e.index;
+				this.closeActionSheet();
+				this.tui.toast(`您点击的按钮索引为：${index}`)
 			}
 		},
 		onPageScroll(e) {

@@ -30,7 +30,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _category_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./category.vue?vue&type=script&lang=js& */ 34);
 /* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _category_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _category_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
 /* harmony import */ var _category_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./category.vue?vue&type=style&index=0&lang=css& */ 36);
-/* harmony import */ var _HBuilderX_2_4_2_20191115_HBuilderX_plugins_uniapp_cli_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../../软件/HBuilderX.2.4.2.20191115/HBuilderX/plugins/uniapp-cli/node_modules/vue-loader/lib/runtime/componentNormalizer.js */ 14);
+/* harmony import */ var _HBuilderX_2_4_2_20191115_HBuilderX_plugins_uniapp_cli_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../../软件/HBuilderX.2.4.2.20191115/HBuilderX/plugins/uniapp-cli/node_modules/vue-loader/lib/runtime/componentNormalizer.js */ 15);
 
 
 
@@ -203,6 +203,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+
+
+
 var _index = __webpack_require__(/*! @/utils/index */ 18);
 
 
@@ -286,7 +291,12 @@ var _category = _interopRequireDefault(__webpack_require__(/*! @/api/category */
 //
 //
 //
-var util = __webpack_require__(/*! @/utils/util.js */ 20);var tuiLoadmore = function tuiLoadmore() {return __webpack_require__.e(/*! import() | components/loadmore/loadmore */ "components/loadmore/loadmore").then(__webpack_require__.bind(null, /*! @/components/loadmore/loadmore */ 173));};var tuiNomore = function tuiNomore() {return __webpack_require__.e(/*! import() | components/nomore/nomore */ "components/nomore/nomore").then(__webpack_require__.bind(null, /*! @/components/nomore/nomore */ 180));};var _default = { components: { tuiLoadmore: tuiLoadmore, tuiNomore: tuiNomore }, data: function data() {return { basePath: _index.basePath, tabbar: [], subtabbar: [], productList: [], height: 0, //scroll-view高度
+//
+//
+//
+//
+//
+var util = __webpack_require__(/*! @/utils/util.js */ 20);var tuiLoadmore = function tuiLoadmore() {return __webpack_require__.e(/*! import() | components/loadmore/loadmore */ "components/loadmore/loadmore").then(__webpack_require__.bind(null, /*! @/components/loadmore/loadmore */ 199));};var tuiNomore = function tuiNomore() {return __webpack_require__.e(/*! import() | components/nomore/nomore */ "components/nomore/nomore").then(__webpack_require__.bind(null, /*! @/components/nomore/nomore */ 206));};var _default = { components: { tuiLoadmore: tuiLoadmore, tuiNomore: tuiNomore }, data: function data() {return { basePath: _index.basePath, tabbar: [], subtabbar: [], productList: [], height: 0, //scroll-view高度
       top: 0, currentTab: null, //预设当前项的值
       currentsubTab: null, //预设当前二級分类项的值
       isSHowSub: false, //默认不显示二级分类
@@ -296,12 +306,7 @@ var util = __webpack_require__(/*! @/utils/util.js */ 20);var tuiLoadmore = func
           //this.swichNav(this.currentTab)
         } });}, 50);console.log("跳轉參數" + options.searchKey);this.currentTab = options.searchKey;}, onShow: function onShow() {this.getCategory();this.getProduct();}, watch: { pageIndex: function pageIndex(newValue, oldValue) {if (this.pageIndex == this.lastPage) {console.log(22222);this.pullUpOn = false;}} }, methods: { //获取分类
     getCategory: function getCategory() {var _this2 = this;var param = { page: this.$pagination.page, limit: this.$pagination.limit, name: "" };this.$postajax(_category.default.getCategory, param).then(function (res) {console.log(JSON.stringify(res));if (res.code == 0) {_this2.tabbar = res.data;_this2.tabbar.unshift({ id: null, name: "全部" });}}).catch(function (err) {});}, //获取二级分类
-    getClass: function getClass() {var _this3 = this;if (this.currentTab) {var param = { page: this.$pagination.page,
-          limit: this.$pagination.limit,
-          /* name: item.name, */
-          cid: this.currentTab };
-
-        this.$postajax(_category.default.getClass, param).
+    getClass: function getClass() {var _this3 = this;if (this.currentTab) {var param = { page: this.$pagination.page, limit: this.$pagination.limit, /* name: item.name, */cid: this.currentTab };this.$postajax(_category.default.getClass, param).
         then(function (res) {
           //console.log(JSON.stringify(res))
           if (res.code == 0) {
@@ -386,6 +391,10 @@ var util = __webpack_require__(/*! @/utils/util.js */ 20);var tuiLoadmore = func
       this.isSHowSub = false;
       this.currentsubTab = id;
       this.getProduct();
+    },
+    handleClose: function handleClose(e) {
+      console.log(3333333);
+      this.isSHowSub = false;
     },
     //判断当前滚动超过一屏时，设置tab标题滚动条。
     checkCor: function checkCor() {

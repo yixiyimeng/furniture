@@ -1,33 +1,20 @@
 <template>
 	<view class="tui-set-box">
-		<view class="tui-mybg-box" v-show='hasLogin'>
+		<view class="tui-mybg-box">
 			<image :src="`/static/images/mall/my/img_bg_3x.png`" class="tui-my-bg" mode="widthFix"></image>
 			<!-- <div class="tui-my-bg"></div> -->
-			<view class="tui-header-center" @tap="href(1)">
+			<view class="tui-header-center">
 				<open-data type="userAvatarUrl" class="tui-avatar"></open-data>
 				<!-- <image :src="avatarUrl" class="tui-avatar"></image> -->
 				<view class="tui-info">
-					<view class="tui-nickname">{{userName}}
-					</view>
-					<view class="tui-explain">{{mobile}}</view>
+					<!-- <view class="tui-nickname">{{userName}}
+					</view> -->
+					<open-data type="userNickName" class="tui-nickname"></open-data>
+					<view class="tui-explain">{{phone}}</view>
 				</view>
 			</view>
 		</view>
-		<view class="tui-mybg-box" v-show='!hasLogin'>
-			<image :src="`/static/images/mall/my/img_bg_3x.png`" class="tui-my-bg" mode="widthFix"></image>
-			<!-- <image :src="tui.webURL()+'/static/images/mall/my/img_bg_3x.png'" class="tui-my-bg" mode="widthFix"></image> -->
-			<!-- <div class="tui-my-bg"></div> -->
-			<view class="tui-header-center" @tap="href(1)">
-				<!-- <image src="/static/images/my/mine_def_touxiang_3x.png" class="tui-avatar" @tap="href(1)"></image> -->
-				<open-data type="userAvatarUrl" class="tui-avatar"></open-data>
-				<view class="tui-info">
-					<view class="tui-nickname">
-						<open-data type="userNickName"></open-data>
-					</view>
 
-				</view>
-			</view>
-		</view>
 		<view class="tui-mtop">
 			<tui-list-cell padding="0" :lineLeft="false" :arrow="true" @click="href(2)">
 				<view class="tui-list-cell">
@@ -51,7 +38,7 @@
 			</tui-list-cell>
 		</view>
 		<view class="tui-mtop">
-			<tui-list-cell padding="0" :lineLeft="false" :arrow="true" @click="href(5)">
+			<tui-list-cell padding="0" :lineLeft="false" :arrow="true" @click="setnotice">
 				<view class="tui-list-cell">
 					<image :src="`/static/images/my/message.png`" class="tui-list-icon" mode="widthFix"></image>
 					消息中心
@@ -74,6 +61,7 @@
 				<p>©2013-{{today}}核桃妹的妈妈</p>
 			</div>
 		</div>
+
 	</view>
 </template>
 
@@ -101,42 +89,24 @@
 				/* nickName: "哈尼",
 				phoneNumber: null, */
 				avatarUrl: null,
-				mobile: "",
 				isCanUse: uni.getStorageSync('isCanUse') || true, //默认为true
 				today: null
 			}
 		},
-		computed: mapState(['forcedLogin', 'hasLogin', 'userName', 'session_key']),
+		computed: mapState(['forcedLogin', 'hasLogin', 'userName', 'session_key', 'phone']),
 		onLoad() {
-			this.mobile = uni.getStorageSync('mobile');
-			this.avatarUrl = uni.getStorageSync('avatarUrl');
-			console.log(JSON.stringify(this.mobile))
 			this.today = new Date().getFullYear()
 		},
 		onShow() {
-			this.mobile = uni.getStorageSync('mobile');
-			this.avatarUrl = uni.getStorageSync('avatarUrl');
+			// this.phone = uni.getStorageSync('phone');
 			if (!this.hasLogin) {
-				/**
-				 * 如果需要强制登录，使用reLaunch方式
-				 */
-				if (this.forcedLogin) {
-					setTimeout(() => {
-						uni.reLaunch({
-							url: '../login/login'
-						});
-					}, 200);
-				} else {
-					setTimeout(() => {
-						uni.navigateTo({
-							url: '../login/login'
-						});
-					}, 200);
-				}
-			} else {
-
+				setTimeout(() => {
+					uni.navigateTo({
+						url: '../login/login'
+					});
+				}, 200);
 			}
-
+			console.log(this.hasLogin)
 		},
 		methods: {
 			href(page) {
@@ -177,6 +147,18 @@
 					this.tui.toast("功能尚未完善~")
 				}
 			},
+			setnotice() {
+				let ids = [
+					' iBK57Nbvp-krt4XmLEyxChcn29dackNGD77yUX14HM8',
+					'ZVWKu5FAPM8kPbZv9lgxiwX-adJ94w1K-qV-TcaaPYs'
+				];
+				uni.requestSubscribeMessage({
+					tmplIds: ids,
+					success(res) {
+						console.log('haha')
+					}
+				})
+			}
 		}
 	}
 </script>

@@ -30,7 +30,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _my_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./my.vue?vue&type=script&lang=js& */ 42);
 /* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _my_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _my_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
 /* harmony import */ var _my_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./my.vue?vue&type=style&index=0&lang=css& */ 45);
-/* harmony import */ var _HBuilderX_2_4_2_20191115_HBuilderX_plugins_uniapp_cli_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../../软件/HBuilderX.2.4.2.20191115/HBuilderX/plugins/uniapp-cli/node_modules/vue-loader/lib/runtime/componentNormalizer.js */ 14);
+/* harmony import */ var _HBuilderX_2_4_2_20191115_HBuilderX_plugins_uniapp_cli_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../../软件/HBuilderX.2.4.2.20191115/HBuilderX/plugins/uniapp-cli/node_modules/vue-loader/lib/runtime/componentNormalizer.js */ 15);
 
 
 
@@ -190,20 +190,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 var _member = _interopRequireDefault(__webpack_require__(/*! @/api/member */ 44));
-var _vuex = __webpack_require__(/*! vuex */ 16);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} //
+var _vuex = __webpack_require__(/*! vuex */ 12);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} //
 //
 //
 //
@@ -270,29 +258,11 @@ var _vuex = __webpack_require__(/*! vuex */ 16);function _interopRequireDefault(
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-var tuiListCell = function tuiListCell() {return __webpack_require__.e(/*! import() | components/list-cell/list-cell */ "components/list-cell/list-cell").then(__webpack_require__.bind(null, /*! @/components/list-cell/list-cell */ 187));};var tuiButton = function tuiButton() {return __webpack_require__.e(/*! import() | components/extend/button/button */ "components/extend/button/button").then(__webpack_require__.bind(null, /*! @/components/extend/button/button */ 194));};var tuiFooter = function tuiFooter() {return __webpack_require__.e(/*! import() | components/footer/footer */ "components/footer/footer").then(__webpack_require__.bind(null, /*! @/components/footer/footer */ 201));};var _default = { components: { tuiListCell: tuiListCell, tuiButton: tuiButton, tuiFooter: tuiFooter }, data: function data() {return { SessionKey: '', OpenId: '', /* nickName: "哈尼",
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                phoneNumber: null, */avatarUrl: null, mobile: "", isCanUse: uni.getStorageSync('isCanUse') || true, //默认为true
-      today: null };}, computed: (0, _vuex.mapState)(['forcedLogin', 'hasLogin', 'userName', 'session_key']), onLoad: function onLoad() {this.mobile = uni.getStorageSync('mobile');this.avatarUrl = uni.getStorageSync('avatarUrl');console.log(JSON.stringify(this.mobile));this.today = new Date().getFullYear();}, onShow: function onShow() {this.mobile = uni.getStorageSync('mobile');this.avatarUrl = uni.getStorageSync('avatarUrl');if (!this.hasLogin) {/**
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                    * 如果需要强制登录，使用reLaunch方式
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                    */if (this.forcedLogin) {setTimeout(function () {uni.reLaunch({ url: '../login/login' });}, 200);} else {setTimeout(function () {uni.navigateTo({ url: '../login/login' });}, 200);}} else {}}, methods: { href: function href(page) {var url = "";switch (page) {case 1:url = "../extend-view/userInfo/userInfo";break;case 2:url = "../extend-view/myOrder/myOrder";break;case 3:url = '../extend-view/shopcart/shopcart';break;case 4:url = "../extend-view/facorites/facorites";break;case 5: //url = '../extend-view/news/news'
-          uni.requestSubscribeMessage({ tmplIds: [''], success: function success(res) {} });break;case 6:url = '../extend-view/address/address';
-          break;
-        default:
-          break;}
-
-      console.log(url);
+var tuiListCell = function tuiListCell() {return __webpack_require__.e(/*! import() | components/list-cell/list-cell */ "components/list-cell/list-cell").then(__webpack_require__.bind(null, /*! @/components/list-cell/list-cell */ 213));};var tuiButton = function tuiButton() {return __webpack_require__.e(/*! import() | components/extend/button/button */ "components/extend/button/button").then(__webpack_require__.bind(null, /*! @/components/extend/button/button */ 220));};var tuiFooter = function tuiFooter() {return __webpack_require__.e(/*! import() | components/footer/footer */ "components/footer/footer").then(__webpack_require__.bind(null, /*! @/components/footer/footer */ 227));};var _default = { components: { tuiListCell: tuiListCell, tuiButton: tuiButton, tuiFooter: tuiFooter }, data: function data() {return { SessionKey: '', OpenId: '', /* nickName: "哈尼",
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                phoneNumber: null, */avatarUrl: null, isCanUse: uni.getStorageSync('isCanUse') || true, //默认为true
+      today: null };}, computed: (0, _vuex.mapState)(['forcedLogin', 'hasLogin', 'userName', 'session_key', 'phone']), onLoad: function onLoad() {this.today = new Date().getFullYear();}, onShow: function onShow() {// this.phone = uni.getStorageSync('phone');
+    if (!this.hasLogin) {setTimeout(function () {uni.navigateTo({ url: '../login/login' });}, 200);}console.log(this.hasLogin);}, methods: { href: function href(page) {var url = "";switch (page) {case 1:url = "../extend-view/userInfo/userInfo";break;case 2:url = "../extend-view/myOrder/myOrder";break;case 3:url = '../extend-view/shopcart/shopcart';break;case 4:url = "../extend-view/facorites/facorites";break;case 5: //url = '../extend-view/news/news'
+          uni.requestSubscribeMessage({ tmplIds: [''], success: function success(res) {} });break;case 6:url = '../extend-view/address/address';break;default:break;}console.log(url);
       if (url) {
         uni.navigateTo({
           url: url });
@@ -300,6 +270,18 @@ var tuiListCell = function tuiListCell() {return __webpack_require__.e(/*! impor
       } else {
         this.tui.toast("功能尚未完善~");
       }
+    },
+    setnotice: function setnotice() {
+      var ids = [
+      ' iBK57Nbvp-krt4XmLEyxChcn29dackNGD77yUX14HM8',
+      'ZVWKu5FAPM8kPbZv9lgxiwX-adJ94w1K-qV-TcaaPYs'];
+
+      uni.requestSubscribeMessage({
+        tmplIds: ids,
+        success: function success(res) {
+          console.log('haha');
+        } });
+
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 

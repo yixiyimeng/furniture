@@ -9,9 +9,7 @@
 	"compileType": "miniprogram",
 	"libVersion": "2.9.2",
 	"appid": "wx6256647088ca1037",
-	"projectname": "ThorUI%E7%BB%84%E4%BB%B6%E5%BA%93",
-	"simulatorType": "wechat",
-	"simulatorPluginLibVersion": {},
+	"projectname": "小蜗牛家具",
 	"condition": {
 		"search": {
 			"current": -1,

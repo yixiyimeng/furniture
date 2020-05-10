@@ -26,21 +26,18 @@
 		data() {
 			return {
 				infoRes: {},
+				phone: '',
 				isCanUse: uni.getStorageSync('isCanUse') || true //默认为true
 			}
 		},
-		computed: mapState(['forcedLogin', 'hasLogin']),
+		computed: mapState(['forcedLogin', 'hasLogin', 'session_key', 'member_id']),
+
 		methods: {
 			...mapMutations(['login']),
-			//第一授权获取用户信息===》按钮触发
-			/* decryptPhoneNumber(e) {
-				console.log("手机号" + JSON.stringify(e));
-				this.decrypt(e.target)
-			}, */
 			//手机号解密
-			decrypt(item) {
+			decrypt() {
 				var param = {
-					session_key: item.session_key,
+					session_key: this.session_key,
 					iv: this.infoRes.iv,
 					encryptedData: this.infoRes.encryptedData
 				}
@@ -49,8 +46,11 @@
 					.then(res => {
 						console.log("解密" + JSON.stringify(res))
 						if (res.code == 0) {
-							this.mobile = res.data.phoneNumber
-							uni.setStorageSync('mobile', this.mobile);
+							this.phone = res.data.phoneNumber;
+							/* 更新用户信息 */
+							this.updateMember({
+								phone: this.phone
+							});
 						} else {
 
 						}
@@ -67,91 +67,35 @@
 					encryptedData: e.detail.encryptedData,
 					iv: e.detail.iv
 				};
-				 console.log(e)
-				uni.login({
-					provider: 'weixin',
-					success: function(loginRes) {
-						let code = loginRes.code;
-						$me.islogin(code)
-						// uni.getUserInfo({
-						// 	provider: 'weixin',
-						// 	success: function(infoRes) {
-						// 		$me.infoRes = infoRes;
-						// 		$me.islogin(code)
-						// 	},
-						// 	fail(res) {}
-						// });
+				this.decrypt()
+			},
 
-
-					},
+			toMy() {
+				console.log('页面跳转12');
+				let userinfo=uni.getStorageSync('userInfo');
+				 userinfo.phone=this.phone;
+				this.login(userinfo);
+				console.log('页面跳转')
+				uni.switchTab({
+					url: '/pages/my/my'
 				})
-
-
-			},
-			islogin(code) {
-				//2.将用户登录code传递到后台置换用户SessionKey、OpenId等信息
-				var param = {
-					code: code
-				}
-				var $me = this;
-				$me.$postajax(api.login, param)
-					.then(res => {
-						console.log("登录返回" + JSON.stringify(res))
-						if (res.code == 0) {
-							$me.decrypt(res.data)
-							uni.setStorageSync("member_id", res.data.member_id);
-							uni.setStorageSync("openid", res.data.openid);
-							uni.setStorageSync('session_key', res.data.session_key);
-							uni.setStorageSync('hasLogin', true);
-
-							uni.setStorageSync('userName', this.infoRes.userInfo.nickName);
-							uni.setStorageSync('avatarUrl', this.infoRes.userInfo.avatarUrl);
-
-							let payload = {
-								/* mobile: util.formatNum(mobile), */
-								mobile: this.mobile,
-								hasLogin: true,
-								member_id: res.data.member_id,
-								openid: res.data.openid,
-								session_key: res.data.session_key,
-								userName: this.infoRes.userInfo.nickName,
-								avatarUrl: this.infoRes.userInfo.avatarUrl,
-							};
-							$me.tui.toast("登录成功", 2000, true);
-							$me.toMy(payload);
-
-						} else {}
-
-
-					})
-					.catch(err => {
-
-					});
-			},
-
-			toMy(userName) {
-
-				this.login(userName);
-				/**
-				 * 强制登录时使用reLaunch方式跳转过来
-				 * 返回首页也使用reLaunch方式
-				 */
-				if (this.forcedLogin) {
-					/* uni.reLaunch({
-						url: '../my/my',
-					}); */
-					uni.navigateBack()
-				} else {
-					uni.navigateBack();
-				}
-
 			},
 
 
 			cancel() {
-				uni.reLaunch({
-					url: '../mall/mall',
-				});
+				uni.navigateBack();
+			},
+			updateMember(param) {
+				this.$postajax(api.updateMember + '/' + this.member_id, param)
+					.then(res => {
+						if (res.code == 0) {
+							console.log('更新成功')
+							this.toMy();
+						}
+					})
+					.catch(err => {
+
+					});
 			}
 
 		}
@@ -161,7 +105,8 @@
 <style>
 	.authButh {
 		text-align: center;
-		margin: 100rpx 80rpx 0;
+		margin: 0 80rpx 0;
+		padding-top: 100rpx;
 	}
 
 	.tip {

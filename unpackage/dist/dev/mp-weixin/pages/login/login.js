@@ -30,7 +30,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _login_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./login.vue?vue&type=script&lang=js& */ 51);
 /* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _login_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _login_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
 /* harmony import */ var _login_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./login.vue?vue&type=style&index=0&lang=css& */ 53);
-/* harmony import */ var _HBuilderX_2_4_2_20191115_HBuilderX_plugins_uniapp_cli_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../../软件/HBuilderX.2.4.2.20191115/HBuilderX/plugins/uniapp-cli/node_modules/vue-loader/lib/runtime/componentNormalizer.js */ 14);
+/* harmony import */ var _HBuilderX_2_4_2_20191115_HBuilderX_plugins_uniapp_cli_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../../软件/HBuilderX.2.4.2.20191115/HBuilderX/plugins/uniapp-cli/node_modules/vue-loader/lib/runtime/componentNormalizer.js */ 15);
 
 
 
@@ -134,7 +134,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var _member = _interopRequireDefault(__webpack_require__(/*! @/api/member */ 44));
-var _vuex = __webpack_require__(/*! vuex */ 16);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};var ownKeys = Object.keys(source);if (typeof Object.getOwnPropertySymbols === 'function') {ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) {return Object.getOwnPropertyDescriptor(source, sym).enumerable;}));}ownKeys.forEach(function (key) {_defineProperty(target, key, source[key]);});}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var tuiIcon = function tuiIcon() {return __webpack_require__.e(/*! import() | components/icon/icon */ "components/icon/icon").then(__webpack_require__.bind(null, /*! @/components/icon/icon */ 159));};var tuiButton = function tuiButton() {return __webpack_require__.e(/*! import() | components/button/button */ "components/button/button").then(__webpack_require__.bind(null, /*! @/components/button/button */ 208));};
+var _vuex = __webpack_require__(/*! vuex */ 12);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};var ownKeys = Object.keys(source);if (typeof Object.getOwnPropertySymbols === 'function') {ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) {return Object.getOwnPropertyDescriptor(source, sym).enumerable;}));}ownKeys.forEach(function (key) {_defineProperty(target, key, source[key]);});}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var tuiIcon = function tuiIcon() {return __webpack_require__.e(/*! import() | components/icon/icon */ "components/icon/icon").then(__webpack_require__.bind(null, /*! @/components/icon/icon */ 185));};var tuiButton = function tuiButton() {return __webpack_require__.e(/*! import() | components/button/button */ "components/button/button").then(__webpack_require__.bind(null, /*! @/components/button/button */ 234));};
 
 
 
@@ -150,21 +150,18 @@ var util = __webpack_require__(/*! ../../utils/util.js */ 20);var _default =
   data: function data() {
     return {
       infoRes: {},
+      phone: '',
       isCanUse: uni.getStorageSync('isCanUse') || true //默认为true
     };
   },
-  computed: (0, _vuex.mapState)(['forcedLogin', 'hasLogin']),
+  computed: (0, _vuex.mapState)(['forcedLogin', 'hasLogin', 'session_key', 'member_id']),
+
   methods: _objectSpread({},
   (0, _vuex.mapMutations)(['login']), {
-    //第一授权获取用户信息===》按钮触发
-    /* decryptPhoneNumber(e) {
-    	console.log("手机号" + JSON.stringify(e));
-    	this.decrypt(e.target)
-    }, */
     //手机号解密
-    decrypt: function decrypt(item) {var _this = this;
+    decrypt: function decrypt() {var _this = this;
       var param = {
-        session_key: item.session_key,
+        session_key: this.session_key,
         iv: this.infoRes.iv,
         encryptedData: this.infoRes.encryptedData };
 
@@ -173,8 +170,11 @@ var util = __webpack_require__(/*! ../../utils/util.js */ 20);var _default =
       then(function (res) {
         console.log("解密" + JSON.stringify(res));
         if (res.code == 0) {
-          _this.mobile = res.data.phoneNumber;
-          uni.setStorageSync('mobile', _this.mobile);
+          _this.phone = res.data.phoneNumber;
+          /* 更新用户信息 */
+          _this.updateMember({
+            phone: _this.phone });
+
         } else {
 
         }
@@ -191,91 +191,35 @@ var util = __webpack_require__(/*! ../../utils/util.js */ 20);var _default =
         encryptedData: e.detail.encryptedData,
         iv: e.detail.iv };
 
-      console.log(e);
-      uni.login({
-        provider: 'weixin',
-        success: function success(loginRes) {
-          var code = loginRes.code;
-          $me.islogin(code);
-          // uni.getUserInfo({
-          // 	provider: 'weixin',
-          // 	success: function(infoRes) {
-          // 		$me.infoRes = infoRes;
-          // 		$me.islogin(code)
-          // 	},
-          // 	fail(res) {}
-          // });
-
-
-        } });
-
-
-
-    },
-    islogin: function islogin(code) {var _this2 = this;
-      //2.将用户登录code传递到后台置换用户SessionKey、OpenId等信息
-      var param = {
-        code: code };
-
-      var $me = this;
-      $me.$postajax(_member.default.login, param).
-      then(function (res) {
-        console.log("登录返回" + JSON.stringify(res));
-        if (res.code == 0) {
-          $me.decrypt(res.data);
-          uni.setStorageSync("member_id", res.data.member_id);
-          uni.setStorageSync("openid", res.data.openid);
-          uni.setStorageSync('session_key', res.data.session_key);
-          uni.setStorageSync('hasLogin', true);
-
-          uni.setStorageSync('userName', _this2.infoRes.userInfo.nickName);
-          uni.setStorageSync('avatarUrl', _this2.infoRes.userInfo.avatarUrl);
-
-          var payload = {
-            /* mobile: util.formatNum(mobile), */
-            mobile: _this2.mobile,
-            hasLogin: true,
-            member_id: res.data.member_id,
-            openid: res.data.openid,
-            session_key: res.data.session_key,
-            userName: _this2.infoRes.userInfo.nickName,
-            avatarUrl: _this2.infoRes.userInfo.avatarUrl };
-
-          $me.tui.toast("登录成功", 2000, true);
-          $me.toMy(payload);
-
-        } else {}
-
-
-      }).
-      catch(function (err) {
-
-      });
+      this.decrypt();
     },
 
-    toMy: function toMy(userName) {
-
-      this.login(userName);
-      /**
-                             * 强制登录时使用reLaunch方式跳转过来
-                             * 返回首页也使用reLaunch方式
-                             */
-      if (this.forcedLogin) {
-        /* uni.reLaunch({
-                             	url: '../my/my',
-                             }); */
-        uni.navigateBack();
-      } else {
-        uni.navigateBack();
-      }
+    toMy: function toMy() {
+      console.log('页面跳转12');
+      var userinfo = uni.getStorageSync('userInfo');
+      userinfo.phone = this.phone;
+      this.login(userinfo);
+      console.log('页面跳转');
+      uni.switchTab({
+        url: '/pages/my/my' });
 
     },
 
 
     cancel: function cancel() {
-      uni.reLaunch({
-        url: '../mall/mall' });
+      uni.navigateBack();
+    },
+    updateMember: function updateMember(param) {var _this2 = this;
+      this.$postajax(_member.default.updateMember + '/' + this.member_id, param).
+      then(function (res) {
+        if (res.code == 0) {
+          console.log('更新成功');
+          _this2.toMy();
+        }
+      }).
+      catch(function (err) {
 
+      });
     } }) };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 

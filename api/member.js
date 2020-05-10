@@ -13,6 +13,7 @@ export const api = {
 	getFollow:basePath+'/api/member/follow/index',//查询关注
 	addFollow:basePath+'/api/member/follow/add',//添加关注
 	closeFollow:basePath+'/api/member/follow/close',//删除关注
-	
+	cancelFollow:basePath+'/api/member/follow/product/close',//商品详情界面取消关注
+	getBannerImg:'/api/roration'
 }
 export default api

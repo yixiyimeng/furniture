@@ -66,9 +66,8 @@ page {
 	        flex-shrink: 0;
 }
 .tab-view {
-	height: 100%;
 	width: 200rpx;
-	position: fixed;
+	position: absolute;
 	left: 0;
 	z-index: 10;
 	/* top: 0; */
@@ -99,12 +98,13 @@ page {
 }
 .sub-tab-view {
 	width: 100%;
-	position: fixed;
+	position: absolute;
 	left: 220rpx;
 	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
 	top: 0;
 	bottom: 0;
+	z-index:999
 }
 .sub-tab-bar-item {
 	width: 200rpx;

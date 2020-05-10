@@ -5,6 +5,7 @@ export const api = {
 	getCategory:basePath+'/api/category',//获取一级分类
 	getClass:basePath+'/api/class',//获取一级分类
 	getProduct:basePath+'/api/product',//获取产品
-	getProductShow:basePath+"/api/product/show"//获取产品详情
+	getProductShow:basePath+"/api/product/show",//获取产品详情
+	getHostProduct:basePath+"/api/product/host"//获取热门产品
 }
 export default api

@@ -1,4 +1,4 @@
-var defaultGateway="http://jiaju.veimx.com";
+var defaultGateway="https://jiaju.veimx.com";
 export const basePath = defaultGateway;
 export default {
 	basePath
