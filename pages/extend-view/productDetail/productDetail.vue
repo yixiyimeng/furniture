@@ -20,7 +20,7 @@
 			<swiper :autoplay="true" :interval="5000" :duration="150" :circular="true" :style="{height:scrollH + 'px'}" @change="bannerChange">
 				<block v-for="(item,index) in productInfo.img_url" :key="index">
 					<swiper-item :data-index="index" @tap.stop="previewImage">
-						<image :src="basePath+item" class="tui-slide-image" :style="{height:scrollH+'px'}" />
+						<image :src="item" class="tui-slide-image" :style="{height:scrollH+'px'}" />
 					</swiper-item>
 				</block>
 			</swiper>

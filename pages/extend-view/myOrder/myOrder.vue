@@ -14,7 +14,7 @@
 				<block v-for="(item,index) in orderitem.data" :key="index">
 					<tui-list-cell padding="0" @click="detail(orderitem.id)">
 						<view class="tui-goods-item" v-if="item.img_url&&item.img_url.length>0">
-							<image :src="basePath+JSON.parse(item.img_url)[0]" class="tui-goods-img"></image>
+							<image :src="JSON.parse(item.img_url)[0]" class="tui-goods-img"></image>
 							<view class="tui-goods-center">
 								<view class="tui-goods-name">{{item.name}}</view>
 								<!-- <view class="tui-goods-attr">黑色，50ml</view> -->

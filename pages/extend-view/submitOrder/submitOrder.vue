@@ -28,7 +28,7 @@
 				<block v-for="(item,index) in orderList">
 					<tui-list-cell :hover="false" padding="0">
 						<view class="tui-goods-item">
-							<image :src="basePath+item.img_url[0]" class="tui-goods-img"></image>
+							<image :src="item.img_url[0]" class="tui-goods-img"></image>
 							<view class="tui-goods-center">
 								<view class="tui-goods-name">{{item.name}}</view>
 								<!-- <view class="tui-goods-attr">黑色，50ml</view> -->

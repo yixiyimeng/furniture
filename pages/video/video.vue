@@ -86,7 +86,7 @@
 							let curPageData = da.data.map(item => {
 								if (item.img_url && item.img_url.length > 0) {
 									let img_url = item.img_url.map(subitem => {
-										return basePath + subitem
+										return subitem
 									})
 									item.img_url = img_url;
 								}
@@ -114,7 +114,7 @@
 			playvideo: function(path, poster) {
 				this.poster = poster;
 				var videoContext = this.videoContext;
-				this.videoSrc = basePath + path;
+				this.videoSrc =path;
 				setTimeout(() => {
 					videoContext.seek(0);
 					videoContext.play();

@@ -10,7 +10,7 @@
 								<image :src="'../../../static/images/news/'+items" mode="widthFix" class="tui-block"></image>
 							</block> -->
 							<block>
-								<image :src="basePath+item.product_img" mode="widthFix" class="tui-block"></image>
+								<image :src="item.product_img" mode="widthFix" class="tui-block"></image>
 							</block>
 						</view>
 						<view class="tui-news-tbox tui-flex-column tui-flex-between tui-h165 tui-pl-20">

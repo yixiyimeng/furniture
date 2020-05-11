@@ -52,7 +52,7 @@
 					<swiper :indicator-dots="true" :autoplay="true" :interval="5000" :duration="150" class="tui-banner-swiper"
 					 :circular="true" indicator-color="rgba(255, 255, 255, 0.8)" indicator-active-color="#fff">
 						<swiper-item v-for="(item,index) in banner" :key="index" @tap.stop="bannerSkip(item.jump)">
-							<image :src="basePath+item.img_url" class="tui-slide-image" mode="scaleToFill" />
+							<image :src="item.img_url" class="tui-slide-image" mode="scaleToFill" />
 						</swiper-item>
 					</swiper>
 				</view>
