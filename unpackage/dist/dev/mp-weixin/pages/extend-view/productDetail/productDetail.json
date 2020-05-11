@@ -14,6 +14,7 @@
     "tui-top-dropdown": "/components/top-dropdown/top-dropdown",
     "tui-bottom-popup": "/components/bottom-popup/bottom-popup",
     "tui-numberbox": "/components/numberbox/numberbox",
-    "tui-actionsheet": "/components/actionsheet/actionsheet"
+    "tui-actionsheet": "/components/actionsheet/actionsheet",
+    "wm-poster-index": "/components/wm-poster/wm-poster-index"
   }
 }

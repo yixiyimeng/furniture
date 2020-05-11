@@ -1,0 +1,19 @@
+
+.close {
+	height: 50rpx;
+	width: 50rpx;
+	color: #fff;
+	font-size: 50rpx;
+	/* font-weight: bold; */
+	background: #ff5454;
+	border-radius: 100%;
+	line-height: 40rpx;
+	text-align: center;
+	position: absolute;
+	top:180rpx;
+	right: 10%;
+	-webkit-transform: translate(-50%, -50%);
+	    -ms-transform: translate(-50%, -50%);
+	        transform: translate(-50%, -50%)
+}
+

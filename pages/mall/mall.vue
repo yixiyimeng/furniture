@@ -61,7 +61,7 @@
 
 		<view class="tui-product-category">
 			<view class="tui-category-item" v-for="(item,index) in category" :key="index" :data-key="item.name" @tap="classify(item.id)">
-				<image :src="basePath+item.img_url" class="tui-category-img" mode="scaleToFill"></image>
+				<image :src="item.img_url" class="tui-category-img" mode="scaleToFill"></image>
 				<view class="tui-category-name">{{item.name}}</view>
 			</view>
 		</view>

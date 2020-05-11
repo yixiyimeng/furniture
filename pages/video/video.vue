@@ -12,7 +12,7 @@
 							<!-- <image src="userInfo.logo" mode="aspectFill" /> -->
 						</div>
 						<div class="tui-flex-1 ml10">
-							<p class="name">家具</p>
+							<p class="name">小蜗牛家具</p>
 							<div class="decript">{{ item.title }}</div>
 							<div class="imgbox clearfix ">
 								<span v-for="(image, subitemIndex) in item.img_url" :key="subitemIndex">

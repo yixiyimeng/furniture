@@ -137,7 +137,7 @@
 		<tui-bottom-popup :show="popupShow" @close="hidePopup">
 			<view class="tui-popup-box">
 				<view class="tui-product-box tui-padding">
-					<image :src="basePath+productInfo.img_url[0]" class="tui-popup-img"></image>
+					<image :src="productInfo.img_url[0]" class="tui-popup-img"></image>
 					<view class="tui-popup-price">
 						<view class="tui-amount tui-bold">￥{{productInfo.price}}</view>
 						<view class="tui-number">{{productInfo.name}}</view>
@@ -164,8 +164,12 @@
 		</tui-bottom-popup>
 		<!--底部选择层-->
 		<tui-actionsheet :show="showActionSheet" :tips="tips" :item-list="itemList" :mask-closable="maskClosable" :color="color"
-		 :size="size" :is-cancel="isCancel" @click="itemClick" @cancel="closeActionSheet"></tui-actionsheet>
-
+		 :size="size" :is-cancel="isCancel" @click="itemClick" @cancel="closeActionSheet">
+		</tui-actionsheet>
+		<div class="poster" :class="{ active: showPoster&&hasFile }" v-show="showPoster">
+			<div class="close" @click="closeposter"></div>
+			<wm-poster-index ref="wmposter" :imgSrc="imgSrc" :QrSrc="QrSrc" Referrer="小蜗牛家具" @success="tempFilePath" @close="closeposter"></wm-poster-index>
+		</div>
 	</view>
 </template>
 
@@ -187,6 +191,7 @@
 	import tuiBottomPopup from "@/components/bottom-popup/bottom-popup"
 	import tuiNumberbox from "@/components/numberbox/numberbox"
 	import tuiActionsheet from "@/components/actionsheet/actionsheet"
+	import wmPosterIndex from '@/components/wm-poster/wm-poster-index.vue';
 	export default {
 		components: {
 			tuiIcon,
@@ -197,7 +202,8 @@
 			tuiTopDropdown,
 			tuiBottomPopup,
 			tuiNumberbox,
-			tuiActionsheet
+			tuiActionsheet,
+			wmPosterIndex
 		},
 		data() {
 			return {
@@ -270,6 +276,11 @@
 				value: 1,
 				collected: false,
 				shopCartNum: 0,
+				showPoster: false, //是否显示海报
+				hasFile: false, //是否有生产了图片
+				imgSrc: '',
+				QrSrc: '',
+				id: ''
 			}
 		},
 		computed: mapState(['forcedLogin', 'hasLogin', 'member_id']),
@@ -285,6 +296,7 @@
 			my.hideAddToDesktopMenu();
 			// #endif
 			console.log(JSON.stringify(options.id))
+			this.id = options.id;
 			this.getProductShow(options.id)
 			/* let shopCartList = uni.getStorageSync('shopCartList');
 			if (shopCartList) {
@@ -302,7 +314,8 @@
 					}
 				})
 
-			}, 50)
+			}, 50);
+			this.getIndexQrcode('/pages/productDetail/productDetail', this.id);
 		},
 		methods: {
 			//获取产品详情
@@ -317,6 +330,7 @@
 						if (res.code == 0) {
 							this.productInfo = res.data;
 							this.productInfo.img_url = JSON.parse(res.data.img_url);
+							this.imgSrc=this.productInfo.img_url[0];
 							this.collected = this.productInfo.follow == 0 ? false : true;
 							console.log("图片数组" + JSON.stringify(res.data))
 						}
@@ -333,7 +347,7 @@
 			previewImage: function(e) {
 				console.log(JSON.stringify(e.currentTarget.dataset))
 				let index = e.currentTarget.dataset.index;
-				var imgurl = this.productInfo.img_url.map(item => basePath + item)
+				var imgurl = this.productInfo.img_url
 				uni.previewImage({
 					current: index,
 					urls: imgurl
@@ -460,17 +474,14 @@
 			},
 			openActionSheet: function(type) {
 				let itemList = [{
-						text: "发送给朋友",
-					},
-					{
-						text: "生成海报",
-					}
-				];
+					text: "生成海报",
+				}];
 				let maskClosable = true;
 				let tips = "";
 				let color = "#9a9a9a";
 				let size = 26;
 				let isCancel = true;
+				
 				setTimeout(() => {
 					this.showActionSheet = true;
 					this.itemList = itemList;
@@ -484,7 +495,57 @@
 			itemClick: function(e) {
 				let index = e.index;
 				this.closeActionSheet();
-				this.tui.toast(`您点击的按钮索引为：${index}`)
+				console.log(this.QrSrc);
+				if (index == 0) {
+					this.saveImg();
+				}
+				// this.tui.toast(`您点击的按钮索引为：${index}`)
+			},
+			tempFilePath() {
+				uni.hideLoading();
+				this.hasFile = true;
+			},
+			saveImg() {
+				if (!this.QrSrc) {
+					uni.showToast({
+						title: '小程序二维码生成失败',
+						icon: 'none'
+					});
+					return false
+				}
+				uni.showLoading({
+					title: '正在生成海报...'
+				});
+				this.showPoster = true;
+				this.hasFile = false;
+				this.$refs.wmposter.OnCanvas();
+			},
+			getIndexQrcode(path, scene) {
+				const $me = this;
+				console.log(path);
+				this.$postajax(api.getCodeing, {
+					path,
+					scene
+				}).then(da => {
+					if (da.code == 0) {
+						$me.QrSrc = da.data.img_url;
+						// $me.bg_url = da.data.bg_url
+					} else {
+						$me.QrSrc = ''
+					}
+				});
+
+			},
+
+			cancelShare() {
+				const $me = this;
+				this.$refs.sharepopup.close();
+				uni.hideLoading();
+			},
+			closeposter() {
+				const $me = this;
+				$me.showPoster = false;
+				uni.hideLoading();
 			}
 		},
 		onPageScroll(e) {
@@ -1226,6 +1287,42 @@
 		justify-content: space-between;
 		padding: 20rpx 0 30rpx 0;
 		box-sizing: border-box;
+	}
+
+	.poster {
+		position: fixed;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		background: none;
+		z-index: -1;
+		opacity: 0;
+	}
+
+	.poster.active {
+		z-index: 9999;
+		background: rgba(0, 0, 0, .2);
+		opacity: 1;
+	}
+
+	.poster .close {
+		position: absolute;
+		right: 10%;
+		top: 160upx;
+		z-index: -1;
+		height: 40upx;
+		width: 40upx;
+		line-height: 30upx;
+		/* background: url(./static/img/clear.png) no-repeat center center; */
+		background-size: contain;
+		display: none;
+
+	}
+
+	.poster.active .close {
+		z-index: 999;
+		display: block;
 	}
 
 	/*底部选择弹层*/

@@ -58,7 +58,7 @@
 			<image src="/static/images/cropright.png" mode="widthFix"></image>
 			<div>
 				<p class="name">小程序制作请联系微信：xhh527317</p>
-				<p>©2013-{{today}}核桃妹的妈妈</p>
+				<p>©2013-{{today}}小蜗牛家具</p>
 			</div>
 		</div>
 
@@ -127,10 +127,7 @@
 						break;
 					case 5:
 						//url = '../extend-view/news/news'
-						uni.requestSubscribeMessage({
-							tmplIds: [''],
-							success(res) {}
-						})
+						
 						break;
 					case 6:
 						url = '../extend-view/address/address'
@@ -149,9 +146,10 @@
 			},
 			setnotice() {
 				let ids = [
-					' iBK57Nbvp-krt4XmLEyxChcn29dackNGD77yUX14HM8',
+					'iBK57Nbvp-krt4XmLEyxChcn29dackNGD77yUX14HM8',
 					'ZVWKu5FAPM8kPbZv9lgxiwX-adJ94w1K-qV-TcaaPYs'
 				];
+				console.log('haha')
 				uni.requestSubscribeMessage({
 					tmplIds: ids,
 					success(res) {

@@ -5,6 +5,12 @@
 				{{tips}}
 			</view>
 			<view :class="[isCancel?'tui-operate-box':'']">
+				<!-- <block v-for="(item,index) in itemList" :key="index">
+					<view class="tui-actionsheet-btn tui-actionsheet-divider" :class="[(!isCancel && index==itemList.length-1)?'tui-btn-last':'']"
+					 hover-class="tui-actionsheet-hover" :hover-stay-time="150" :data-index="index" :style="{color:item.color || '#1a1a1a'}"
+					 @tap="handleClickItem">{{item.text}}</view>
+				</block> -->
+				<button open-type="share" class="tui-actionsheet-btn tui-actionsheet-divider">分享给微信好友</button>
 				<block v-for="(item,index) in itemList" :key="index">
 					<view class="tui-actionsheet-btn tui-actionsheet-divider" :class="[(!isCancel && index==itemList.length-1)?'tui-btn-last':'']"
 					 hover-class="tui-actionsheet-hover" :hover-stay-time="150" :data-index="index" :style="{color:item.color || '#1a1a1a'}"

@@ -1,5 +1,5 @@
 <template>
-	<view style="padding-top: 40upx; background: rgba(0,0,0,.1); height: 100%; position: relative;">
+	<view style="padding-top: 160upx; background: rgba(0,0,0,.1); height: 100%; position: relative;">
 		<div v-if="tempFilePath" class="close" @click="close">×</div>
 		<canvas v-show="!tempFilePath" :canvas-id="CanvasID" :style="{ width: canvasW + 'px', height: canvasH + 'px' }" style="margin: 0 auto;"></canvas>
 		<image v-if="tempFilePath" :src="tempFilePath" alt="" style="width: 70%; display: block; margin: 0 auto;" mode="widthFix" />
@@ -243,8 +243,8 @@
 		line-height: 40upx;
 		text-align: center;
 		position: absolute;
-		top: 40upx;
-		right: 4%;
+		top:180upx;
+		right: 10%;
 		transform: translate(-50%, -50%)
 	}
 </style>
