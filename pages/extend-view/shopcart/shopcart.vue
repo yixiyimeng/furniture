@@ -85,20 +85,21 @@
 		data() {
 			return {
 				basePath,
-				actions: [{
-						name: '收藏',
-						width: 64,
-						color: '#fff',
-						fontsize: 28,
-						background: '#FFC600'
-					},
-					{
-						name: '看相似',
-						color: '#fff',
-						fontsize: 28,
-						width: 64,
-						background: '#FF7035'
-					},
+				actions: [
+					// {
+					// 	name: '收藏',
+					// 	width: 64,
+					// 	color: '#fff',
+					// 	fontsize: 28,
+					// 	background: '#FFC600'
+					// },
+					// {
+					// 	name: '看相似',
+					// 	color: '#fff',
+					// 	fontsize: 28,
+					// 	width: 64,
+					// 	background: '#FF7035'
+					// },
 					{
 						name: '删除',
 						color: '#fff',
@@ -197,7 +198,19 @@
 				console.log("单选" + JSON.stringify(e))
 				let index = e.index;
 				let item = e.item;
-				this.tui.toast(`商品id：${item.id}，按钮index：${index}`);
+				// this.tui.toast(`商品id：${item.id}，按钮index：${index}`);
+				this.productList = this.productList.filter(subitem => subitem.id!=item.id);
+				var $me = this;
+				uni.setStorage({
+					key: 'shopCartList',
+					data: this.productList.length > 0 ? JSON.stringify(this.productList) : '',
+					success: function(res) {
+						$me.tui.toast("删除成功", 2000, true);
+				
+					}
+				});
+				this.allchecked = false
+				this.countTotal()
 			},
 			editGoods: function() {
 				// #ifdef H5 || MP

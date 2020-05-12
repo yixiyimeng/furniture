@@ -244,24 +244,25 @@ var _vuex = __webpack_require__(/*! vuex */ 8); //
 //
 //
 //
-var tuiSwipeAction = function tuiSwipeAction() {return __webpack_require__.e(/*! import() | components/swipe-action/swipe-action */ "components/swipe-action/swipe-action").then(__webpack_require__.bind(null, /*! @/components/swipe-action/swipe-action */ 282));};var tuiButton = function tuiButton() {return __webpack_require__.e(/*! import() | components/extend/button/button */ "components/extend/button/button").then(__webpack_require__.bind(null, /*! @/components/extend/button/button */ 216));};var tuiNumberbox = function tuiNumberbox() {return __webpack_require__.e(/*! import() | components/numberbox/numberbox */ "components/numberbox/numberbox").then(__webpack_require__.bind(null, /*! @/components/numberbox/numberbox */ 258));};var tuiIcon = function tuiIcon() {return __webpack_require__.e(/*! import() | components/icon/icon */ "components/icon/icon").then(__webpack_require__.bind(null, /*! @/components/icon/icon */ 181));};var tuiDivider = function tuiDivider() {return __webpack_require__.e(/*! import() | components/divider/divider */ "components/divider/divider").then(__webpack_require__.bind(null, /*! @/components/divider/divider */ 289));};var tuiLoadmore = function tuiLoadmore() {return __webpack_require__.e(/*! import() | components/loadmore/loadmore */ "components/loadmore/loadmore").then(__webpack_require__.bind(null, /*! @/components/loadmore/loadmore */ 195));};var _default = { components: { tuiSwipeAction: tuiSwipeAction, tuiButton: tuiButton, tuiNumberbox: tuiNumberbox, tuiIcon: tuiIcon, tuiDivider: tuiDivider, tuiLoadmore: tuiLoadmore }, data: function data() {return { basePath: _index.basePath, actions: [{ name: '收藏', width: 64, color: '#fff', fontsize: 28, background: '#FFC600' }, { name: '看相似', color: '#fff', fontsize: 28, width: 64, background: '#FF7035' }, { name: '删除', color: '#fff', fontsize: 28, width: 64, background: '#F82400' }], isEdit: false, productList: [], pageIndex: 1, loadding: false, pullUpOn: true, allchecked: false, //全选默认false
+var tuiSwipeAction = function tuiSwipeAction() {return __webpack_require__.e(/*! import() | components/swipe-action/swipe-action */ "components/swipe-action/swipe-action").then(__webpack_require__.bind(null, /*! @/components/swipe-action/swipe-action */ 282));};var tuiButton = function tuiButton() {return __webpack_require__.e(/*! import() | components/extend/button/button */ "components/extend/button/button").then(__webpack_require__.bind(null, /*! @/components/extend/button/button */ 216));};var tuiNumberbox = function tuiNumberbox() {return __webpack_require__.e(/*! import() | components/numberbox/numberbox */ "components/numberbox/numberbox").then(__webpack_require__.bind(null, /*! @/components/numberbox/numberbox */ 258));};var tuiIcon = function tuiIcon() {return __webpack_require__.e(/*! import() | components/icon/icon */ "components/icon/icon").then(__webpack_require__.bind(null, /*! @/components/icon/icon */ 181));};var tuiDivider = function tuiDivider() {return __webpack_require__.e(/*! import() | components/divider/divider */ "components/divider/divider").then(__webpack_require__.bind(null, /*! @/components/divider/divider */ 289));};var tuiLoadmore = function tuiLoadmore() {return __webpack_require__.e(/*! import() | components/loadmore/loadmore */ "components/loadmore/loadmore").then(__webpack_require__.bind(null, /*! @/components/loadmore/loadmore */ 195));};var _default = { components: { tuiSwipeAction: tuiSwipeAction, tuiButton: tuiButton, tuiNumberbox: tuiNumberbox, tuiIcon: tuiIcon, tuiDivider: tuiDivider, tuiLoadmore: tuiLoadmore }, data: function data() {return { basePath: _index.basePath, actions: [// {
+      // 	name: '收藏',
+      // 	width: 64,
+      // 	color: '#fff',
+      // 	fontsize: 28,
+      // 	background: '#FFC600'
+      // },
+      // {
+      // 	name: '看相似',
+      // 	color: '#fff',
+      // 	fontsize: 28,
+      // 	width: 64,
+      // 	background: '#FF7035'
+      // },
+      { name: '删除', color: '#fff', fontsize: 28, width: 64, background: '#F82400' }], isEdit: false, productList: [], pageIndex: 1, loadding: false, pullUpOn: true, allchecked: false, //全选默认false
       /* totalNum:0,//选中商品总数量*/totalPrice: 0 //选中商品总金额 
-    };}, computed: (0, _vuex.mapState)(['forcedLogin', 'hasLogin', 'member_id']), onLoad: function onLoad() {var shopCartArr = uni.getStorageSync('shopCartList');if (shopCartArr) {this.productList = JSON.parse(shopCartArr);this.productList.forEach(function (item) {item.checked = false;});console.log(JSON.stringify(this.productList));}}, methods: {
-    countTotal: function countTotal() {
-      var totalPrice = 0;
-      this.productList.map(function (item) {
-        console.log(111);
-        item.checked ? totalPrice += item.qyt * item.price : totalPrice += 0;
-      });
-      this.totalPrice = totalPrice;
-      //return totalPrice
-
-    },
-    // 单个商品前的勾选
-    selected: function selected(item) {
-
-      item.checked = !item.checked;
-      console.log("单选" + JSON.stringify(item.checked));
+    };}, computed: (0, _vuex.mapState)(['forcedLogin', 'hasLogin', 'member_id']), onLoad: function onLoad() {var shopCartArr = uni.getStorageSync('shopCartList');if (shopCartArr) {this.productList = JSON.parse(shopCartArr);this.productList.forEach(function (item) {item.checked = false;});console.log(JSON.stringify(this.productList));}}, methods: { countTotal: function countTotal() {var totalPrice = 0;this.productList.map(function (item) {console.log(111);item.checked ? totalPrice += item.qyt * item.price : totalPrice += 0;});this.totalPrice = totalPrice; //return totalPrice
+    }, // 单个商品前的勾选
+    selected: function selected(item) {item.checked = !item.checked;console.log("单选" + JSON.stringify(item.checked));
       if (!item.checked) {
         this.allchecked = false;
       } else {
@@ -315,7 +316,19 @@ var tuiSwipeAction = function tuiSwipeAction() {return __webpack_require__.e(/*!
       console.log("单选" + JSON.stringify(e));
       var index = e.index;
       var item = e.item;
-      this.tui.toast("\u5546\u54C1id\uFF1A".concat(item.id, "\uFF0C\u6309\u94AEindex\uFF1A").concat(index));
+      // this.tui.toast(`商品id：${item.id}，按钮index：${index}`);
+      this.productList = this.productList.filter(function (subitem) {return subitem.id != item.id;});
+      var $me = this;
+      uni.setStorage({
+        key: 'shopCartList',
+        data: this.productList.length > 0 ? JSON.stringify(this.productList) : '',
+        success: function success(res) {
+          $me.tui.toast("删除成功", 2000, true);
+
+        } });
+
+      this.allchecked = false;
+      this.countTotal();
     },
     editGoods: function editGoods() {
 
