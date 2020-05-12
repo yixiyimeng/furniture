@@ -191,8 +191,8 @@
 			},
 			//再次购买
 			repurchase(id) {
-				uni.navigateTo({
-					url: '../productDetail/productDetail?id=' + id
+				uni.switchTab({
+					url: '/pages/category/category'
 				})
 			},
 			//立即支付

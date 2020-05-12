@@ -342,43 +342,19 @@ var tuiSwipeAction = function tuiSwipeAction() {return __webpack_require__.e(/*!
     },
     btnPay: function btnPay() {
       var ids = this.productList.map(function (item) {
-        var items = {
-          id: item.id,
-          qyt: item.qyt };
+        if (item.checked) {
+          var items = {
+            id: item.id,
+            qyt: item.qyt };
 
-        return items;
-      });
+          return items;
+        }
+      }).filter(function (item) {return item != null;});
+      console.log("ids" + JSON.stringify(ids));
       uni.navigateTo({
         url: '../submitOrder/submitOrder?ids=' + JSON.stringify(ids) });
 
-    } },
-
-  onPullDownRefresh: function onPullDownRefresh() {
-    var loadData = JSON.parse(JSON.stringify(this.productList));
-    loadData = loadData.splice(0, 10);
-    this.productList = loadData;
-    this.pageIndex = 1;
-    this.pullUpOn = true;
-    this.loadding = false;
-    uni.stopPullDownRefresh();
-  },
-  onReachBottom: function onReachBottom() {
-    if (!this.pullUpOn) return;
-    this.loadding = true;
-    if (this.pageIndex == 4) {
-      this.loadding = false;
-      this.pullUpOn = false;
-    } else {
-      var loadData = JSON.parse(JSON.stringify(this.productList));
-      loadData = loadData.splice(0, 10);
-      if (this.pageIndex == 1) {
-        loadData = loadData.reverse();
-      }
-      this.productList = this.productList.concat(loadData);
-      this.pageIndex = this.pageIndex + 1;
-      this.loadding = false;
-    }
-  } };exports.default = _default;
+    } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),

@@ -316,8 +316,8 @@ var tuiTabs = function tuiTabs() {return __webpack_require__.e(/*! import() | co
     },
     //再次购买
     repurchase: function repurchase(id) {
-      uni.navigateTo({
-        url: '../productDetail/productDetail?id=' + id });
+      uni.switchTab({
+        url: '/pages/category/category' });
 
     },
     //立即支付

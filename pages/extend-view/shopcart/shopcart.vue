@@ -224,41 +224,18 @@
 			},
 			btnPay() {
 				var ids = this.productList.map(item => {
-					var items = {
-						id: item.id,
-						qyt: item.qyt
-					}
-					return items
-				})
+					if(item.checked){
+						var items = {
+							id: item.id,
+							qyt: item.qyt
+						}
+						return items
+					}					
+				}).filter(item => item != null)
+				console.log("ids"+JSON.stringify(ids)) 
 				uni.navigateTo({
 					url: '../submitOrder/submitOrder?ids=' + JSON.stringify(ids)
 				})
-			}
-		},
-		onPullDownRefresh: function() {
-			let loadData = JSON.parse(JSON.stringify(this.productList));
-			loadData = loadData.splice(0, 10)
-			this.productList = loadData;
-			this.pageIndex = 1;
-			this.pullUpOn = true;
-			this.loadding = false
-			uni.stopPullDownRefresh()
-		},
-		onReachBottom: function() {
-			if (!this.pullUpOn) return;
-			this.loadding = true;
-			if (this.pageIndex == 4) {
-				this.loadding = false;
-				this.pullUpOn = false
-			} else {
-				let loadData = JSON.parse(JSON.stringify(this.productList));
-				loadData = loadData.splice(0, 10)
-				if (this.pageIndex == 1) {
-					loadData = loadData.reverse();
-				}
-				this.productList = this.productList.concat(loadData);
-				this.pageIndex = this.pageIndex + 1;
-				this.loadding = false
 			}
 		}
 	}

@@ -307,22 +307,14 @@ var _vuex = __webpack_require__(/*! vuex */ 8);function _interopRequireDefault(o
     this.seladdressId = options.addressId ? options.addressId : null;
     this.value = options.qyt ? options.qyt : 1;
     this.productId = options.id;
-
-
-    setTimeout(function () {
-      _this.getAddress();
-      //this.calcOrder();
-    }, 50);
     if (options.ids) {
       var arr = JSON.parse(options.ids);
       console.log(JSON.stringify(arr));
       var shopCartArr = uni.getStorageSync('shopCartList');
       if (shopCartArr) {
         var orderList = JSON.parse(shopCartArr);
-
         orderList.forEach(function (item) {
           arr.forEach(function (items) {
-
             if (items.id == item.id) {
               item.qyt = items.qyt;
               _this.orderList.push(item);
@@ -336,6 +328,10 @@ var _vuex = __webpack_require__(/*! vuex */ 8);function _interopRequireDefault(o
     } else {
       this.getProductShow();
     }
+    setTimeout(function () {
+      _this.getAddress();
+      //this.calcOrder();
+    }, 50);
 
 
   },

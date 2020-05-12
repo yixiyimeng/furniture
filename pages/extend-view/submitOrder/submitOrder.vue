@@ -176,22 +176,14 @@
 			this.seladdressId = options.addressId ? options.addressId : null;
 			this.value = options.qyt ? options.qyt : 1;
 			this.productId = options.id;
-
-
-			setTimeout(() => {
-				this.getAddress();
-				//this.calcOrder();
-			}, 50)
 			if (options.ids) {
 				let arr = JSON.parse(options.ids)
 				console.log(JSON.stringify(arr))
 				let shopCartArr = uni.getStorageSync('shopCartList');
 				if (shopCartArr) {
 					let orderList = JSON.parse(shopCartArr);
-
 					orderList.forEach(item => {
-						arr.forEach(items => {
-
+						arr.forEach(items => {							
 							if (items.id == item.id) {
 								item.qyt = items.qyt;
 								this.orderList.push(item)
@@ -205,6 +197,10 @@
 			} else {
 				this.getProductShow();
 			}
+			setTimeout(() => {
+				this.getAddress();
+				//this.calcOrder();
+			}, 50)
 
 
 		},
