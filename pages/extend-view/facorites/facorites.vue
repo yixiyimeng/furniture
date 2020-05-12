@@ -1,39 +1,38 @@
 <template>
 	<view class="tui-container">
-		<!--新闻列表-->
-		<view class="tui-news-view mt20"  v-for="(item,index) in newsList" :key="index" style="margin-bottom: 10rpx;">
-			<block>
+		<mescroll-body ref="mescrollRef" @init="mescrollInit" @down="downCallback" :up="upOption" @up="upCallback">
+			<view class="tui-news-view mt20" v-for="(item,index) in newsList" :key="index" style="margin-bottom: 10rpx;">
+				<block>
 					<tui-list-cell :index="index" @click="detail(item.pid)" :last="count==index">
 						<view class="tui-news-flex tui-flex-start">
 							<view class="tui-news-picbox tui-w220 tui-h165 tui-flex-between">
-							<!-- <block v-for="(items,index2) in item.img" :key="index2">
-								<image :src="'../../../static/images/news/'+items" mode="widthFix" class="tui-block"></image>
-							</block> -->
-							<block>
-								<image :src="item.product_img" mode="widthFix" class="tui-block"></image>
-							</block>
-						</view>
-						<view class="tui-news-tbox tui-flex-column tui-flex-between tui-h165 tui-pl-20">
-							<view class="tui-news-title">{{item.product_name}}</view>
-							<view class="tui-sub-box">
-								<view class="tui-sub-source">¥{{item.product_price}}</view>
-								<view class="tui-sub-cmt">
-									<view class="tui-scale">
-										<tui-button type="danger" shape="circle" size="mini" @tap.stop="deleteFacorite(item.id)">删除</tui-button>
+
+								<block>
+									<image :src="item.product_img" mode="widthFix" class="tui-block"></image>
+								</block>
+							</view>
+							<view class="tui-news-tbox tui-flex-column tui-flex-between tui-h165 tui-pl-20">
+								<view class="tui-news-title">{{item.product_name}}</view>
+								<view class="tui-sub-box">
+									<view class="tui-sub-source">¥{{item.product_price}}</view>
+									<view class="tui-sub-cmt">
+										<view class="tui-scale">
+											<tui-button type="danger" shape="circle" size="mini" @tap.stop="deleteFacorite(item.id)">删除</tui-button>
+										</view>
 									</view>
 								</view>
 							</view>
 						</view>
-					</view>
-				</tui-list-cell>
-			</block>
+					</tui-list-cell>
+				</block>
 
-		</view>
+			</view>
+		</mescroll-body>
+		<!--新闻列表-->
+		<!-- 
 		<tui-tips ref="toast"></tui-tips>
-		<!--加载loadding-->
 		<tui-loadmore :visible="loadding" :index="3" type="red"></tui-loadmore>
-		<tui-nomore :visible="!pullUpOn" bgcolor="#fafafa"></tui-nomore>
-		<!--加载loadding-->
+		<tui-nomore :visible="!pullUpOn" bgcolor="#fafafa"></tui-nomore> -->
 	</view>
 </template>
 
@@ -51,6 +50,7 @@
 	import tuiNomore from "@/components/nomore/nomore"
 	import tuiTips from "@/components/tips/tips"
 	import tuiButton from "@/components/button/button"
+	import MescrollMixin from "@/components/mescroll-uni/mescroll-mixins.js"
 	export default {
 		components: {
 			tuiIcon,
@@ -60,18 +60,14 @@
 			tuiTips,
 			tuiButton
 		},
-		computed: {
-// 			count() {
-// 				return this.newsList.length - 1
-// 			}
-		},
+		mixins: [MescrollMixin],
 		data() {
 			return {
 				basePath,
 				newsList: [],
 				pageIndex: 1,
-				lastPage:1,
-				limit:1,
+				lastPage: 1,
+				limit: 1,
 				loadding: false,
 				pullUpOn: true
 			}
@@ -79,163 +75,74 @@
 		computed: mapState(['forcedLogin', 'hasLogin', 'member_id']),
 		onLoad: function(options) {
 			//this.newsList = this.dataSources
-			this.getFollow();
+			// this.getFollow();
 		},
 		watch: {
 			pageIndex(newValue, oldValue) {
-				if(this.pageIndex==this.lastPage){
+				if (this.pageIndex == this.lastPage) {
 					console.log(22222)
 					this.pullUpOn = false;
-					
+
 				}
 			}
 		},
 		methods: {
+			/*上拉加载的回调*/
+			upCallback(mescroll) {
+				this.getFollow();
+			},
 			//查询关注
-			getFollow(){
+			getFollow() {
+				let pageNum = this.mescroll.num; // 页码, 默认从1开始
+				let pageSize = this.mescroll.size;
 				var param = {
-					page: this.$pagination.page,
-					limit: this.$pagination.limit
+					page: pageNum,
+					limit: pageSize
 				}
-				var url=api.getFollow+'/'+this.member_id
-				this.$postajax(url,param)
+				let $me=this;
+				var url = api.getFollow + '/' + this.member_id
+				this.$postajax(url, param)
 					.then(res => {
 						if (res.code == 0) {
-							this.newsList=res.data;
-							this.lastPage =res.data&&res.data.length>0?(Math.ceil(res.count/this.$pagination.limit)):1;
-							console.log("最后一页"+JSON.stringify(this.lastPage))
-							if(this.pageIndex==this.lastPage){
-								this.pullUpOn = false;
-							}
-							this.count=res.count;
+							let curPageData = res.data;
+							$me.mescroll.endBySize(curPageData.length, res.count||0);
+							if ($me.mescroll.num == 1) $me.newsList = []; //如果是第一页需手动制空列表
+							$me.newsList = $me.newsList.concat(curPageData); //追加新数据
+						} else {
+							$me.newsList = [];
+							$me.mescroll.endSuccess(0, false);
 						}
-				
-				
+
+
 					})
 					.catch(err => {
-				
+
 					});
 			},
 			detail(id) {
 				uni.navigateTo({
-					url: "../productDetail/productDetail?id="+id
+					url: "../productDetail/productDetail?id=" + id
 				})
 			},
-			deleteFacorite(id,e) {
+			deleteFacorite(id, e) {
 				/* e.stopPropagation();  */
-				var url=api.closeFollow+'/'+id;
+				var url = api.closeFollow + '/' + id;
 				this.$postajax(url)
-				.then(res => {
-					console.log(JSON.stringify(res))
-					if (res.code == 0) {
-						this.tui.toast("删除收藏成功", 2000, true);
-						this.getFollow();
-					}
-			
-			
-				})
-				.catch(err => {
-			
-				});
+					.then(res => {
+						console.log(JSON.stringify(res))
+						if (res.code == 0) {
+							this.tui.toast("删除收藏成功", 2000, true);
+							this.getFollow();
+						}
+
+
+					})
+					.catch(err => {
+
+					});
 			}
 		},
-		//页面相关事件处理函数--监听用户下拉动作
-		onPullDownRefresh: function() {
-			//this.getFollow();
-			//this.pageIndex = 1;
-			this.pullUpOn = true;
-			//this.loadding = false;
-			this.loadding = true;
-			console.log('上拉加载事件');
-			// 每次拉到页面底部,请求页数自加
-			this.pageIndex++;
-			// 第二次之后请求数据
-			if(this.pageIndex>this.lastPage){
-				setTimeout(() => {
-					this.loadding = false
-					this.pullUpOn = false
-				}, 1000)
-				return false;
-			}else{
-				var param = {
-					page: this.pageIndex,
-					limit: this.$pagination.limit
-				}
-				var url=api.getFollow+'/'+this.member_id
-				this.$postajax(url,param)
-					.then(res => {
-						console.log(JSON.stringify(res))
-						if (res.code == 0) {
-							this.newsList = this.newsList.concat(res.data)
-							this.loadding = false;
-						}
-				
-				
-					})
-					.catch(err => {
-				
-					});
-							 
-				 }
-			
-			uni.stopPullDownRefresh();
-			let options = {
-				msg: "刷新成功",
-				duration: 2000,
-				type: "translucent"
-			};
-			setTimeout(() => {
-				this.$refs.toast.showTips(options);
-			}, 300);
-		},
 
-		// 页面上拉触底事件的处理函数
-		onReachBottom: function() {
-			this.pullUpOn = true;
-			//this.loadding = false;
-			this.loadding = true;
-			console.log('上拉加载事件');
-			// 每次拉到页面底部,请求页数自加
-			this.pageIndex++;
-			// 第二次之后请求数据
-			if(this.pageIndex>this.lastPage){
-				setTimeout(() => {
-					this.loadding = false
-					this.pullUpOn = false
-				}, 1000)
-				return false;
-			}else{
-				var param = {
-					page: this.pageIndex,
-					limit: this.$pagination.limit
-				}
-				var url=api.getFollow+'/'+this.member_id
-				this.$postajax(url,param)
-					.then(res => {
-						console.log(JSON.stringify(res))
-						if (res.code == 0) {
-							this.newsList = this.newsList.concat(res.data)
-							this.loadding = false;
-						}
-				
-				
-					})
-					.catch(err => {
-				
-					});
-							 
-				 }
-			
-			uni.stopPullDownRefresh();
-			let options = {
-				msg: "刷新成功",
-				duration: 2000,
-				type: "translucent"
-			};
-			setTimeout(() => {
-				this.$refs.toast.showTips(options);
-			}, 300);
-		}
 	}
 </script>
 
@@ -250,6 +157,7 @@
 		box-sizing: border-box;
 		padding-bottom: env(safe-area-inset-bottom);
 	}
+
 	.tui-news-flex {
 		width: 100%;
 		display: flex;
@@ -299,6 +207,7 @@
 	.tui-block {
 		display: block;
 	}
+
 	.tui-news-title {
 		width: 100%;
 		font-size: 34rpx;
@@ -339,9 +248,9 @@
 		display: flex;
 		align-items: center;
 	}
+
 	.tui-scale {
 		transform: scale(0.6);
 		transform-origin: center center;
 	}
-	
 </style>

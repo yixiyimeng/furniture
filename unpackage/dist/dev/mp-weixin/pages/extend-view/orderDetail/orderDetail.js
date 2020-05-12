@@ -265,6 +265,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+
 var _index = __webpack_require__(/*! @/utils/index */ 10);
 
 
@@ -405,14 +408,18 @@ var _vuex = __webpack_require__(/*! vuex */ 8);function _interopRequireDefault(o
 //
 //
 //
+//
+//
+//
 var tuiIcon = function tuiIcon() {return __webpack_require__.e(/*! import() | components/icon/icon */ "components/icon/icon").then(__webpack_require__.bind(null, /*! @/components/icon/icon */ 181));};var tuiButton = function tuiButton() {return __webpack_require__.e(/*! import() | components/extend/button/button */ "components/extend/button/button").then(__webpack_require__.bind(null, /*! @/components/extend/button/button */ 216));};var tuiCountdown = function tuiCountdown() {return __webpack_require__.e(/*! import() | components/countdown/countdown */ "components/countdown/countdown").then(__webpack_require__.bind(null, /*! @/components/countdown/countdown */ 310));};var tuiListCell = function tuiListCell() {return __webpack_require__.e(/*! import() | components/list-cell/list-cell */ "components/list-cell/list-cell").then(__webpack_require__.bind(null, /*! @/components/list-cell/list-cell */ 209));};var _default = { components: { tuiIcon: tuiIcon, tuiButton: tuiButton, tuiCountdown: tuiCountdown, tuiListCell: tuiListCell }, data: function data() {return { basePath: _index.basePath, orderInfo: {} //1-待付款 2-付款成功 3-待收货 4-订单已完成 5-交易关闭
     };}, computed: (0, _vuex.mapState)(['forcedLogin', 'hasLogin', 'member_id', 'openid']), onLoad: function onLoad(options) {this.getOrderShow(options.id);}, methods: { //查看订单详情
-    getOrderShow: function getOrderShow(id) {var _this = this;var url = _order.default.getOrderShow + '/' + id;this.$postajax(url).then(function (res) {console.log(JSON.stringify(res));if (res.code == 0) {_this.orderInfo = res.data;_this.orderInfo.data = JSON.parse(res.data.data); /* this.orderInfo.img_url=JSON.parse(res.data.img_url) */console.log("图片数组" + JSON.stringify(res.data));}}).catch(function (err) {});}, getImg: function getImg(status) {return ["img_order_payment3x.png", "img_order_send3x.png", "img_order_received3x.png", "img_order_signed3x.png", "img_order_closed3x.png"][status - 1];}, getStatusText: function getStatusText(status) {return ["等待您付款", "付款成功", "待收货", "订单已完成", "交易关闭"][status - 1];}, getReason: function getReason(status) {return ["剩余时间", "等待卖家发货", "还剩X天XX小时自动确认", "", "超时未付款，订单自动取消"][status - 1];}, //立即支付
+    getOrderShow: function getOrderShow(id) {var _this = this;var url = _order.default.getOrderShow + '/' + id;this.$postajax(url).then(function (res) {console.log(JSON.stringify(res));if (res.code == 0) {_this.orderInfo = res.data;_this.orderInfo.data = JSON.parse(res.data.data); /* this.orderInfo.img_url=JSON.parse(res.data.img_url) */console.log("图片数组" + JSON.stringify(res.data));}}).catch(function (err) {});}, getImg: function getImg(status) {return ["img_order_payment3x.png", "img_order_send3x.png", "img_order_received3x.png", "img_order_signed3x.png", "img_order_closed3x.png"][status - 1];}, getStatusText: function getStatusText(status) {return ["等待您付款", "付款成功", "待收货", "订单已完成", "交易关闭"][status - 1];}, getReason: function getReason(status) {return ["剩余时间", "等待卖家发货", "", "", "超时未付款，订单自动取消"][status - 1];}, //立即支付
     payOrder: function payOrder() {var url = _order.default.payOrder + '/' + this.orderInfo.id;this.$postajax(url).then(function (res) {console.log("支付" + JSON.stringify(res));if (res.code == 0) {var orderInfo = res.data; //微信支付
           uni.requestPayment({ provider: 'wxpay', orderInfo: orderInfo, //订单数据
             timeStamp: orderInfo.timeStamp, nonceStr: orderInfo.nonceStr, package: orderInfo.package, signType: orderInfo.signType, paySign: orderInfo.paySign, service: 3, success: function success(res) {//处理业务逻辑
               this.tui.toast("提交订单成功", 2000, true);uni.navigateTo({ url: "../success/success?orderStatus=2" });}, fail: function fail(err) {console.log('fail:' + JSON.stringify(err));uni.showToast({ icon: 'none', title: '支付失败' });} });}}).catch(function (err) {});}, //取消订单
-    cancelOrder: function cancelOrder(id) {var _this2 = this;var url = _order.default.closeOrder + '/' + id;this.$postajax(url).then(function (res) {if (res.code == 0) {_this2.tui.toast("订单删除成功", 2000, true);uni.navigateTo({ url: "../success/success?orderStatus=2" });}});} } };exports.default = _default;
+    cancelOrder: function cancelOrder(id) {var _this2 = this;var url = _order.default.closeOrder + '/' + id;this.$postajax(url).then(function (res) {if (res.code == 0) {_this2.tui.toast("订单删除成功", 2000, true);uni.navigateTo({ url: "../success/success?orderStatus=2" });}});}, //确认收货
+    confirmOrder: function confirmOrder() {var _this3 = this;var url = _order.default.confirmOrder + '/' + this.orderInfo.id;this.$postajax(url).then(function (res) {if (res.code == 0) {_this3.tui.toast("已确认收货", 2000, true);uni.navigateTo({ url: "../success/success?orderStatus=3" });}});} } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),

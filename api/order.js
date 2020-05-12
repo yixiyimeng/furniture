@@ -8,5 +8,6 @@ export const api = {
 	getOrderShow:basePath+'/api/order/show',//订单详情
 	payOrder:basePath+'/api/order/pay',//订单支付 
 	closeOrder:basePath+'/api/order/close',//订单取消
+	confirmOrder:basePath+'/api/order/confirm',//确认收货
 }
 export default api

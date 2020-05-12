@@ -108,7 +108,7 @@ page {
 }
 .sub-tab-bar-item {
 	width: 200rpx;
-	height: 110rpx;
+	height: 80rpx;
 	background: #fcfcfc;
 	-webkit-box-sizing: border-box;
 	        box-sizing: border-box;

@@ -194,7 +194,11 @@ __webpack_require__.r(__webpack_exports__);
 var _index = __webpack_require__(/*! @/utils/index */ 10);
 
 
-var _category = _interopRequireDefault(__webpack_require__(/*! @/api/category */ 24));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} //
+var _category = _interopRequireDefault(__webpack_require__(/*! @/api/category */ 24));
+
+
+
+var _vuex = __webpack_require__(/*! vuex */ 8);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} //
 //
 //
 //
@@ -285,7 +289,7 @@ var util = __webpack_require__(/*! @/utils/util.js */ 17);var tuiLoadmore = func
       isSHowSub: false, //默认不显示二级分类
       scrollTop: 0, //tab标题的滚动条位置
       searchKey: "", //关键字
-      pageIndex: 1, lastPage: 1, loadding: false, pullUpOn: true };}, onLoad: function onLoad(options) {var _this = this;setTimeout(function () {uni.getSystemInfo({ success: function success(res) {var header = 92;var top = 10;_this.height = res.windowHeight - uni.upx2px(header);_this.top = top + uni.upx2px(header); //this.getProduct();
+      pageIndex: 1, lastPage: 1, loadding: false, pullUpOn: true };}, computed: (0, _vuex.mapState)(['member_id']), onLoad: function onLoad(options) {var _this = this;setTimeout(function () {uni.getSystemInfo({ success: function success(res) {var header = 92;var top = 10;_this.height = res.windowHeight - uni.upx2px(header);_this.top = top + uni.upx2px(header); //this.getProduct();
           //this.swichNav(this.currentTab)
         } });}, 50);console.log("跳轉參數" + options.searchKey);this.currentTab = options.searchKey;}, onShow: function onShow() {this.getCategory();this.getProduct();}, watch: { pageIndex: function pageIndex(newValue, oldValue) {if (this.pageIndex == this.lastPage) {console.log(22222);this.pullUpOn = false;}} }, methods: { //获取分类
     getCategory: function getCategory() {var _this2 = this;var param = { page: this.$pagination.page, limit: this.$pagination.limit, name: "" };this.$postajax(_category.default.getCategory, param).then(function (res) {console.log(JSON.stringify(res));if (res.code == 0) {_this2.tabbar = res.data;_this2.tabbar.unshift({ id: null, name: "全部" });}}).catch(function (err) {});}, //获取二级分类

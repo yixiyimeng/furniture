@@ -200,136 +200,140 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 var _index = __webpack_require__(/*! @/utils/index */ 10);
 
 
 var _vuex = __webpack_require__(/*! vuex */ 8);
 
 
+
 var _category = _interopRequireDefault(__webpack_require__(/*! @/api/category */ 24));
-var _member = _interopRequireDefault(__webpack_require__(/*! @/api/member */ 9));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-var tuiIcon = function tuiIcon() {return __webpack_require__.e(/*! import() | components/icon/icon */ "components/icon/icon").then(__webpack_require__.bind(null, /*! @/components/icon/icon */ 181));};var tuiTag = function tuiTag() {return __webpack_require__.e(/*! import() | components/tag/tag */ "components/tag/tag").then(__webpack_require__.bind(null, /*! @/components/tag/tag */ 188));};var tuiLoadmore = function tuiLoadmore() {return __webpack_require__.e(/*! import() | components/loadmore/loadmore */ "components/loadmore/loadmore").then(__webpack_require__.bind(null, /*! @/components/loadmore/loadmore */ 195));};var tuiNomore = function tuiNomore() {return __webpack_require__.e(/*! import() | components/nomore/nomore */ "components/nomore/nomore").then(__webpack_require__.bind(null, /*! @/components/nomore/nomore */ 202));};var _default = { components: { tuiIcon: tuiIcon, tuiTag: tuiTag, tuiLoadmore: tuiLoadmore, tuiNomore: tuiNomore }, data: function data() {return { basePath: _index.basePath, current: 0, tabbar: [{ icon: "home", text: "首页", size: 21 }, { icon: "category", text: "分类", size: 24 }, { icon: "cart", text: "购物车", size: 22 }, { icon: "people", text: "我的", size: 24 }], banner: ["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg"], category: [], productList: [], pageIndex: this.$pagination.page, lastPage: this.$pagination.page, searchKey: '', //关键字
-      loadding: false, pullUpOn: true };}, onLoad: function onLoad() {this.getBannerImg();this.getCategory();this.getHostProduct();}, watch: { pageIndex: function pageIndex(newValue, oldValue) {if (this.pageIndex == this.lastPage) {console.log(22222);this.pullUpOn = false;}} }, computed: (0, _vuex.mapState)(['forcedLogin', 'hasLogin', 'member_id', 'openid']), methods: { //获取轮播图
-    getBannerImg: function getBannerImg() {var _this = this;this.$postajax(_member.default.getBannerImg).then(function (res) {if (res.code == 0) {_this.banner = res.data;}}).catch(function (err) {});}, //获取分类
-    getCategory: function getCategory() {var _this2 = this;var param = { page: this.pageIndex, limit: this.$pagination.limit, name: "" };this.$postajax(_category.default.getCategory, param).then(function (res) {if (res.code == 0) {_this2.category = res.data;}}).catch(function (err) {});}, //获取产品
-    getHostProduct: function getHostProduct() {var _this3 = this;var param = { page: this.$pagination.page, limit: this.$pagination.limit, member_id: this.member_id, name: this.searchKey };this.$postajax(_category.default.getHostProduct, param).then(function (res) {if (res.code == 0) {_this3.productList = res.data;_this3.lastPage = res.data && res.data.length > 0 ? Math.ceil(res.count / _this3.$pagination.limit) : 1;console.log("最后一页" + JSON.stringify(_this3.lastPage));if (_this3.pageIndex == _this3.lastPage) {_this3.pullUpOn = false;}
+var _member = _interopRequireDefault(__webpack_require__(/*! @/api/member */ 9));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};var ownKeys = Object.keys(source);if (typeof Object.getOwnPropertySymbols === 'function') {ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) {return Object.getOwnPropertyDescriptor(source, sym).enumerable;}));}ownKeys.forEach(function (key) {_defineProperty(target, key, source[key]);});}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var tuiIcon = function tuiIcon() {return __webpack_require__.e(/*! import() | components/icon/icon */ "components/icon/icon").then(__webpack_require__.bind(null, /*! @/components/icon/icon */ 181));};var tuiTag = function tuiTag() {return __webpack_require__.e(/*! import() | components/tag/tag */ "components/tag/tag").then(__webpack_require__.bind(null, /*! @/components/tag/tag */ 188));};var tuiLoadmore = function tuiLoadmore() {return __webpack_require__.e(/*! import() | components/loadmore/loadmore */ "components/loadmore/loadmore").then(__webpack_require__.bind(null, /*! @/components/loadmore/loadmore */ 195));};var tuiNomore = function tuiNomore() {return __webpack_require__.e(/*! import() | components/nomore/nomore */ "components/nomore/nomore").then(__webpack_require__.bind(null, /*! @/components/nomore/nomore */ 202));};var _default =
+
+
+
+
+{
+  components: {
+    tuiIcon: tuiIcon,
+    tuiTag: tuiTag,
+    tuiLoadmore: tuiLoadmore,
+    tuiNomore: tuiNomore },
+
+  data: function data() {
+    return {
+      basePath: _index.basePath,
+      current: 0,
+      tabbar: [{
+        icon: "home",
+        text: "首页",
+        size: 21 },
+      {
+        icon: "category",
+        text: "分类",
+        size: 24 },
+      {
+        icon: "cart",
+        text: "购物车",
+        size: 22 },
+      {
+        icon: "people",
+        text: "我的",
+        size: 24 }],
+
+      banner: [
+      "1.jpg",
+      "2.jpg",
+      "3.jpg",
+      "4.jpg",
+      "5.jpg"],
+
+      category: [],
+      productList: [],
+      pageIndex: this.$pagination.page,
+      lastPage: this.$pagination.page,
+      searchKey: '', //关键字
+      loadding: false,
+      pullUpOn: true };
+
+  },
+  onLoad: function onLoad() {
+    /* 判断是否登录过 */
+    if (this.hasLogin && this.member_id) {
+      this.getHostProduct();
+    } else {
+      /* 重新登录 */
+      var $me = this;
+      uni.login({
+        provider: 'weixin',
+        success: function success(loginRes) {
+          var code = loginRes.code;
+          $me.islogin(code);
+        } });
+
+    }
+    this.getBannerImg();
+    this.getCategory();
+
+  },
+  watch: {
+    pageIndex: function pageIndex(newValue, oldValue) {
+      if (this.pageIndex == this.lastPage) {
+        console.log(22222);
+        this.pullUpOn = false;
+
+      }
+    } },
+
+  computed: (0, _vuex.mapState)(['forcedLogin', 'hasLogin', 'member_id', 'openid']),
+  methods: _objectSpread({},
+  (0, _vuex.mapMutations)(['login']), {
+    //获取轮播图
+    getBannerImg: function getBannerImg() {var _this = this;
+      this.$postajax(_member.default.getBannerImg).
+      then(function (res) {
+        if (res.code == 0) {
+          _this.banner = res.data;
+        }
+      }).
+      catch(function (err) {
+
+      });
+    },
+    //获取分类
+    getCategory: function getCategory() {var _this2 = this;
+      var param = {
+        page: this.pageIndex,
+        limit: this.$pagination.limit,
+        name: "" };
+
+      this.$postajax(_category.default.getCategory, param).
+      then(function (res) {
+        if (res.code == 0) {
+          _this2.category = res.data;
+        }
+      }).
+      catch(function (err) {
+
+      });
+    },
+    //获取产品
+    getHostProduct: function getHostProduct() {var _this3 = this;
+      var param = {
+        page: this.$pagination.page,
+        limit: this.$pagination.limit,
+        member_id: this.member_id,
+        name: this.searchKey };
+
+      this.$postajax(_category.default.getHostProduct, param).
+      then(function (res) {
+        if (res.code == 0) {
+          _this3.productList = res.data;
+          _this3.lastPage = res.data && res.data.length > 0 ? Math.ceil(res.count / _this3.$pagination.limit) : 1;
+          console.log("最后一页" + JSON.stringify(_this3.lastPage));
+          if (_this3.pageIndex == _this3.lastPage) {
+            _this3.pullUpOn = false;
+          }
           //this.count=res.count;
         }
 
@@ -397,9 +401,28 @@ var tuiIcon = function tuiIcon() {return __webpack_require__.e(/*! import() | co
     cleanKey: function cleanKey() {
       this.searchKey = '';
       this.getHostProduct();
-    } },
+    },
 
-  onReachBottom: function onReachBottom() {var _this4 = this;
+    islogin: function islogin(code) {var _this4 = this;
+      //2.将用户登录code传递到后台置换用户SessionKey、OpenId等信息
+      var param = {
+        code: code };
+
+      var $me = this;
+      $me.$postajax(_member.default.login, param).
+      then(function (res) {
+        console.log("登录返回" + JSON.stringify(res));
+        if (res.code == 0) {
+          $me.login(res.data);
+          _this4.getHostProduct();
+        } else {}
+      }).
+      catch(function (err) {
+
+      });
+    } }),
+
+  onReachBottom: function onReachBottom() {var _this5 = this;
     console.log(3333);
     //if (!this.pullUpOn) return;
     this.pullUpOn = true;
@@ -411,8 +434,8 @@ var tuiIcon = function tuiIcon() {return __webpack_require__.e(/*! import() | co
     // 第二次之后请求数据
     if (this.pageIndex > this.lastPage) {
       setTimeout(function () {
-        _this4.loadding = false;
-        _this4.pullUpOn = false;
+        _this5.loadding = false;
+        _this5.pullUpOn = false;
       }, 1000);
       return false;
     } else {
@@ -428,8 +451,8 @@ var tuiIcon = function tuiIcon() {return __webpack_require__.e(/*! import() | co
         if (res.code == 0) {
           console.log(JSON.stringify(res));
           if (res.code == 0) {
-            _this4.productList = _this4.productList.concat(res.data);
-            _this4.loadding = false;
+            _this5.productList = _this5.productList.concat(res.data);
+            _this5.loadding = false;
           }
         }
 

@@ -4,8 +4,6 @@
   "backgroundColorTop": "#E41F19",
   "backgroundColorBottom": "#E41F19",
   "navigationBarTitleText": "收藏夾",
-  "enablePullDownRefresh": true,
-  "onReachBottomDistance": 50,
   "usingComponents": {
     "tui-icon": "/components/icon/icon",
     "tui-list-cell": "/components/list-cell/list-cell",

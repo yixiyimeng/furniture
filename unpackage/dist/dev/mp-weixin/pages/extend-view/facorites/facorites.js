@@ -144,12 +144,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
 var _index = __webpack_require__(/*! @/utils/index */ 10);
 
 
 var _member = _interopRequireDefault(__webpack_require__(/*! @/api/member */ 9));
-var _vuex = __webpack_require__(/*! vuex */ 8);var _components$computed$;function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var tuiIcon = function tuiIcon() {return __webpack_require__.e(/*! import() | components/icon/icon */ "components/icon/icon").then(__webpack_require__.bind(null, /*! @/components/icon/icon */ 181));};var tuiListCell = function tuiListCell() {return __webpack_require__.e(/*! import() | components/list-cell/list-cell */ "components/list-cell/list-cell").then(__webpack_require__.bind(null, /*! @/components/list-cell/list-cell */ 209));};var tuiLoadmore = function tuiLoadmore() {return __webpack_require__.e(/*! import() | components/loadmore/loadmore */ "components/loadmore/loadmore").then(__webpack_require__.bind(null, /*! @/components/loadmore/loadmore */ 195));};var tuiNomore = function tuiNomore() {return __webpack_require__.e(/*! import() | components/nomore/nomore */ "components/nomore/nomore").then(__webpack_require__.bind(null, /*! @/components/nomore/nomore */ 202));};var tuiTips = function tuiTips() {return __webpack_require__.e(/*! import() | components/tips/tips */ "components/tips/tips").then(__webpack_require__.bind(null, /*! @/components/tips/tips */ 317));};var tuiButton = function tuiButton() {return __webpack_require__.e(/*! import() | components/button/button */ "components/button/button").then(__webpack_require__.bind(null, /*! @/components/button/button */ 230));};var _default = (_components$computed$ = {
+var _vuex = __webpack_require__(/*! vuex */ 8);
 
 
 
@@ -158,191 +157,97 @@ var _vuex = __webpack_require__(/*! vuex */ 8);var _components$computed$;functio
 
 
 
+var _mescrollMixins = _interopRequireDefault(__webpack_require__(/*! @/components/mescroll-uni/mescroll-mixins.js */ 63));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+var tuiIcon = function tuiIcon() {return __webpack_require__.e(/*! import() | components/icon/icon */ "components/icon/icon").then(__webpack_require__.bind(null, /*! @/components/icon/icon */ 181));};var tuiListCell = function tuiListCell() {return __webpack_require__.e(/*! import() | components/list-cell/list-cell */ "components/list-cell/list-cell").then(__webpack_require__.bind(null, /*! @/components/list-cell/list-cell */ 209));};var tuiLoadmore = function tuiLoadmore() {return __webpack_require__.e(/*! import() | components/loadmore/loadmore */ "components/loadmore/loadmore").then(__webpack_require__.bind(null, /*! @/components/loadmore/loadmore */ 195));};var tuiNomore = function tuiNomore() {return __webpack_require__.e(/*! import() | components/nomore/nomore */ "components/nomore/nomore").then(__webpack_require__.bind(null, /*! @/components/nomore/nomore */ 202));};var tuiTips = function tuiTips() {return __webpack_require__.e(/*! import() | components/tips/tips */ "components/tips/tips").then(__webpack_require__.bind(null, /*! @/components/tips/tips */ 317));};var tuiButton = function tuiButton() {return __webpack_require__.e(/*! import() | components/button/button */ "components/button/button").then(__webpack_require__.bind(null, /*! @/components/button/button */ 230));};var _default = { components: { tuiIcon: tuiIcon, tuiListCell: tuiListCell, tuiLoadmore: tuiLoadmore, tuiNomore: tuiNomore, tuiTips: tuiTips, tuiButton: tuiButton }, mixins: [_mescrollMixins.default], data: function data() {return { basePath: _index.basePath, newsList: [], pageIndex: 1, lastPage: 1, limit: 1, loadding: false, pullUpOn: true };}, computed: (0, _vuex.mapState)(['forcedLogin', 'hasLogin', 'member_id']), onLoad: function onLoad(options) {//this.newsList = this.dataSources
+    // this.getFollow();
+  }, watch: { pageIndex: function pageIndex(newValue, oldValue) {if (this.pageIndex == this.lastPage) {console.log(22222);this.pullUpOn = false;}} }, methods: { /*上拉加载的回调*/upCallback: function upCallback(mescroll) {this.getFollow();},
+    //查询关注
+    getFollow: function getFollow() {
+      var pageNum = this.mescroll.num; // 页码, 默认从1开始
+      var pageSize = this.mescroll.size;
+      var param = {
+        page: pageNum,
+        limit: pageSize };
 
-  components: {
-    tuiIcon: tuiIcon,
-    tuiListCell: tuiListCell,
-    tuiLoadmore: tuiLoadmore,
-    tuiNomore: tuiNomore,
-    tuiTips: tuiTips,
-    tuiButton: tuiButton },
-
-  computed: {
-    // 			count() {
-    // 				return this.newsList.length - 1
-    // 			}
-  },
-  data: function data() {
-    return {
-      basePath: _index.basePath,
-      newsList: [],
-      pageIndex: 1,
-      lastPage: 1,
-      limit: 1,
-      loadding: false,
-      pullUpOn: true };
-
-  } }, _defineProperty(_components$computed$, "computed",
-(0, _vuex.mapState)(['forcedLogin', 'hasLogin', 'member_id'])), _defineProperty(_components$computed$, "onLoad",
-function onLoad(options) {
-  //this.newsList = this.dataSources
-  this.getFollow();
-}), _defineProperty(_components$computed$, "watch",
-{
-  pageIndex: function pageIndex(newValue, oldValue) {
-    if (this.pageIndex == this.lastPage) {
-      console.log(22222);
-      this.pullUpOn = false;
-
-    }
-  } }), _defineProperty(_components$computed$, "methods",
-
-{
-  //查询关注
-  getFollow: function getFollow() {var _this = this;
-    var param = {
-      page: this.$pagination.page,
-      limit: this.$pagination.limit };
-
-    var url = _member.default.getFollow + '/' + this.member_id;
-    this.$postajax(url, param).
-    then(function (res) {
-      if (res.code == 0) {
-        _this.newsList = res.data;
-        _this.lastPage = res.data && res.data.length > 0 ? Math.ceil(res.count / _this.$pagination.limit) : 1;
-        console.log("最后一页" + JSON.stringify(_this.lastPage));
-        if (_this.pageIndex == _this.lastPage) {
-          _this.pullUpOn = false;
+      var $me = this;
+      var url = _member.default.getFollow + '/' + this.member_id;
+      this.$postajax(url, param).
+      then(function (res) {
+        if (res.code == 0) {
+          var curPageData = res.data;
+          $me.mescroll.endBySize(curPageData.length, res.count || 0);
+          if ($me.mescroll.num == 1) $me.newsList = []; //如果是第一页需手动制空列表
+          $me.newsList = $me.newsList.concat(curPageData); //追加新数据
+        } else {
+          $me.newsList = [];
+          $me.mescroll.endSuccess(0, false);
         }
-        _this.count = res.count;
-      }
 
 
-    }).
-    catch(function (err) {
+      }).
+      catch(function (err) {
 
-    });
-  },
-  detail: function detail(id) {
-    uni.navigateTo({
-      url: "../productDetail/productDetail?id=" + id });
+      });
+    },
+    detail: function detail(id) {
+      uni.navigateTo({
+        url: "../productDetail/productDetail?id=" + id });
 
-  },
-  deleteFacorite: function deleteFacorite(id, e) {var _this2 = this;
-    /* e.stopPropagation();  */
-    var url = _member.default.closeFollow + '/' + id;
-    this.$postajax(url).
-    then(function (res) {
-      console.log(JSON.stringify(res));
-      if (res.code == 0) {
-        _this2.tui.toast("删除收藏成功", 2000, true);
-        _this2.getFollow();
-      }
-
-
-    }).
-    catch(function (err) {
-
-    });
-  } }), _defineProperty(_components$computed$, "onPullDownRefresh",
+    },
+    deleteFacorite: function deleteFacorite(id, e) {var _this = this;
+      /* e.stopPropagation();  */
+      var url = _member.default.closeFollow + '/' + id;
+      this.$postajax(url).
+      then(function (res) {
+        console.log(JSON.stringify(res));
+        if (res.code == 0) {
+          _this.tui.toast("删除收藏成功", 2000, true);
+          _this.getFollow();
+        }
 
 
-function onPullDownRefresh() {var _this3 = this;
-  //this.getFollow();
-  //this.pageIndex = 1;
-  this.pullUpOn = true;
-  //this.loadding = false;
-  this.loadding = true;
-  console.log('上拉加载事件');
-  // 每次拉到页面底部,请求页数自加
-  this.pageIndex++;
-  // 第二次之后请求数据
-  if (this.pageIndex > this.lastPage) {
-    setTimeout(function () {
-      _this3.loadding = false;
-      _this3.pullUpOn = false;
-    }, 1000);
-    return false;
-  } else {
-    var param = {
-      page: this.pageIndex,
-      limit: this.$pagination.limit };
+      }).
+      catch(function (err) {
 
-    var url = _member.default.getFollow + '/' + this.member_id;
-    this.$postajax(url, param).
-    then(function (res) {
-      console.log(JSON.stringify(res));
-      if (res.code == 0) {
-        _this3.newsList = _this3.newsList.concat(res.data);
-        _this3.loadding = false;
-      }
-
-
-    }).
-    catch(function (err) {
-
-    });
-
-  }
-
-  uni.stopPullDownRefresh();
-  var options = {
-    msg: "刷新成功",
-    duration: 2000,
-    type: "translucent" };
-
-  setTimeout(function () {
-    _this3.$refs.toast.showTips(options);
-  }, 300);
-}), _defineProperty(_components$computed$, "onReachBottom",
-
-
-function onReachBottom() {var _this4 = this;
-  this.pullUpOn = true;
-  //this.loadding = false;
-  this.loadding = true;
-  console.log('上拉加载事件');
-  // 每次拉到页面底部,请求页数自加
-  this.pageIndex++;
-  // 第二次之后请求数据
-  if (this.pageIndex > this.lastPage) {
-    setTimeout(function () {
-      _this4.loadding = false;
-      _this4.pullUpOn = false;
-    }, 1000);
-    return false;
-  } else {
-    var param = {
-      page: this.pageIndex,
-      limit: this.$pagination.limit };
-
-    var url = _member.default.getFollow + '/' + this.member_id;
-    this.$postajax(url, param).
-    then(function (res) {
-      console.log(JSON.stringify(res));
-      if (res.code == 0) {
-        _this4.newsList = _this4.newsList.concat(res.data);
-        _this4.loadding = false;
-      }
-
-
-    }).
-    catch(function (err) {
-
-    });
-
-  }
-
-  uni.stopPullDownRefresh();
-  var options = {
-    msg: "刷新成功",
-    duration: 2000,
-    type: "translucent" };
-
-  setTimeout(function () {
-    _this4.$refs.toast.showTips(options);
-  }, 300);
-}), _components$computed$);exports.default = _default;
+      });
+    } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),

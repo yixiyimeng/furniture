@@ -546,9 +546,7 @@ var _vuex = __webpack_require__(/*! vuex */ 8);function _interopRequireDefault(o
           //微信支付
 
           uni.requestPayment({
-
             provider: 'wxpay',
-
             orderInfo: orderInfo, //订单数据
             timeStamp: orderInfo.timeStamp,
             nonceStr: orderInfo.nonceStr,
@@ -556,7 +554,6 @@ var _vuex = __webpack_require__(/*! vuex */ 8);function _interopRequireDefault(o
             signType: orderInfo.signType,
             paySign: orderInfo.paySign,
             service: 3,
-
             success: function success(res) {
 
               //处理业务逻辑

@@ -73,20 +73,11 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  var l1 = _vm.__map(_vm.orderList, function(orderitem, orderIndex) {
-    var l0 = _vm.__map(orderitem.data, function(item, index) {
-      var g0 = JSON.parse(item.img_url)
-      return {
-        $orig: _vm.__get_orig(item),
-        g0: g0
-      }
-    })
-
+  var l0 = _vm.__map(_vm.orderList, function(orderitem, orderIndex) {
     var m0 = _vm.getGoodsNum(orderitem.data)
     var m1 = _vm.getGoodsTotal(orderitem.data)
     return {
       $orig: _vm.__get_orig(orderitem),
-      l0: l0,
       m0: m0,
       m1: m1
     }
@@ -96,7 +87,7 @@ var render = function() {
     {},
     {
       $root: {
-        l1: l1
+        l0: l0
       }
     }
   )
@@ -133,6 +124,9 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
+
+
+
 
 
 
@@ -257,10 +251,10 @@ var _vuex = __webpack_require__(/*! vuex */ 8);function _interopRequireDefault(o
 //
 //
 //
-var tuiTabs = function tuiTabs() {return __webpack_require__.e(/*! import() | components/tui-tabs/tui-tabs */ "components/tui-tabs/tui-tabs").then(__webpack_require__.bind(null, /*! @/components/tui-tabs/tui-tabs */ 296));};var tuiButton = function tuiButton() {return __webpack_require__.e(/*! import() | components/extend/button/button */ "components/extend/button/button").then(__webpack_require__.bind(null, /*! @/components/extend/button/button */ 216));};var tuiLoadmore = function tuiLoadmore() {return __webpack_require__.e(/*! import() | components/loadmore/loadmore */ "components/loadmore/loadmore").then(__webpack_require__.bind(null, /*! @/components/loadmore/loadmore */ 195));};var tuiNomore = function tuiNomore() {return __webpack_require__.e(/*! import() | components/nomore/nomore */ "components/nomore/nomore").then(__webpack_require__.bind(null, /*! @/components/nomore/nomore */ 202));};var tuiListCell = function tuiListCell() {return __webpack_require__.e(/*! import() | components/list-cell/list-cell */ "components/list-cell/list-cell").then(__webpack_require__.bind(null, /*! @/components/list-cell/list-cell */ 209));};var _default = { components: { tuiTabs: tuiTabs, tuiButton: tuiButton, tuiLoadmore: tuiLoadmore, tuiNomore: tuiNomore, tuiListCell: tuiListCell }, data: function data() {return { basePath: _index.basePath, tabs: [{ name: "全部" }, { name: "待付款" }, { name: "待发货" }, { name: "已发货" }, { name: "已完成" }], orderList: [], currentTab: 0, pageIndex: 1, lastPage: 1, loadding: false, pullUpOn: true, scrollTop: 0 };}, computed: (0, _vuex.mapState)(['forcedLogin', 'hasLogin', 'member_id', 'openid']), onLoad: function onLoad() {this.getOrder();}, methods: { getGoodsNum: function getGoodsNum(list) {console.log(JSON.stringify(list));if (list && list.length > 0) {var goodsNum = 0;list.map(function (item) {goodsNum += item.qty;});console.log("数量" + goodsNum);return goodsNum;}}, getGoodsTotal: function getGoodsTotal(list) {var amount = 0;list.map(function (item) {amount += item.qty * item.price;});
-      console.log("金额" + amount);
-      return this.$returnFloat(amount);
-    },
+//
+//
+//
+var tuiTabs = function tuiTabs() {return __webpack_require__.e(/*! import() | components/tui-tabs/tui-tabs */ "components/tui-tabs/tui-tabs").then(__webpack_require__.bind(null, /*! @/components/tui-tabs/tui-tabs */ 296));};var tuiButton = function tuiButton() {return __webpack_require__.e(/*! import() | components/extend/button/button */ "components/extend/button/button").then(__webpack_require__.bind(null, /*! @/components/extend/button/button */ 216));};var tuiLoadmore = function tuiLoadmore() {return __webpack_require__.e(/*! import() | components/loadmore/loadmore */ "components/loadmore/loadmore").then(__webpack_require__.bind(null, /*! @/components/loadmore/loadmore */ 195));};var tuiNomore = function tuiNomore() {return __webpack_require__.e(/*! import() | components/nomore/nomore */ "components/nomore/nomore").then(__webpack_require__.bind(null, /*! @/components/nomore/nomore */ 202));};var tuiListCell = function tuiListCell() {return __webpack_require__.e(/*! import() | components/list-cell/list-cell */ "components/list-cell/list-cell").then(__webpack_require__.bind(null, /*! @/components/list-cell/list-cell */ 209));};var _default = { components: { tuiTabs: tuiTabs, tuiButton: tuiButton, tuiLoadmore: tuiLoadmore, tuiNomore: tuiNomore, tuiListCell: tuiListCell }, data: function data() {return { basePath: _index.basePath, tabs: [{ name: "全部" }, { name: "待付款" }, { name: "待发货" }, { name: "已发货" }, { name: "已完成" }], orderList: [], currentTab: 0, pageIndex: 1, lastPage: 1, loadding: false, pullUpOn: true, scrollTop: 0 };}, computed: (0, _vuex.mapState)(['forcedLogin', 'hasLogin', 'member_id', 'openid']), onLoad: function onLoad() {this.getOrder();}, methods: { getGoodsNum: function getGoodsNum(list) {console.log(JSON.stringify(list));if (list && list.length > 0) {var goodsNum = 0;list.map(function (item) {goodsNum += item.qty;});console.log("数量" + goodsNum);return goodsNum;}}, getGoodsTotal: function getGoodsTotal(list) {var amount = 0;list.map(function (item) {amount += item.qty * item.price;});console.log("金额" + amount);return this.$returnFloat(amount);},
     //获取全部收货地址
     getOrder: function getOrder() {var _this = this;
       var param = {
@@ -271,25 +265,23 @@ var tuiTabs = function tuiTabs() {return __webpack_require__.e(/*! import() | co
       var url = _order.default.getOrder + '/' + this.member_id;
       this.$postajax(url, param).
       then(function (res) {
+        console.log(JSON.stringify(res));
         if (res.code == 0) {
-          // this.orderList = [];
+
           if (res.data && res.data.length > 0) {
-            // res.data.forEach(item => {
-            // 	item.data = JSON.parse(item.data)
-            // 	this.orderList.push(item)
-            // })
-            var currentPage = res.data;
-            if (_this.$pagination.page == 1) {
-              _this.orderList = currentPage;
-            } else {
-              _this.orderList.concat(currentPage);
-            }
+            res.data.forEach(function (item) {
+              item.data.forEach(function (items) {
+                items.img_url = JSON.parse(items.img_url);
+              });
+              //item.data = JSON.parse(item.data)
+              _this.orderList.push(item);
+            });
             _this.lastPage = res.data && res.data.length > 0 ? Math.ceil(res.count / _this.$pagination.limit) : 1;
-            console.log("最后一页" + JSON.stringify(_this.lastPage));
+            console.log("最后一页" + JSON.stringify(_this.orderList));
             if (_this.pageIndex == _this.lastPage) {
               _this.pullUpOn = false;
             }
-            _this.count = res.count;
+            /* this.count=res.count; */
           }
         }
       }).
@@ -380,6 +372,20 @@ var tuiTabs = function tuiTabs() {return __webpack_require__.e(/*! import() | co
       catch(function (err) {
 
       });
+    },
+    //确认收货
+    confirmOrder: function confirmOrder(id) {var _this3 = this;
+      var url = _order.default.confirmOrder + '/' + id;
+      this.$postajax(url).
+      then(function (res) {
+        if (res.code == 0) {
+          _this3.tui.toast("已确认收货", 2000, true);
+          uni.navigateTo({
+            url: "../success/success?orderStatus=3" });
+
+        }
+      });
+
     } },
 
   onPullDownRefresh: function onPullDownRefresh() {
@@ -387,7 +393,7 @@ var tuiTabs = function tuiTabs() {return __webpack_require__.e(/*! import() | co
       uni.stopPullDownRefresh();
     }, 200);
   },
-  onReachBottom: function onReachBottom() {var _this3 = this;
+  onReachBottom: function onReachBottom() {var _this4 = this;
     console.log(3333);
     /* if (!this.pullUpOn) return; */
     this.pullUpOn = true;
@@ -398,8 +404,8 @@ var tuiTabs = function tuiTabs() {return __webpack_require__.e(/*! import() | co
     // 第二次之后请求数据
     if (this.pageIndex > this.lastPage) {
       setTimeout(function () {
-        _this3.loadding = false;
-        _this3.pullUpOn = false;
+        _this4.loadding = false;
+        _this4.pullUpOn = false;
       }, 1000);
       return false;
     } else {
@@ -419,8 +425,8 @@ var tuiTabs = function tuiTabs() {return __webpack_require__.e(/*! import() | co
               item.data = JSON.parse(item.data);
               return item;
             });
-            _this3.orderList = _this3.orderList.concat(res.data);
-            _this3.loadding = false;
+            _this4.orderList = _this4.orderList.concat(res.data);
+            _this4.loadding = false;
           }
         }
 

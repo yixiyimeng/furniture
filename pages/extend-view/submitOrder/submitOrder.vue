@@ -415,9 +415,7 @@
 							//微信支付
 
 							uni.requestPayment({
-
 								provider: 'wxpay',
-
 								orderInfo: orderInfo, //订单数据
 								timeStamp: orderInfo.timeStamp,
 								nonceStr: orderInfo.nonceStr,
@@ -425,7 +423,6 @@
 								signType: orderInfo.signType,
 								paySign: orderInfo.paySign,
 								service: 3,
-
 								success: function(res) {
 
 									//处理业务逻辑

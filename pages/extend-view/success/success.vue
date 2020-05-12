@@ -49,6 +49,12 @@
 							return '已取消'
 							break;
 						}
+					case '3':
+						{
+							console.log(value)
+							return '已完成'
+							break;
+						}
 					case '0':
 						{
 							return '已关闭'

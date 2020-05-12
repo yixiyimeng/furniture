@@ -155,10 +155,7 @@
 					"navigationBarTextStyle": "black",
 					"backgroundColorTop": "#E41F19",
 					"backgroundColorBottom": "#E41F19",
-					"navigationBarTitleText": "收藏夾",
-					"enablePullDownRefresh": true,
-					"onReachBottomDistance": 50
-
+					"navigationBarTitleText": "收藏夾"
 				}
 			}
 		]

@@ -13,7 +13,7 @@
 				<image :src="`/static/images/mall/order/`+getImg(orderInfo.status)" class="tui-status-img" mode="widthFix"></image>
 			</view>
 		</view>
-		<!-- <tui-list-cell :arrow="true" bgcolor="#fefefe">
+		<!-- <tui-list-cell :arrow="true" bgcolor="#fefefe" v-if="orderInfo.status==3">
 			<view class="tui-flex-box">
 				<image :src="`/static/images/mall/order/img_order_logistics3x.png`" class="tui-icon-img"></image>
 				<view class="tui-logistics">
@@ -96,17 +96,17 @@
 					<view class="tui-item-title">订单号:</view>
 					<view class="tui-item-content">{{orderInfo.order_no}}</view>
 				</view>
-				<!-- <view class="tui-order-flex">
+				<view class="tui-order-flex" v-if="orderInfo.kd">
 					<view class="tui-item-title">物流单号:</view>
-					<view class="tui-item-content">{{orderInfo.kd_number}}</view>
-				</view> -->
+					<view class="tui-item-content">{{orderInfo.kd}} {{orderInfo.kd_number}}</view>
+				</view>
 				<view class="tui-order-flex">
 					<view class="tui-item-title">创建时间:</view>
 					<view class="tui-item-content">{{orderInfo.created_at}}</view>
 				</view>
 				<view class="tui-order-flex">
 					<view class="tui-item-title">付款时间:</view>
-					<view class="tui-item-content">2019-05-26 10:44</view>
+					<view class="tui-item-content">{{orderInfo.pay_time}}</view>
 				</view>
 				<!-- <view class="tui-order-flex">
 					<view class="tui-item-title">发货时间:</view>
@@ -123,12 +123,15 @@
 			</view>
 		</view>
 		<view class="tui-safe-area"></view>
-		<view class="tui-tabbar tui-order-btn">
-			<view class="tui-btn-mr">
+		<view class="tui-tabbar tui-order-btn" v-if="orderInfo.status==1||orderInfo.status==3">
+			<view class="tui-btn-mr" v-if="orderInfo.status==1">
 				<tui-button type="black" :plain="true" width="148rpx" height="56rpx" :size="26" shape="circle" @click="cancelOrder(orderInfo.id)">删除订单</tui-button>
 			</view>
-			<view class="tui-btn-mr">
+			<view class="tui-btn-mr" v-if="orderInfo.status==1">
 				<tui-button type="danger" :plain="true" width="148rpx" height="56rpx" :size="26" shape="circle" @click="payOrder">立即支付</tui-button>
+			</view>
+			<view class="tui-btn-mr" v-if="orderInfo.status==3">
+				<tui-button type="danger" :plain="true" width="148rpx" height="56rpx" :size="26" shape="circle" @click="confirmOrder">确认收货</tui-button>
 			</view>
 		</view>
 	</view>
@@ -156,7 +159,7 @@
 		data() {
 			return {
 				basePath,
-				orderInfo:{},
+				orderInfo: {},
 				//1-待付款 2-付款成功 3-待收货 4-订单已完成 5-交易关闭
 			}
 		},
@@ -166,25 +169,25 @@
 		},
 		methods: {
 			//查看订单详情
-			getOrderShow(id){
-				var url=api.getOrderShow+'/'+id
+			getOrderShow(id) {
+				var url = api.getOrderShow + '/' + id
 				this.$postajax(url)
 					.then(res => {
 						console.log(JSON.stringify(res))
 						if (res.code == 0) {
-							this.orderInfo=res.data;
-							this.orderInfo.data=JSON.parse(res.data.data);
+							this.orderInfo = res.data;
+							this.orderInfo.data = JSON.parse(res.data.data);
 							/* this.orderInfo.img_url=JSON.parse(res.data.img_url) */
-							console.log("图片数组"+JSON.stringify(res.data))
+							console.log("图片数组" + JSON.stringify(res.data))
 						}
-				
-				
+
+
 					})
 					.catch(err => {
-				
+
 					});
 			},
-			
+
 			getImg: function(status) {
 				return ["img_order_payment3x.png", "img_order_send3x.png", "img_order_received3x.png",
 					"img_order_signed3x.png", "img_order_closed3x.png"
@@ -194,7 +197,7 @@
 				return ["等待您付款", "付款成功", "待收货", "订单已完成", "交易关闭"][status - 1]
 			},
 			getReason: function(status) {
-				return ["剩余时间", "等待卖家发货", "还剩X天XX小时自动确认", "", "超时未付款，订单自动取消"][status - 1]
+				return ["剩余时间", "等待卖家发货", "", "", "超时未付款，订单自动取消"][status - 1]
 			},
 			//立即支付
 			payOrder() {
@@ -205,11 +208,11 @@
 						if (res.code == 0) {
 							let orderInfo = res.data;
 							//微信支付
-				
+
 							uni.requestPayment({
-				
+
 								provider: 'wxpay',
-				
+
 								orderInfo: orderInfo, //订单数据
 								timeStamp: orderInfo.timeStamp,
 								nonceStr: orderInfo.nonceStr,
@@ -217,35 +220,35 @@
 								signType: orderInfo.signType,
 								paySign: orderInfo.paySign,
 								service: 3,
-				
+
 								success: function(res) {
-				
+
 									//处理业务逻辑
 									this.tui.toast("提交订单成功", 2000, true);
 									uni.navigateTo({
 										url: "../success/success?orderStatus=2"
 									})
-				
+
 								},
-				
+
 								fail: function(err) {
-				
+
 									console.log('fail:' + JSON.stringify(err));
 									uni.showToast({
-				
+
 										icon: 'none',
-				
+
 										title: '支付失败'
-				
+
 									});
-				
+
 								}
-				
+
 							});
 						}
 					})
 					.catch(err => {
-				
+
 					});
 			},
 			//取消订单
@@ -261,6 +264,20 @@
 						}
 					})
 			},
+			//确认收货
+			confirmOrder() {
+				var url = api.confirmOrder + '/' + this.orderInfo.id;
+				this.$postajax(url)
+					.then(res => {
+						if (res.code == 0) {
+							this.tui.toast("已确认收货", 2000, true);
+							uni.navigateTo({
+								url: "../success/success?orderStatus=3"
+							})
+						}
+					})
+
+			}
 		}
 	}
 </script>

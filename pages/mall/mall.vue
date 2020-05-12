@@ -1,17 +1,5 @@
 <template>
 	<view class="container">
-		<!--tabbar-->
-		<!-- <view class="tui-tabbar">
-			<block v-for="(item,index) in tabbar" :key="index">
-				<view class="tui-tabbar-item" :class="[current==index?'tui-item-active':'']" :data-index="index" @tap="tabbarSwitch">
-					<view :class="[index==0?'tui-ptop-4':'']">
-						<tui-icon :name="current==index?item.icon+'-fill':item.icon" :color="current==index?'#E41F19':'#666'" :size="item.size"></tui-icon>
-					</view>
-					<view class="tui-scale">{{item.text}}</view>
-				</view>
-			</block>
-		</view> -->
-		<!--tabbar-->
 		<!--header-->
 		<view class="tui-header">
 			<!-- <view class="tui-category" hover-class="opcity" :hover-stay-time="150" @tap="classify">
@@ -109,7 +97,8 @@
 		basePath
 	} from '@/utils/index'
 	import {
-		mapState
+		mapState,
+		mapMutations
 	} from 'vuex'
 	import api from "@/api/category"
 	import memberApi from "@/api/member"
@@ -162,9 +151,23 @@
 			}
 		},
 		onLoad() {
+			/* 判断是否登录过 */
+			if (this.hasLogin&&this.member_id) {
+				this.getHostProduct();
+			} else {
+				/* 重新登录 */
+				let $me = this;
+				uni.login({
+					provider: 'weixin',
+					success: function(loginRes) {
+						let code = loginRes.code;
+						$me.islogin(code)
+					},
+				})
+			}
 			this.getBannerImg();
 			this.getCategory();
-			this.getHostProduct();
+
 		},
 		watch: {
 			pageIndex(newValue, oldValue) {
@@ -177,6 +180,7 @@
 		},
 		computed: mapState(['forcedLogin', 'hasLogin', 'member_id', 'openid']),
 		methods: {
+			...mapMutations(['login']),
 			//获取轮播图
 			getBannerImg() {
 				this.$postajax(memberApi.getBannerImg)
@@ -186,7 +190,7 @@
 						}
 					})
 					.catch(err => {
-			
+
 					});
 			},
 			//获取分类
@@ -263,7 +267,7 @@
 				})
 			},
 			//banner跳转页面，
-			bannerSkip(url){
+			bannerSkip(url) {
 				console.log(url)
 				uni.navigateTo({
 					url: url
@@ -291,6 +295,25 @@
 				this.searchKey = '';
 				this.getHostProduct();
 			},
+
+			islogin(code) {
+				//2.将用户登录code传递到后台置换用户SessionKey、OpenId等信息
+				var param = {
+					code: code
+				}
+				var $me = this;
+				$me.$postajax(memberApi.login, param)
+					.then(res => {
+						console.log("登录返回" + JSON.stringify(res))
+						if (res.code == 0) {
+							$me.login(res.data);
+							this.getHostProduct();
+						} else {}
+					})
+					.catch(err => {
+
+					});
+			}
 		},
 		onReachBottom: function() {
 			console.log(3333)

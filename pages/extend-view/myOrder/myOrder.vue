@@ -14,7 +14,7 @@
 				<block v-for="(item,index) in orderitem.data" :key="index">
 					<tui-list-cell padding="0" @click="detail(orderitem.id)">
 						<view class="tui-goods-item" v-if="item.img_url&&item.img_url.length>0">
-							<image :src="JSON.parse(item.img_url)[0]" class="tui-goods-img"></image>
+							<image :src="item.img_url[0]" class="tui-goods-img"></image>
 							<view class="tui-goods-center">
 								<view class="tui-goods-name">{{item.name}}</view>
 								<!-- <view class="tui-goods-attr">黑色，50ml</view> -->
@@ -43,6 +43,9 @@
 					</view>
 					<view class="tui-btn-ml" v-if="orderitem.status==2||orderitem.status==3">
 						<tui-button type="black" :plain="true" width="148rpx" height="56rpx" :size="26" shape="circle" @click="detail(orderitem.id)">查看详情</tui-button>
+					</view>
+					<view class="tui-btn-ml" v-if="orderitem.status==3">
+						<tui-button type="danger" :plain="true" width="148rpx" height="56rpx" :size="26" shape="circle" @click="confirmOrder(orderitem.id)">确认收货</tui-button>
 					</view>
 					<view class="tui-btn-ml" v-if="orderitem.status==4">
 						<tui-button type="danger" :plain="true" width="148rpx" height="56rpx" :size="26" shape="circle" @click="repurchase(orderitem.id)">再次购买</tui-button>
@@ -137,25 +140,23 @@
 				var url = api.getOrder + '/' + this.member_id;
 				this.$postajax(url, param)
 					.then(res => {
+						console.log(JSON.stringify(res))
 						if (res.code == 0) {
-							// this.orderList = [];
+							
 							if (res.data && res.data.length > 0) {
-								// res.data.forEach(item => {
-								// 	item.data = JSON.parse(item.data)
-								// 	this.orderList.push(item)
-								// })
-								let currentPage=res.data;
-								if(this.$pagination.page==1){
-									this.orderList=currentPage;
-								}else{
-									this.orderList.concat(currentPage)
-								}
+								res.data.forEach(item => {
+									item.data.forEach(items=>{
+										items.img_url=JSON.parse(items.img_url)
+									})
+									//item.data = JSON.parse(item.data)
+									this.orderList.push(item)
+								})
 								this.lastPage =res.data&&res.data.length>0?(Math.ceil(res.count/this.$pagination.limit)):1;
-								console.log("最后一页"+JSON.stringify(this.lastPage))
+								console.log("最后一页"+JSON.stringify(this.orderList))
 								if(this.pageIndex==this.lastPage){
 									this.pullUpOn = false;
 								}
-								this.count=res.count;
+								/* this.count=res.count; */
 							}
 						}
 					})
@@ -166,7 +167,7 @@
 			//切换订单状态
 			change(e) {
 				this.currentTab = e.index;
-				this.orderList=[];
+				this.orderList = [];
 				this.getOrder();
 			},
 			//查看订单详情
@@ -246,6 +247,20 @@
 					.catch(err => {
 
 					});
+			},
+			//确认收货
+			confirmOrder(id) {
+				var url = api.confirmOrder + '/' + id;
+				this.$postajax(url)
+					.then(res => {
+						if (res.code == 0) {
+							this.tui.toast("已确认收货", 2000, true);
+							uni.navigateTo({
+								url: "../success/success?orderStatus=3"
+							})
+						}
+					})
+			
 			}
 		},
 		onPullDownRefresh() {

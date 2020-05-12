@@ -11,7 +11,7 @@ const store = new Vuex.Store({
 		forcedLogin: false,
 		hasLogin: uni.getStorageSync("hasLogin") || false,
 		userName: uni.getStorageSync("userName") || "",
-		member_id: uni.getStorageSync("member_id") || 0,
+		member_id: uni.getStorageSync("member_id") || '',
 		openid: uni.getStorageSync("openid") || "",
 		phone: uni.getStorageSync("phone") || "",
 		session_key: uni.getStorageSync("session_key") || "",

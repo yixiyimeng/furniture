@@ -91,6 +91,9 @@
 	const util = require('@/utils/util.js')
 	import tuiLoadmore from "@/components/loadmore/loadmore"
 	import tuiNomore from "@/components/nomore/nomore"
+	import {
+		mapState
+		} from 'vuex'
 	export default {
 		components: {
 			tuiLoadmore,
@@ -115,6 +118,7 @@
 				pullUpOn: true,
 			}
 		},
+		computed: mapState(['member_id']),
 		onLoad: function(options) {
 			setTimeout(() => {
 				uni.getSystemInfo({
@@ -433,7 +437,7 @@
 
 	.sub-tab-bar-item {
 		width: 200upx;
-		height: 110upx;
+		height: 80upx;
 		background: #fcfcfc;
 		box-sizing: border-box;
 		display: flex;

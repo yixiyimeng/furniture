@@ -12570,7 +12570,7 @@ var store = new _vuex.default.Store({
     forcedLogin: false,
     hasLogin: uni.getStorageSync("hasLogin") || false,
     userName: uni.getStorageSync("userName") || "",
-    member_id: uni.getStorageSync("member_id") || 0,
+    member_id: uni.getStorageSync("member_id") || '',
     openid: uni.getStorageSync("openid") || "",
     phone: uni.getStorageSync("phone") || "",
     session_key: uni.getStorageSync("session_key") || "",
@@ -21834,7 +21834,8 @@ var api = {
   getOrder: _index.basePath + '/api/order/index', //订单查询
   getOrderShow: _index.basePath + '/api/order/show', //订单详情
   payOrder: _index.basePath + '/api/order/pay', //订单支付 
-  closeOrder: _index.basePath + '/api/order/close' //订单取消
+  closeOrder: _index.basePath + '/api/order/close', //订单取消
+  confirmOrder: _index.basePath + '/api/order/confirm' //确认收货
 };exports.api = api;var _default =
 api;exports.default = _default;
 
