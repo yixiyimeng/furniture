@@ -19,7 +19,7 @@
 								</label>
 							</checkbox-group>
 
-							<image :src="basePath+item.img_url[0]" class="tui-goods-img" />
+							<image :src="item.img_url[0]" class="tui-goods-img" />
 							<view class="tui-goods-info">
 								<view class="tui-goods-title">
 									{{item.name}}
