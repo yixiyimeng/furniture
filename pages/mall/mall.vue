@@ -6,7 +6,7 @@
 				<tui-icon name="manage-fill" color="#fff" :size="22"></tui-icon>
 				<view class="tui-category-scale">分类</view>
 			</view> -->
-			<view class="tui-searchbox">
+			<view class="tui-searchbox"@tap="classify">
 				<view class="tui-search-input">
 					<!-- #ifdef APP-PLUS || MP -->
 					<icon type="search" :size='13' color='#999'></icon>
@@ -152,7 +152,7 @@
 		},
 		onLoad() {
 			/* 判断是否登录过 */
-			if (this.hasLogin&&this.member_id) {
+			if (this.hasLogin && this.member_id) {
 				this.getHostProduct();
 			} else {
 				/* 重新登录 */
@@ -269,13 +269,19 @@
 			//banner跳转页面，
 			bannerSkip(url) {
 				console.log(url)
-				uni.navigateTo({
-					url: url
-				})
+				if (url.indexOf('category') > -1) {
+					uni.switchTab({
+						url: url
+					})
+				} else {
+					uni.navigateTo({
+						url: url
+					})
+				}
 			},
 			classify: function(id) {
 				uni.reLaunch({
-					url: '../category/category?searchKey=' + id
+					url: '../category/category'
 				});
 
 			},

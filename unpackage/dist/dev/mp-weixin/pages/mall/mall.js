@@ -376,13 +376,19 @@ var _member = _interopRequireDefault(__webpack_require__(/*! @/api/member */ 9))
     //banner跳转页面，
     bannerSkip: function bannerSkip(url) {
       console.log(url);
-      uni.navigateTo({
-        url: url });
+      if (url.indexOf('category') > -1) {
+        uni.switchTab({
+          url: url });
 
+      } else {
+        uni.navigateTo({
+          url: url });
+
+      }
     },
     classify: function classify(id) {
       uni.reLaunch({
-        url: '../category/category?searchKey=' + id });
+        url: '../category/category' });
 
 
     },

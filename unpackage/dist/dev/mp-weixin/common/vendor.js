@@ -20811,6 +20811,7 @@ MescrollMixin;exports.default = _default;
 Object.defineProperty(exports, "__esModule", { value: true });exports.default = exports.api = void 0;var api = {
   videolist: '/api/wechat' };exports.api = api;var _default =
 
+
 api;exports.default = _default;
 
 /***/ }),

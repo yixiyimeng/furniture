@@ -1,4 +1,5 @@
 export const api = {
-	videolist: '/api/wechat'
+	videolist: '/api/wechat',
+	
 }
 export default api
