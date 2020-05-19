@@ -6,7 +6,7 @@
 				<tui-icon name="manage-fill" color="#fff" :size="22"></tui-icon>
 				<view class="tui-category-scale">分类</view>
 			</view> -->
-			<view class="tui-searchbox"@tap="classify">
+			<view class="tui-searchbox" @tap="classify()">
 				<view class="tui-search-input">
 					<!-- #ifdef APP-PLUS || MP -->
 					<icon type="search" :size='13' color='#999'></icon>
@@ -180,7 +180,7 @@
 		},
 		computed: mapState(['forcedLogin', 'hasLogin', 'member_id', 'openid']),
 		methods: {
-			...mapMutations(['login']),
+			...mapMutations(['login', 'setCate']),
 			//获取轮播图
 			getBannerImg() {
 				this.$postajax(memberApi.getBannerImg)
@@ -198,9 +198,8 @@
 				var param = {
 					page: this.pageIndex,
 					limit: this.$pagination.limit,
-					name: "",
 				}
-				this.$postajax(api.getCategory, param)
+				this.$postajax(api.getCate, param)
 					.then(res => {
 						if (res.code == 0) {
 							this.category = res.data;
@@ -280,7 +279,10 @@
 				}
 			},
 			classify: function(id) {
-				uni.reLaunch({
+				if (id) {
+					this.setCate(id)
+				}
+				uni.switchTab({
 					url: '../category/category'
 				});
 

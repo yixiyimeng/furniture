@@ -15,6 +15,7 @@ const store = new Vuex.Store({
 		openid: uni.getStorageSync("openid") || "",
 		phone: uni.getStorageSync("phone") || "",
 		session_key: uni.getStorageSync("session_key") || "",
+		cateId: '',
 		avatarUrl: ""
 	},
 	mutations: {
@@ -36,6 +37,9 @@ const store = new Vuex.Store({
 		logout(state) {
 			state.userName = "";
 			state.hasLogin = false;
+		},
+		setCate(state, cateId) {
+			state.cateId = cateId;
 		}
 	}
 })

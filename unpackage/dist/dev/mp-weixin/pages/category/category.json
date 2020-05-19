@@ -4,6 +4,7 @@
   "navigationBarTextStyle": "white",
   "usingComponents": {
     "tui-loadmore": "/components/loadmore/loadmore",
-    "tui-nomore": "/components/nomore/nomore"
+    "tui-nomore": "/components/nomore/nomore",
+    "tui-tabs": "/components/tui-tabs/tui-tabs"
   }
 }

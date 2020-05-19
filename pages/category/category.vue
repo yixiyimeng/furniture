@@ -1,5 +1,7 @@
 <template>
 	<view class="container">
+		<tui-tabs :tabs="navbar" :currentTab="navTab" @change="change" bottom="50%" :bgColor="bgColor" color="#fff"
+		 selectedColor="#EB0909" itemWidth="33.33%" :sliderWidth="146" :sliderHeight="52" sliderBgColor="#fff" :unlined="true"></tui-tabs>
 		<view class="tui-searchbox">
 			<view class="tui-search-input">
 				<!-- #ifdef APP-PLUS || MP -->
@@ -31,15 +33,15 @@
 					<text>{{item.name}}</text>
 
 				</view>
-				
+
 			</view>
 		</scroll-view>
-		<view v-if="isSHowSub" >
+		<view v-if="isSHowSub">
 			<view class="sub-tab-view" @click="handleClose" :style="{height:height+'px',top:top+'px',background:'rgba(0, 0, 0, 0.5)'}">
 				<view v-for="(item,index) in subtabbar" :key="index" class="sub-tab-bar-item" :class="[currentsubTab==item.id ? 'active' : '']"
 				 :data-current="index" @tap.stop="swichsubNav(item.id)">
 					<text>{{item.name}}</text>
-		
+
 				</view>
 			</view>
 		</view>
@@ -91,13 +93,16 @@
 	const util = require('@/utils/util.js')
 	import tuiLoadmore from "@/components/loadmore/loadmore"
 	import tuiNomore from "@/components/nomore/nomore"
+	import tuiTabs from "@/components/tui-tabs/tui-tabs"
 	import {
-		mapState
-		} from 'vuex'
+		mapState,
+		mapMutations
+	} from 'vuex'
 	export default {
 		components: {
 			tuiLoadmore,
-			tuiNomore
+			tuiNomore,
+			tuiTabs
 		},
 		data() {
 			return {
@@ -116,32 +121,55 @@
 				lastPage: 1,
 				loadding: false,
 				pullUpOn: true,
+				navTab: null,
+				bgColor: "linear-gradient(90deg, rgb(255, 118, 38), rgb(252, 30, 82))",
+				navbar: [{
+					id: 1,
+					name: '家用'
+				}, {
+					id: 2,
+					name: '办公'
+				}, {
+					id: 3,
+					name: '工程类'
+				}],
+				navTabId: ''
 			}
 		},
-		computed: mapState(['member_id']),
+		computed: mapState(['member_id', 'cateId']),
 		onLoad: function(options) {
 			setTimeout(() => {
 				uni.getSystemInfo({
 					success: (res) => {
-						let header = 92;
-						let top = 10;
+						let header = 126;
+						let top = 0;
 						//#ifdef H5
 						top = 44;
 						//#endif
-						this.height = res.windowHeight - uni.upx2px(header)
-						this.top = top + uni.upx2px(header)
+						let barH = 80;
+						this.height = res.windowHeight - uni.upx2px(header) - uni.upx2px(barH)
+						this.top = top + uni.upx2px(header) + uni.upx2px(barH)
 
 						//this.getProduct();
 						//this.swichNav(this.currentTab)
 					}
 				});
 			}, 50)
-			console.log("跳轉參數" + options.searchKey)
-			this.currentTab = options.searchKey;
+			// console.log("跳轉參數" + options.searchKey)
+			// this.currentTab = options.searchKey;
+			this.getCate();
 		},
 		onShow() {
-			this.getCategory();
-			this.getProduct();
+			this.navTabId = this.cateId;
+			if (this.navbar && this.navbar.length > 0) {
+				this.navTab = this.navbar.findIndex(item => item.id == this.navTabId);
+				this.currentTab = null;
+				this.currentsubTab = null;
+				this.getCategory()
+				// this.getProduct();
+			} else {
+				this.getCate(1);
+			}
 		},
 		watch: {
 			pageIndex(newValue, oldValue) {
@@ -153,22 +181,61 @@
 			}
 		},
 		methods: {
+			...mapMutations(['setCate']),
+			getCate(type) {
+				var param = {
+					page: 1,
+					limit: 10,
+				}
+				this.$postajax(api.getCate, param)
+					.then(res => {
+						if (res.code == 0) {
+							this.navbar = res.data;
+							if (res.data && res.data.length > 0) {
+								if (this.navTabId != '') {
+									this.navTab = res.data.findIndex(item => item.id == this.navTabId);
+									console.log(this.navTab)
+								} else {
+									this.navTabId = res.data[0].id;
+									this.navTab = 0;
+									this.setCate(this.navTabId)
+								}
+								if (type == 1) {
+									this.currentTab = null;
+									this.currentsubTab = null;
+									this.getCategory()
+								}
+
+							}
+						}
+
+
+					})
+					.catch(err => {
+
+					});
+			},
 			//获取分类
 			getCategory() {
 				var param = {
 					page: this.$pagination.page,
 					limit: this.$pagination.limit,
 					name: "",
+					acid: this.navTabId
 				}
 				this.$postajax(api.getCategory, param)
 					.then(res => {
 						console.log(JSON.stringify(res))
 						if (res.code == 0) {
 							this.tabbar = res.data;
-							this.tabbar.unshift({
-								id: null,
-								name: "全部"
-							})
+							if (this.tabbar && this.tabbar.length > 0) {
+								this.currentTab = this.tabbar[0].id;
+								this.getProduct();
+							}
+							// this.tabbar.unshift({
+							// 	id: null,
+							// 	name: "全部"
+							// })
 						}
 
 
@@ -226,6 +293,7 @@
 					name: this.searchKey,
 					class_id: this.currentsubTab,
 					category_id: this.currentTab,
+					acid: this.navTabId
 				}
 				this.$postajax(api.getProduct, param)
 					.then(res => {
@@ -343,6 +411,16 @@
 
 						});
 				}
+			},
+			change(e) {
+				/* 切换一级分类 */
+				this.navTab = e.index;
+				this.navTabId = this.navbar[e.index].id;
+				this.setCate(this.navTabId);
+				this.currentTab = null;
+				this.currentsubTab = null;
+				this.getCategory()
+				// this.getProduct();
 			}
 		}
 	}
@@ -432,7 +510,8 @@
 		box-sizing: border-box;
 		top: 0;
 		bottom: 0;
-		z-index:999
+		z-index: 999;
+		overflow: auto;
 	}
 
 	.sub-tab-bar-item {

@@ -287,7 +287,7 @@ var _member = _interopRequireDefault(__webpack_require__(/*! @/api/member */ 9))
 
   computed: (0, _vuex.mapState)(['forcedLogin', 'hasLogin', 'member_id', 'openid']),
   methods: _objectSpread({},
-  (0, _vuex.mapMutations)(['login']), {
+  (0, _vuex.mapMutations)(['login', 'setCate']), {
     //获取轮播图
     getBannerImg: function getBannerImg() {var _this = this;
       this.$postajax(_member.default.getBannerImg).
@@ -304,10 +304,9 @@ var _member = _interopRequireDefault(__webpack_require__(/*! @/api/member */ 9))
     getCategory: function getCategory() {var _this2 = this;
       var param = {
         page: this.pageIndex,
-        limit: this.$pagination.limit,
-        name: "" };
+        limit: this.$pagination.limit };
 
-      this.$postajax(_category.default.getCategory, param).
+      this.$postajax(_category.default.getCate, param).
       then(function (res) {
         if (res.code == 0) {
           _this2.category = res.data;
@@ -387,7 +386,10 @@ var _member = _interopRequireDefault(__webpack_require__(/*! @/api/member */ 9))
       }
     },
     classify: function classify(id) {
-      uni.reLaunch({
+      if (id) {
+        this.setCate(id);
+      }
+      uni.switchTab({
         url: '../category/category' });
 
 

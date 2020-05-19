@@ -139,6 +139,7 @@
 				let padding = this.winWidth / 750 * this.padding
 				let width = this.winWidth - padding * 2
 				let left = (width / tabsNum - (this.winWidth / 750 * this.sliderWidth)) / 2 + padding
+				console.log('left',left);
 				let scrollLeft = left
 				if (this.currentTab > 0) {
 					scrollLeft = scrollLeft + (width / tabsNum) * this.currentTab
