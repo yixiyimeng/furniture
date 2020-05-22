@@ -111,14 +111,48 @@
 					urls: imgalist // 需要预览的图片http链接列表
 				})
 			},
-			playvideo: function(path, poster) {
-				this.poster = poster;
+			// playvideo: function(path) {
+			// 	var videoContext = this.videoContext;
+			// 	this.videoSrc = path;
+			// 	setTimeout(function() {
+			// 		this.isShowVideo = true;
+			// 		videoContext.seek(0);
+			// 		videoContext.play();
+			// 		videoContext.requestFullScreen();
+			// 	}, 100)
+
+			// },
+			// pause(e) {
+			// 	var videoContext = this.videoContext;
+			// 	videoContext.exitFullScreen();
+			// 	videoContext.seek(0);
+			// 	// this.videoSrc = '';
+			// },
+			// /**
+			//  * 全屏改变
+			//  */
+			// bindVideoScreenChange: function(e) {
+			// 	var status = e.mp.detail.fullScreen;
+			// 	if (!status) {
+			// 		this.isShowVideo = false;
+			// 		var videoContext = this.videoContext;
+			// 		videoContext.seek(0);
+			// 		videoContext.pause();
+			// 		// this.videoSrc = '';
+			// 	} else {
+			// 		this.isShowVideo = true
+			// 	}
+
+			// }
+			playvideo: function(path) {
+				// this.poster = poster;
 				var videoContext = this.videoContext;
-				this.videoSrc =path;
+				this.videoSrc = path;
 				setTimeout(() => {
 					videoContext.seek(0);
 					videoContext.play();
 					this.isShowVideo = true;
+					videoContext.requestFullScreen();
 				}, 150);
 				// setTimeout(()=>{
 				// 	videoContext.requestFullScreen();
@@ -128,8 +162,8 @@
 			pause(e) {
 				console.log('结束')
 				var videoContext = this.videoContext;
-				// videoContext.exitFullScreen();
-				this.videoSrc = '';
+				videoContext.exitFullScreen();
+				// this.videoSrc = '';
 				this.isShowVideo = false;
 			},
 			/**
@@ -142,10 +176,10 @@
 					var videoContext = this.videoContext;
 					videoContext.seek(0);
 					videoContext.pause();
-					this.videoSrc = '';
+					// this.videoSrc = '';
 					this.isShowVideo = false;
 				} else {
-					this.isShowVideo = true;
+					// this.isShowVideo = true;
 				}
 				//this.setData(play);
 			}

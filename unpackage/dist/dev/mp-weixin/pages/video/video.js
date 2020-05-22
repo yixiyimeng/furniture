@@ -218,14 +218,48 @@ var _default = { data: function data() {return { list: [], userInfo: {}, isShow:
         urls: imgalist // 需要预览的图片http链接列表
       });
     },
-    playvideo: function playvideo(path, poster) {var _this = this;
-      this.poster = poster;
+    // playvideo: function(path) {
+    // 	var videoContext = this.videoContext;
+    // 	this.videoSrc = path;
+    // 	setTimeout(function() {
+    // 		this.isShowVideo = true;
+    // 		videoContext.seek(0);
+    // 		videoContext.play();
+    // 		videoContext.requestFullScreen();
+    // 	}, 100)
+
+    // },
+    // pause(e) {
+    // 	var videoContext = this.videoContext;
+    // 	videoContext.exitFullScreen();
+    // 	videoContext.seek(0);
+    // 	// this.videoSrc = '';
+    // },
+    // /**
+    //  * 全屏改变
+    //  */
+    // bindVideoScreenChange: function(e) {
+    // 	var status = e.mp.detail.fullScreen;
+    // 	if (!status) {
+    // 		this.isShowVideo = false;
+    // 		var videoContext = this.videoContext;
+    // 		videoContext.seek(0);
+    // 		videoContext.pause();
+    // 		// this.videoSrc = '';
+    // 	} else {
+    // 		this.isShowVideo = true
+    // 	}
+
+    // }
+    playvideo: function playvideo(path) {var _this = this;
+      // this.poster = poster;
       var videoContext = this.videoContext;
       this.videoSrc = path;
       setTimeout(function () {
         videoContext.seek(0);
         videoContext.play();
         _this.isShowVideo = true;
+        videoContext.requestFullScreen();
       }, 150);
       // setTimeout(()=>{
       // 	videoContext.requestFullScreen();
@@ -235,8 +269,8 @@ var _default = { data: function data() {return { list: [], userInfo: {}, isShow:
     pause: function pause(e) {
       console.log('结束');
       var videoContext = this.videoContext;
-      // videoContext.exitFullScreen();
-      this.videoSrc = '';
+      videoContext.exitFullScreen();
+      // this.videoSrc = '';
       this.isShowVideo = false;
     },
     /**
@@ -249,11 +283,11 @@ var _default = { data: function data() {return { list: [], userInfo: {}, isShow:
         var videoContext = this.videoContext;
         videoContext.seek(0);
         videoContext.pause();
-        this.videoSrc = '';
+        // this.videoSrc = '';
         this.isShowVideo = false;
       } else {
-        this.isShowVideo = true;
-      }
+
+      } // this.isShowVideo = true;
       //this.setData(play);
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
