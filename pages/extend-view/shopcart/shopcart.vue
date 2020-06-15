@@ -136,7 +136,7 @@
 					console.log(111)
 					item.checked ? totalPrice += item.qyt * item.price : totalPrice += 0
 				})
-				this.totalPrice = totalPrice
+				this.totalPrice = totalPrice.toFixed(2)
 				//return totalPrice
 
 			},
@@ -199,14 +199,14 @@
 				let index = e.index;
 				let item = e.item;
 				// this.tui.toast(`商品id：${item.id}，按钮index：${index}`);
-				this.productList = this.productList.filter(subitem => subitem.id!=item.id);
+				this.productList = this.productList.filter(subitem => subitem.id != item.id);
 				var $me = this;
 				uni.setStorage({
 					key: 'shopCartList',
 					data: this.productList.length > 0 ? JSON.stringify(this.productList) : '',
 					success: function(res) {
 						$me.tui.toast("删除成功", 2000, true);
-				
+
 					}
 				});
 				this.allchecked = false
@@ -224,15 +224,15 @@
 			},
 			btnPay() {
 				var ids = this.productList.map(item => {
-					if(item.checked){
+					if (item.checked) {
 						var items = {
 							id: item.id,
 							qyt: item.qyt
 						}
 						return items
-					}					
+					}
 				}).filter(item => item != null)
-				console.log("ids"+JSON.stringify(ids)) 
+				console.log("ids" + JSON.stringify(ids))
 				uni.navigateTo({
 					url: '../submitOrder/submitOrder?ids=' + JSON.stringify(ids)
 				})
