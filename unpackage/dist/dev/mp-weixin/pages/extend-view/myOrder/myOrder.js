@@ -187,6 +187,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 var _index = __webpack_require__(/*! @/utils/index */ 10);
 
 
@@ -254,8 +255,8 @@ var _vuex = __webpack_require__(/*! vuex */ 8);function _interopRequireDefault(o
 //
 //
 //
-var tuiTabs = function tuiTabs() {return __webpack_require__.e(/*! import() | components/tui-tabs/tui-tabs */ "components/tui-tabs/tui-tabs").then(__webpack_require__.bind(null, /*! @/components/tui-tabs/tui-tabs */ 209));};var tuiButton = function tuiButton() {return __webpack_require__.e(/*! import() | components/extend/button/button */ "components/extend/button/button").then(__webpack_require__.bind(null, /*! @/components/extend/button/button */ 223));};var tuiLoadmore = function tuiLoadmore() {return __webpack_require__.e(/*! import() | components/loadmore/loadmore */ "components/loadmore/loadmore").then(__webpack_require__.bind(null, /*! @/components/loadmore/loadmore */ 195));};var tuiNomore = function tuiNomore() {return __webpack_require__.e(/*! import() | components/nomore/nomore */ "components/nomore/nomore").then(__webpack_require__.bind(null, /*! @/components/nomore/nomore */ 202));};var tuiListCell = function tuiListCell() {return __webpack_require__.e(/*! import() | components/list-cell/list-cell */ "components/list-cell/list-cell").then(__webpack_require__.bind(null, /*! @/components/list-cell/list-cell */ 216));};var _default = { components: { tuiTabs: tuiTabs, tuiButton: tuiButton, tuiLoadmore: tuiLoadmore, tuiNomore: tuiNomore, tuiListCell: tuiListCell }, data: function data() {return { basePath: _index.basePath, tabs: [{ name: "全部" }, { name: "待付款" }, { name: "待发货" }, { name: "已发货" }, { name: "已完成" }], orderList: [], currentTab: 0, pageIndex: 1, lastPage: 1, loadding: false, pullUpOn: true, scrollTop: 0 };}, computed: (0, _vuex.mapState)(['forcedLogin', 'hasLogin', 'member_id', 'openid']), onLoad: function onLoad() {this.getOrder();}, methods: { getGoodsNum: function getGoodsNum(list) {console.log(JSON.stringify(list));if (list && list.length > 0) {var goodsNum = 0;list.map(function (item) {goodsNum += item.qty;});console.log("数量" + goodsNum);return goodsNum;}}, getGoodsTotal: function getGoodsTotal(list) {var amount = 0;list.map(function (item) {amount += item.qty * item.price;});console.log("金额" + amount);return this.$returnFloat(amount);},
-    //获取全部收货地址
+//
+var tuiTabs = function tuiTabs() {return __webpack_require__.e(/*! import() | components/tui-tabs/tui-tabs */ "components/tui-tabs/tui-tabs").then(__webpack_require__.bind(null, /*! @/components/tui-tabs/tui-tabs */ 209));};var tuiButton = function tuiButton() {return __webpack_require__.e(/*! import() | components/extend/button/button */ "components/extend/button/button").then(__webpack_require__.bind(null, /*! @/components/extend/button/button */ 223));};var tuiLoadmore = function tuiLoadmore() {return __webpack_require__.e(/*! import() | components/loadmore/loadmore */ "components/loadmore/loadmore").then(__webpack_require__.bind(null, /*! @/components/loadmore/loadmore */ 195));};var tuiNomore = function tuiNomore() {return __webpack_require__.e(/*! import() | components/nomore/nomore */ "components/nomore/nomore").then(__webpack_require__.bind(null, /*! @/components/nomore/nomore */ 202));};var tuiListCell = function tuiListCell() {return __webpack_require__.e(/*! import() | components/list-cell/list-cell */ "components/list-cell/list-cell").then(__webpack_require__.bind(null, /*! @/components/list-cell/list-cell */ 216));};var _default = { components: { tuiTabs: tuiTabs, tuiButton: tuiButton, tuiLoadmore: tuiLoadmore, tuiNomore: tuiNomore, tuiListCell: tuiListCell }, data: function data() {return { basePath: _index.basePath, tabs: [{ name: "全部" }, { name: "待付款" }, { name: "待发货" }, { name: "已发货" }, { name: "已完成" }], orderList: [], currentTab: 0, pageIndex: 1, lastPage: 1, loadding: false, pullUpOn: true, scrollTop: 0 };}, computed: (0, _vuex.mapState)(['forcedLogin', 'hasLogin', 'member_id', 'openid']), onLoad: function onLoad() {this.getOrder();}, methods: { getGoodsNum: function getGoodsNum(list) {console.log(JSON.stringify(list));if (list && list.length > 0) {var goodsNum = 0;list.map(function (item) {goodsNum += item.qty;});console.log("数量" + goodsNum);return goodsNum;}}, getGoodsTotal: function getGoodsTotal(list) {var amount = 0;list.map(function (item) {amount += item.qty * item.price;});console.log("金额" + amount);return this.$returnFloat(amount);}, //获取全部收货地址
     getOrder: function getOrder() {var _this = this;
       var param = {
         page: this.$pagination.page,
@@ -263,16 +264,18 @@ var tuiTabs = function tuiTabs() {return __webpack_require__.e(/*! import() | co
         status: this.currentTab == 0 ? '' : this.currentTab };
 
       var url = _order.default.getOrder + '/' + this.member_id;
+      //var $me=this;
       this.$postajax(url, param).
       then(function (res) {
-        console.log(JSON.stringify(res));
-        if (res.code == 0) {
 
+        if (res.code == 0) {
+          console.log("数据1" + JSON.stringify(res.data.length));
           if (res.data && res.data.length > 0) {
             res.data.forEach(function (item) {
               item.data.forEach(function (items) {
-                items.img_url = JSON.parse(items.img_url);
+                items.img_url = items.img_url ? JSON.parse(items.img_url) : [];
               });
+              console.log("数据" + JSON.stringify(item));
               //item.data = JSON.parse(item.data)
               _this.orderList.push(item);
             });

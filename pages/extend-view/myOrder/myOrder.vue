@@ -16,7 +16,8 @@
 						<view class="tui-goods-item" v-if="item.img_url&&item.img_url.length>0">
 							<image :src="item.img_url[0]" class="tui-goods-img"></image>
 							<view class="tui-goods-center">
-								<view class="tui-goods-name">{{item.name}}</view>
+								<view class="tui-goods-name">{{item.product_name}}</view>
+								<view class="tui-goods-attr">{{item.name}}</view>
 								<!-- <view class="tui-goods-attr">黑色，50ml</view> -->
 							</view>
 							<view class="tui-price-right">
@@ -138,16 +139,18 @@
 					status: this.currentTab == 0 ? '' : this.currentTab
 				}
 				var url = api.getOrder + '/' + this.member_id;
+				//var $me=this;
 				this.$postajax(url, param)
 					.then(res => {
-						console.log(JSON.stringify(res))
+						
 						if (res.code == 0) {
-							
+							console.log("数据1"+JSON.stringify(res.data.length))
 							if (res.data && res.data.length > 0) {
 								res.data.forEach(item => {
 									item.data.forEach(items=>{
-										items.img_url=JSON.parse(items.img_url)
+										items.img_url=items.img_url?JSON.parse(items.img_url):[]
 									})
+									console.log("数据"+JSON.stringify(item))
 									//item.data = JSON.parse(item.data)
 									this.orderList.push(item)
 								})

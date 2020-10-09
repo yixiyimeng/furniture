@@ -24,6 +24,9 @@
 								<view class="tui-goods-title">
 									{{item.name}}
 								</view>
+								<view class="tui-goods-title">
+									{{item.specName}}
+								</view>
 								<view class="tui-price-box">
 									<view class="tui-goods-price">￥{{item.price}}</view>
 									<view class="tui-scale">

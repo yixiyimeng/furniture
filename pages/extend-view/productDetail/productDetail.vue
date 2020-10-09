@@ -144,6 +144,10 @@
 					</view>
 				</view>
 				<view class="tui-scrollview-box">
+					<view class="tui-bold tui-attr-title">规格参数</view>
+					<view class="tui-attr-box">
+						<view class="tui-attr-item" :class="{'tui-attr-active':specInfo.id==item.id}" v-for="(item,index) in productInfo.spec" :key="index"  @click="changeSpec(item)">{{item.name}} <text class="pl20">¥{{item.price}}</text></view>
+					</view>
 					<view class="tui-number-box tui-bold tui-attr-title">
 						<view class="tui-attr-title">数量</view>
 						<tui-numberbox :max="99" :min="1" :value="value" @change="change"></tui-numberbox>
@@ -280,7 +284,14 @@
 				hasFile: false, //是否有生产了图片
 				imgSrc: '',
 				QrSrc: '',
-				id: ''
+				id: '',
+				//规格
+				specInfo:{
+					id:null,
+					name:'',
+					price:0,
+				}
+				
 			}
 		},
 		computed: mapState(['forcedLogin', 'hasLogin', 'member_id']),
@@ -332,6 +343,7 @@
 							this.productInfo.img_url = JSON.parse(res.data.img_url);
 							this.imgSrc=this.productInfo.img_url[0];
 							this.collected = this.productInfo.follow == 0 ? false : true;
+							this.specInfo=this.productInfo.spec[0];
 							console.log("图片数组" + JSON.stringify(res.data))
 						}
 
@@ -377,22 +389,38 @@
 				let shopCartArr = uni.getStorageSync('shopCartList');
 				let shopCartList = [];
 				this.productInfo.qyt = this.value;
+				var flag=false;
 				if (shopCartArr) {
 					shopCartList = JSON.parse(shopCartArr);
 				}
 				if (shopCartArr && shopCartList.length > 0) {
-					shopCartList.forEach(item => {
-						if (this.productInfo.id == item.id) {
-							item.qyt = item.qyt + this.productInfo.qyt;
-							item.follow = this.productInfo.follow;
-							item.follow_ = this.productInfo.follow_;
-						} else {
-							shopCartList.push(this.productInfo)
+					flag=shopCartList.some(item => {
+						if (this.specInfo.id === item.id) {
+							return true							
 						}
 
 					})
+					if(flag){
+						shopCartList.forEach(item=>{
+							if (this.specInfo.id === item.id) {
+								item.qyt = item.qyt + this.productInfo.qyt;
+								item.follow = this.productInfo.follow;
+								item.follow_ = this.productInfo.follow_;
+							}
+						})
+					}else{
+						let productInfo=Object.assign({},this.productInfo,{});
+						productInfo.id=this.specInfo.id;
+						productInfo.specName=this.specInfo.name;
+						productInfo.price=this.specInfo.price;
+						shopCartList.push(productInfo)
+					}
 				} else {
-					shopCartList.push(this.productInfo)
+					let productInfo=Object.assign({},this.productInfo);
+					productInfo.id=this.specInfo.id;
+					productInfo.specName=this.specInfo.name;
+					productInfo.price=this.specInfo.price;
+					shopCartList.push(productInfo)
 				}
 
 
@@ -459,9 +487,9 @@
 			},
 			submit() {
 				this.popupShow = false
-				console.log(JSON.stringify(this.productInfo.id))
+				console.log(JSON.stringify(this.specInfo.id))
 				uni.navigateTo({
-					url: '../submitOrder/submitOrder?id=' + this.productInfo.id + '&qyt=' + this.value
+					url: '../submitOrder/submitOrder?id=' + this.specInfo.id + '&qyt=' + this.value
 				})
 			},
 			coupon() {
@@ -546,6 +574,10 @@
 				const $me = this;
 				$me.showPoster = false;
 				uni.hideLoading();
+			},
+			//选择规格
+			changeSpec(item){
+				this.specInfo=item;
 			}
 		},
 		onPageScroll(e) {
@@ -567,7 +599,9 @@
 	page {
 		background: #f7f7f7;
 	}
-
+	.pl20{
+		padding-left: 20rpx;
+	}
 	.container {
 		padding-bottom: 110rpx;
 	}
@@ -1261,16 +1295,18 @@
 		margin-right: 20rpx;
 		margin-bottom: 20rpx;
 		font-size: 26rpx;
+		border: 1rpx solid #EDEDED;
 	}
 
 	.tui-attr-active {
 		background: #fcedea !important;
 		color: #e41f19;
-		font-weight: bold;
-		position: relative;
+		border: 1rpx solid #e41f19;
+		/* font-weight: bold;
+		position: relative; */
 	}
 
-	.tui-attr-active::after {
+	/* .tui-attr-active::after {
 		content: "";
 		position: absolute;
 		border: 1rpx solid #e41f19;
@@ -1279,7 +1315,7 @@
 		border-radius: 40rpx;
 		left: 0;
 		top: 0;
-	}
+	} */
 
 	.tui-number-box {
 		display: flex;

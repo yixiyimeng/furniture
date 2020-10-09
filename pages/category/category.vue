@@ -741,6 +741,9 @@
 
 	.tui-pro-price {
 		padding-top: 18rpx;
+		overflow: hidden;
+		text-overflow:ellipsis; 
+		white-space: nowrap;
 	}
 
 	.tui-sale-price {

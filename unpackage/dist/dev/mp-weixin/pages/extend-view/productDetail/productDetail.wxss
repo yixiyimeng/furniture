@@ -561,6 +561,38 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* icon 也可以使用组件*/
 @font-face {
     font-family: 'iconfont';
@@ -1132,6 +1164,9 @@
 }
 page {
 	background: #f7f7f7;
+}
+.pl20{
+	padding-left: 20rpx;
 }
 .container {
 	padding-bottom: 110rpx;
@@ -1910,14 +1945,16 @@ page {
 	margin-right: 20rpx;
 	margin-bottom: 20rpx;
 	font-size: 26rpx;
+	border: 1rpx solid #EDEDED;
 }
 .tui-attr-active {
 	background: #fcedea !important;
 	color: #e41f19;
-	font-weight: bold;
-	position: relative;
+	border: 1rpx solid #e41f19;
+	/* font-weight: bold;
+	position: relative; */
 }
-.tui-attr-active::after {
+/* .tui-attr-active::after {
 	content: "";
 	position: absolute;
 	border: 1rpx solid #e41f19;
@@ -1926,7 +1963,7 @@ page {
 	border-radius: 40rpx;
 	left: 0;
 	top: 0;
-}
+} */
 .tui-number-box {
 	display: -webkit-box;
 	display: -webkit-flex;

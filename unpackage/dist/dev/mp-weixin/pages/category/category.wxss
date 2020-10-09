@@ -337,6 +337,10 @@ page {
 }
 .tui-pro-price {
 	padding-top: 18rpx;
+	overflow: hidden;
+	-o-text-overflow:ellipsis;
+	   text-overflow:ellipsis; 
+	white-space: nowrap;
 }
 .tui-sale-price {
 	font-size: 34rpx;

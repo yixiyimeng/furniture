@@ -179,10 +179,16 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+
 var _index = __webpack_require__(/*! @/utils/index */ 10);
 
 
 var _vuex = __webpack_require__(/*! vuex */ 8); //
+//
+//
+//
 //
 //
 //
@@ -260,12 +266,9 @@ var tuiSwipeAction = function tuiSwipeAction() {return __webpack_require__.e(/*!
       // },
       { name: '删除', color: '#fff', fontsize: 28, width: 64, background: '#F82400' }], isEdit: false, productList: [], pageIndex: 1, loadding: false, pullUpOn: true, allchecked: false, //全选默认false
       /* totalNum:0,//选中商品总数量*/totalPrice: 0 //选中商品总金额 
-    };}, computed: (0, _vuex.mapState)(['forcedLogin', 'hasLogin', 'member_id']), onLoad: function onLoad() {var shopCartArr = uni.getStorageSync('shopCartList');if (shopCartArr) {this.productList = JSON.parse(shopCartArr);this.productList.forEach(function (item) {item.checked = false;});console.log(JSON.stringify(this.productList));}}, methods: { countTotal: function countTotal() {var totalPrice = 0;this.productList.map(function (item) {console.log(111);item.checked ? totalPrice += item.qyt * item.price : totalPrice += 0;});this.totalPrice = totalPrice; //return totalPrice
+    };}, computed: (0, _vuex.mapState)(['forcedLogin', 'hasLogin', 'member_id']), onLoad: function onLoad() {var shopCartArr = uni.getStorageSync('shopCartList');if (shopCartArr) {this.productList = JSON.parse(shopCartArr);this.productList.forEach(function (item) {item.checked = false;});console.log(JSON.stringify(this.productList));}}, methods: { countTotal: function countTotal() {var totalPrice = 0;this.productList.map(function (item) {console.log(111);item.checked ? totalPrice += item.qyt * item.price : totalPrice += 0;});this.totalPrice = totalPrice.toFixed(2); //return totalPrice
     }, // 单个商品前的勾选
-    selected: function selected(item) {item.checked = !item.checked;console.log("单选" + JSON.stringify(item.checked));
-      if (!item.checked) {
-        this.allchecked = false;
-      } else {
+    selected: function selected(item) {item.checked = !item.checked;console.log("单选" + JSON.stringify(item.checked));if (!item.checked) {this.allchecked = false;} else {
         var test = this.productList.every(function (item) {
           return item.checked === true;
         });
