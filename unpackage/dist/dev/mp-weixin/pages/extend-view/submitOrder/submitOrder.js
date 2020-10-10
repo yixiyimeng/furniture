@@ -251,6 +251,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 var _index = __webpack_require__(/*! @/utils/index */ 10);
 
 
@@ -296,8 +297,14 @@ var _vuex = __webpack_require__(/*! vuex */ 8);function _interopRequireDefault(o
       },
       hasAddress: false,
       seladdressId: null, //选择的地址id
-      productId: null //商品id
-    };
+      productId: null, //商品id
+      //规格
+      specInfo: {
+        id: null,
+        name: '',
+        price: 0 } };
+
+
 
 
   },
@@ -306,7 +313,7 @@ var _vuex = __webpack_require__(/*! vuex */ 8);function _interopRequireDefault(o
 
     this.seladdressId = options.addressId ? options.addressId : null;
     this.value = options.qyt ? options.qyt : 1;
-    this.productId = options.id;
+
     if (options.ids) {
       var arr = JSON.parse(options.ids);
       console.log(JSON.stringify(arr));
@@ -326,6 +333,8 @@ var _vuex = __webpack_require__(/*! vuex */ 8);function _interopRequireDefault(o
       }
 
     } else {
+      this.productId = options.id;
+      this.specInfo.id = options.specId;
       this.getProductShow();
     }
     setTimeout(function () {
@@ -411,12 +420,26 @@ var _vuex = __webpack_require__(/*! vuex */ 8);function _interopRequireDefault(o
       var url = _category.default.getProductShow + '/' + this.productId;
       this.$postajax(url, param).
       then(function (res) {
-        //console.log(JSON.stringify(res))
+        console.log(JSON.stringify(res));
         if (res.code == 0) {
           _this3.orderInfo = res.data;
           _this3.orderInfo.img_url = JSON.parse(res.data.img_url);
           _this3.orderInfo.qyt = _this3.value;
+          _this3.orderInfo.id = _this3.specInfo.id;
+
+          if (_this3.orderInfo.spec && _this3.orderInfo.spec.length > 0) {
+            _this3.orderInfo.spec.forEach(function (item) {
+              if (item.id == _this3.specInfo.id) {
+                _this3.specInfo = item;
+
+              }
+
+            });
+          }
+          _this3.orderInfo.price = _this3.specInfo.price;
           _this3.orderList.push(_this3.orderInfo);
+
+
           //console.log("图片数组"+JSON.stringify(this.orderInfo.img_url))
           //this.productAmount=parseFloat(this.orderInfo.price)*this.value;
           /* this.calcOrder(); */
@@ -441,6 +464,7 @@ var _vuex = __webpack_require__(/*! vuex */ 8);function _interopRequireDefault(o
       });
       //var goodsList=[{"id":this.orderInfo.id,"qty":this.value}];
       var param = (_param = {
+        id: this.productId,
         member_id: this.member_id,
         goodsList: JSON.stringify(goodsList),
         province: this.userInfo.province,
@@ -451,6 +475,7 @@ var _vuex = __webpack_require__(/*! vuex */ 8);function _interopRequireDefault(o
       this.userInfo.contact_name), _defineProperty(_param, "contact_phone",
       this.userInfo.contact_phone), _param);
 
+      console.log("商品" + JSON.stringify(goodsList));
       this.$postajax(_order.default.calcOrder, param).
       then(function (res) {
         console.log("计算商品" + JSON.stringify(res));
@@ -520,6 +545,7 @@ var _vuex = __webpack_require__(/*! vuex */ 8);function _interopRequireDefault(o
       });
       //var goodsList=[{"id":this.orderInfo.id,"qty":this.value}];
       var param = (_param2 = {
+        id: this.productId,
         member_id: this.member_id,
         goodsList: JSON.stringify(goodsList),
         province: this.userInfo.province,

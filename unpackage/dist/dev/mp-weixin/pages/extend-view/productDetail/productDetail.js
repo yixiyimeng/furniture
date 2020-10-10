@@ -596,7 +596,7 @@ var tuiIcon = function tuiIcon() {return __webpack_require__.e(/*! import() | co
       this.popupShow = false;
       console.log(JSON.stringify(this.specInfo.id));
       uni.navigateTo({
-        url: '../submitOrder/submitOrder?id=' + this.specInfo.id + '&qyt=' + this.value });
+        url: '../submitOrder/submitOrder?id=' + this.productInfo.id + '&qyt=' + this.value + '&specId=' + this.specInfo.id });
 
     },
     coupon: function coupon() {

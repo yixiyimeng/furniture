@@ -25,12 +25,13 @@
 						商品信息
 					</view>
 				</tui-list-cell>
-				<block v-for="(item,index) in orderList">
+				<block v-for="(item,index) in orderList" :key="index">
 					<tui-list-cell :hover="false" padding="0">
 						<view class="tui-goods-item">
 							<image :src="item.img_url[0]" class="tui-goods-img"></image>
 							<view class="tui-goods-center">
 								<view class="tui-goods-name">{{item.name}}</view>
+								 <view class="tui-goods-attr">{{specInfo.name?specInfo.name:item.specName}}</view>
 								<!-- <view class="tui-goods-attr">黑色，50ml</view> -->
 							</view>
 							<view class="tui-price-right">
@@ -42,7 +43,7 @@
 					<tui-list-cell :hover="false">
 						<view class="tui-padding tui-flex">
 							<view>数量</view>
-							<tui-numberbox :max="99" :min="1" :value="item.qyt" @change="change"></tui-numberbox>
+							<tui-numberbox :max="99" :min="1" :value="item.qyt" :index="index"  @change="change"></tui-numberbox>
 						</view>
 					</tui-list-cell>
 					<tui-list-cell :hover="false">
@@ -166,6 +167,12 @@
 				hasAddress: false,
 				seladdressId: null, //选择的地址id
 				productId: null, //商品id
+				//规格
+				specInfo:{
+					id:null,
+					name:'',
+					price:0,
+				}
 
 
 			}
@@ -175,7 +182,7 @@
 
 			this.seladdressId = options.addressId ? options.addressId : null;
 			this.value = options.qyt ? options.qyt : 1;
-			this.productId = options.id;
+			
 			if (options.ids) {
 				let arr = JSON.parse(options.ids)
 				console.log(JSON.stringify(arr))
@@ -195,6 +202,8 @@
 				}
 
 			} else {
+				this.productId = options.id;
+				this.specInfo.id=options.specId;
 				this.getProductShow();
 			}
 			setTimeout(() => {
@@ -280,12 +289,26 @@
 				var url = categoryapi.getProductShow + '/' + this.productId
 				this.$postajax(url, param)
 					.then(res => {
-						//console.log(JSON.stringify(res))
+						console.log(JSON.stringify(res))
 						if (res.code == 0) {
 							this.orderInfo = res.data;
 							this.orderInfo.img_url = JSON.parse(res.data.img_url);
 							this.orderInfo.qyt = this.value;
+							this.orderInfo.id=this.specInfo.id;
+							
+							if(this.orderInfo.spec&&this.orderInfo.spec.length>0){
+								this.orderInfo.spec.forEach(item=>{
+									if(item.id==this.specInfo.id){
+										this.specInfo=item;
+										
+									}
+									
+								})
+							}
+							this.orderInfo.price=this.specInfo.price;
 							this.orderList.push(this.orderInfo)
+							
+							
 							//console.log("图片数组"+JSON.stringify(this.orderInfo.img_url))
 							//this.productAmount=parseFloat(this.orderInfo.price)*this.value;
 							/* this.calcOrder(); */
@@ -310,6 +333,7 @@
 				})
 				//var goodsList=[{"id":this.orderInfo.id,"qty":this.value}];
 				var param = {
+					id:this.productId,
 					member_id: this.member_id,
 					goodsList: JSON.stringify(goodsList),
 					province: this.userInfo.province,
@@ -320,6 +344,7 @@
 					contact_name: this.userInfo.contact_name,
 					contact_phone: this.userInfo.contact_phone
 				}
+				console.log("商品"+JSON.stringify(goodsList))
 				this.$postajax(api.calcOrder, param)
 					.then(res => {
 						console.log("计算商品" + JSON.stringify(res))
@@ -389,6 +414,7 @@
 				})
 				//var goodsList=[{"id":this.orderInfo.id,"qty":this.value}];
 				var param = {
+					id:this.productId,
 					member_id: this.member_id,
 					goodsList: JSON.stringify(goodsList),
 					province: this.userInfo.province,

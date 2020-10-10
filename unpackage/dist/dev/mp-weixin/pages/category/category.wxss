@@ -69,7 +69,8 @@ page {
 	width: 200rpx;
 	position: absolute;
 	left: 0;
-	z-index: 10;
+	/* z-index: 10; */
+	z-index: 999;
 	/* top: 0; */
 	bottom: 0;
 	overflow: auto;
@@ -99,12 +100,14 @@ page {
 .sub-tab-view {
 	width: 100%;
 	position: absolute;
-	left: 220rpx;
+	left: 0;
+	padding-left: 200rpx; 
 	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
 	top: 0;
 	bottom: 0;
-	z-index: 999;
+	/* z-index: 999; */
+	z-index: 998;
 	overflow: auto;
 }
 .sub-tab-bar-item {

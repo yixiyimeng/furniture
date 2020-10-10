@@ -25,15 +25,14 @@
 
 			</view>
 		</view>
-
 		<scroll-view scroll-y scroll-with-animation :scroll-top="scrollTop" class="tab-view" :style="{height:height+'px',top:top+'px'}">
 			<view style="position: relative;height: 100%;position: absolute;background: #f6f6f6;top:0;bottom:0">
 				<view v-for="(item,index) in tabbar" :key="index" class="tab-bar-item" :class="[currentTab==item.id ? 'active' : '']"
 				 :data-current="index" @tap.stop="swichNav(item.id)">
 					<text>{{item.name}}</text>
-
+		
 				</view>
-
+			
 			</view>
 		</scroll-view>
 		<view v-if="isSHowSub">
@@ -41,7 +40,7 @@
 				<view v-for="(item,index) in subtabbar" :key="index" class="sub-tab-bar-item" :class="[currentsubTab==item.id ? 'active' : '']"
 				 :data-current="index" @tap.stop="swichsubNav(item.id)">
 					<text>{{item.name}}</text>
-
+				
 				</view>
 			</view>
 		</view>
@@ -429,6 +428,7 @@
 <style>
 	page {
 		background: #fcfcfc;
+		
 	}
 
 	/* 左侧导航布局 start*/
@@ -483,7 +483,8 @@
 		width: 200upx;
 		position: absolute;
 		left: 0;
-		z-index: 10;
+		/* z-index: 10; */
+		z-index: 999;
 		/* top: 0; */
 		bottom: 0;
 		overflow: auto;
@@ -501,16 +502,17 @@
 		color: #444;
 		font-weight: 400;
 	}
-
 	.sub-tab-view {
 		width: 100%;
 		position: absolute;
-		left: 220rpx;
+		left: 0;
+		padding-left: 200rpx; 
 		-webkit-box-sizing: border-box;
 		box-sizing: border-box;
 		top: 0;
 		bottom: 0;
-		z-index: 999;
+		/* z-index: 999; */
+		z-index: 998;
 		overflow: auto;
 	}
 
