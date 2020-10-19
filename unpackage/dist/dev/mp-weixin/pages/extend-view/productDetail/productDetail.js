@@ -285,12 +285,24 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+
+
+
+
 var _index = __webpack_require__(/*! @/utils/index */ 10);
 
 
 var _category = _interopRequireDefault(__webpack_require__(/*! @/api/category */ 24));
 var _member = _interopRequireDefault(__webpack_require__(/*! @/api/member */ 9));
 var _vuex = __webpack_require__(/*! vuex */ 8);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} //
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -485,20 +497,15 @@ var tuiIcon = function tuiIcon() {return __webpack_require__.e(/*! import() | co
       ], */showActionSheet: false, maskClosable: true, tips: "确认清空搜索历史吗？", itemList: [], color: "#9a9a9a", size: 26, isCancel: true, bannerIndex: 0, topMenu: [{ icon: "message", text: "消息", size: 26, badge: 3 }, { icon: "home", text: "首页", size: 23, badge: 0 }, { icon: "people", text: "我的", size: 26, badge: 0 }, { icon: "cart", text: "购物车", size: 23, badge: 2 }, { icon: "kefu", text: "客服小蜜", size: 26, badge: 0 }, { icon: "feedback", text: "我要反馈", size: 23, badge: 0 }, { icon: "share", text: "分享", size: 26, badge: 0 }], menuShow: false, popupShow: false, value: 1, collected: false, shopCartNum: 0, showPoster: false, //是否显示海报
       hasFile: false, //是否有生产了图片
       imgSrc: '', QrSrc: '', id: '', //规格
-      specInfo: { id: null, name: '', price: 0 } };}, computed: (0, _vuex.mapState)(['forcedLogin', 'hasLogin', 'member_id']), onLoad: function onLoad(options) {var _this = this;var obj = {};obj = wx.getMenuButtonBoundingClientRect();console.log(JSON.stringify(options.id));this.id = options.id;this.getProductShow(options.id); /* let shopCartList = uni.getStorageSync('shopCartList');
-                                                                                                                                                                                                                                                                                                                                        if (shopCartList) {
-                                                                                                                                                                                                                                                                                                                                        	console.log("购物车哦"+JSON.stringify(shopCartList));
-                                                                                                                                                                                                                                                                                                                                        	this.shopCartNum=JSON.parse(shopCartList).length;
-                                                                                                                                                                                                                                                                                                                                        } */setTimeout(function () {uni.getSystemInfo({ success: function success(res) {_this.width = obj.left || res.windowWidth;_this.height = obj.top ? obj.top + obj.height + 8 : res.statusBarHeight + 44;_this.top = obj.top ? obj.top + (obj.height - 32) / 2 : res.statusBarHeight + 6;_this.scrollH = res.windowWidth;} });}, 50);this.getIndexQrcode('/pages/productDetail/productDetail', this.id);}, methods: { //获取产品详情
+      specInfo: { id: null, name: '', price: 0, img_url: "" } };}, computed: (0, _vuex.mapState)(['forcedLogin', 'hasLogin', 'member_id']), onLoad: function onLoad(options) {var _this = this;var obj = {};obj = wx.getMenuButtonBoundingClientRect();console.log(JSON.stringify(options.id));this.id = options.id;this.getProductShow(options.id); /* let shopCartList = uni.getStorageSync('shopCartList');
+                                                                                                                                                                                                                                                                                                                                                     if (shopCartList) {
+                                                                                                                                                                                                                                                                                                                                                     	console.log("购物车哦"+JSON.stringify(shopCartList));
+                                                                                                                                                                                                                                                                                                                                                     	this.shopCartNum=JSON.parse(shopCartList).length;
+                                                                                                                                                                                                                                                                                                                                                     } */setTimeout(function () {uni.getSystemInfo({ success: function success(res) {_this.width = obj.left || res.windowWidth;_this.height = obj.top ? obj.top + obj.height + 8 : res.statusBarHeight + 44;_this.top = obj.top ? obj.top + (obj.height - 32) / 2 : res.statusBarHeight + 6;_this.scrollH = res.windowWidth;} });}, 50);this.getIndexQrcode('/pages/productDetail/productDetail', this.id);}, methods: { //获取产品详情
     getProductShow: function getProductShow(id) {var _this2 = this;var param = { member_id: this.member_id };var url = _category.default.getProductShow + '/' + id;this.$postajax(url, param).then(function (res) {console.log(JSON.stringify(res));if (res.code == 0) {_this2.productInfo = res.data;_this2.productInfo.img_url = JSON.parse(res.data.img_url);_this2.imgSrc = _this2.productInfo.img_url[0];_this2.collected = _this2.productInfo.follow == 0 ? false : true;_this2.specInfo = _this2.productInfo.spec[0];console.log("图片数组" + JSON.stringify(res.data));}}).catch(function (err) {});}, bannerChange: function bannerChange(e) {this.bannerIndex = e.detail.current;}, previewImage: function previewImage(e) {console.log(JSON.stringify(e.currentTarget.dataset));var index = e.currentTarget.dataset.index;var imgurl = this.productInfo.img_url;uni.previewImage({ current: index, urls: imgurl });}, back: function back() {uni.navigateBack();}, openMenu: function openMenu() {this.menuShow = true;}, closeMenu: function closeMenu() {this.menuShow = false;}, //跳转购物车
     shopCart: function shopCart() {uni.navigateTo({ url: '../shopcart/shopcart' });}, //打开添加购物车弹框
     showPopup: function showPopup() {this.popupShow = true;}, //确定加入购物车
-    surePopup: function surePopup() {var _this3 = this;var shopCartArr = uni.getStorageSync('shopCartList');
-      var shopCartList = [];
-      this.productInfo.qyt = this.value;
-      var flag = false;
-      if (shopCartArr) {
-        shopCartList = JSON.parse(shopCartArr);
+    surePopup: function surePopup() {var _this3 = this;var shopCartArr = uni.getStorageSync('shopCartList');var shopCartList = [];this.productInfo.qyt = this.value;var flag = false;if (shopCartArr) {shopCartList = JSON.parse(shopCartArr);
       }
       if (shopCartArr && shopCartList.length > 0) {
         flag = shopCartList.some(function (item) {

@@ -137,11 +137,17 @@
 		<tui-bottom-popup :show="popupShow" @close="hidePopup">
 			<view class="tui-popup-box">
 				<view class="tui-product-box tui-padding">
-					<image :src="productInfo.img_url[0]" class="tui-popup-img"></image>
+					<!-- <image :src="productInfo.img_url[0]" class="tui-popup-img"></image>					
 					<view class="tui-popup-price">
 						<view class="tui-amount tui-bold">￥{{productInfo.price}}</view>
 						<view class="tui-number">{{productInfo.name}}</view>
+					</view> -->
+					<image :src="specInfo.img_url" class="tui-popup-img"></image>
+					<view class="tui-popup-price">
+						<view class="tui-amount tui-bold">￥{{specInfo.price}}</view>
+						<view class="tui-number">{{specInfo.name}}</view>
 					</view>
+					
 				</view>
 				<view class="tui-scrollview-box">
 					<view class="tui-bold tui-attr-title">规格参数</view>
@@ -290,6 +296,7 @@
 					id:null,
 					name:'',
 					price:0,
+					img_url:""
 				}
 				
 			}
