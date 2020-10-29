@@ -151,9 +151,9 @@
 				</view>
 				<view class="tui-scrollview-box">
 					<view class="tui-bold tui-attr-title">规格参数</view>
-					<view class="tui-attr-box">
-						<view class="tui-attr-item" :class="{'tui-attr-active':specInfo.id==item.id}" v-for="(item,index) in productInfo.spec" :key="index"  @click="changeSpec(item)">{{item.name}} <text class="pl20">¥{{item.price}}</text></view>
-					</view>
+					<scroll-view scroll-y="true"  class="tui-attr-box tui-attr-box-spec">		
+					    <view class="tui-attr-item" :class="{'tui-attr-active':specInfo.id==item.id}" v-for="(item,index) in productInfo.spec" :key="index"  @click="changeSpec(item)">{{item.name}} <text class="pl20">¥{{item.price}}</text></view>											
+					</scroll-view>
 					<view class="tui-number-box tui-bold tui-attr-title">
 						<view class="tui-attr-title">数量</view>
 						<tui-numberbox :max="99" :min="1" :value="value" @change="change"></tui-numberbox>
@@ -1285,6 +1285,10 @@
 	.tui-attr-box {
 		font-size: 0;
 		padding: 20rpx 0;
+	}
+	.tui-attr-box-spec{
+		max-height: 220rpx;
+		overflow: auto;
 	}
 
 	.tui-attr-item {

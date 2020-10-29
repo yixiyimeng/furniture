@@ -1,4 +1,4 @@
-<script>
+ <script>
 	import {
 		mapState,
 		mapMutations,

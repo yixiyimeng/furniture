@@ -1928,6 +1928,10 @@ page {
 	font-size: 0;
 	padding: 20rpx 0;
 }
+.tui-attr-box-spec{
+	max-height: 220rpx;
+	overflow: auto;
+}
 .tui-attr-item {
 	max-width: 100%;
 	min-width: 200rpx;
